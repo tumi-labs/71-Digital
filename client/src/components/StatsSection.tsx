@@ -10,7 +10,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-8 px-4 bg-black bg-opacity-40" id="stats">
+    <section className="py-8 px-4" id="stats">
       <div className="container mx-auto max-w-6xl">
         <div className="flex justify-center items-center">
           <div className="grid grid-cols-5 gap-16 text-center">

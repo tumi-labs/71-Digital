@@ -15,8 +15,8 @@ export default function GlobalReachSection() {
       title: "Asset Manager",
       location: "Dubai",
       company: "Regional Investment Fund",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      companyLogo: "https://via.placeholder.com/80x40/f97316/ffffff?text=RIF"
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      companyLogo: "data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='80' height='40' fill='%23f97316'/%3E%3Ctext x='40' y='25' font-family='Arial' font-size='12' fill='white' text-anchor='middle'%3ERIF%3C/text%3E%3C/svg%3E"
     },
     {
       quote: "Their expertise in ASIC deployment and cooling solutions reduced our operational costs by 30% while maintaining 99.7% uptime.",
@@ -24,8 +24,8 @@ export default function GlobalReachSection() {
       title: "Operations Director",
       location: "Alberta",
       company: "Northern Mining Corp",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-      companyLogo: "https://via.placeholder.com/80x40/0066cc/ffffff?text=NMC"
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      companyLogo: "data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='80' height='40' fill='%230066cc'/%3E%3Ctext x='40' y='25' font-family='Arial' font-size='12' fill='white' text-anchor='middle'%3ENMC%3C/text%3E%3C/svg%3E"
     },
     {
       quote: "From site acquisition to full-scale operations, 71 Digital delivered everything on time and under budget. Exceptional service.",
@@ -33,8 +33,8 @@ export default function GlobalReachSection() {
       title: "Chief Technology Officer",
       location: "Texas",
       company: "Bitcoin Mining Solutions",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      companyLogo: "https://via.placeholder.com/80x40/28a745/ffffff?text=BMS"
+      avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+      companyLogo: "data:image/svg+xml,%3Csvg width='80' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='80' height='40' fill='%2328a745'/%3E%3Ctext x='40' y='25' font-family='Arial' font-size='12' fill='white' text-anchor='middle'%3EBMS%3C/text%3E%3C/svg%3E"
     }
   ];
 
@@ -138,7 +138,7 @@ export default function GlobalReachSection() {
                   <img 
                     src={testimonials[currentTestimonial].companyLogo}
                     alt={testimonials[currentTestimonial].company}
-                    className="w-20 h-10 object-contain bg-white rounded px-2"
+                    className="w-20 h-10 object-contain rounded"
                   />
                 </div>
                 

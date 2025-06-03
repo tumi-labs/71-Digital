@@ -95,12 +95,12 @@ export default function MiningStore() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
-                  <Button size="sm">
+                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
+                  <Button size="sm" className="w-full">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Inquire Now
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="w-full">
                     <Download className="w-4 h-4 mr-2" />
                     Download Spec Sheet
                   </Button>
@@ -135,12 +135,12 @@ export default function MiningStore() {
                     />
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
-                  <Button size="sm">
+                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
+                  <Button size="sm" className="w-full">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Inquire Now
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="w-full">
                     <Download className="w-4 h-4 mr-2" />
                     Download Spec Sheet
                   </Button>
@@ -175,12 +175,12 @@ export default function MiningStore() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
-                  <Button size="sm">
+                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
+                  <Button size="sm" className="w-full">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Inquire Now
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="w-full">
                     <Download className="w-4 h-4 mr-2" />
                     Download Spec Sheet
                   </Button>

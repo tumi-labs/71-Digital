@@ -5,6 +5,7 @@ import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone } from 
 import centerImage from "@assets/center.png";
 import unoImage from "@assets/uno.png";
 import lastImage from "@assets/last.png";
+import logo71NoText from "@assets/71digital logo - no text.png";
 
 export default function Services() {
   const [currentSection, setCurrentSection] = useState("services");
@@ -95,7 +96,11 @@ export default function Services() {
         <section className="py-16 px-4" id="services">
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center mb-8">
-              <div className="w-12 h-2 bg-orange-500 rounded mr-4"></div>
+              <img 
+                src={logo71NoText} 
+                alt="71 Digital Logo" 
+                className="w-12 h-12 mr-4"
+              />
               <h1 className="text-4xl font-bold text-orange-500">Services</h1>
             </div>
             

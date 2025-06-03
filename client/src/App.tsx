@@ -8,6 +8,7 @@ import About from "@/pages/about";
 import Services from "@/pages/services";
 import MiningStore from "@/pages/mining-store";
 import MiningFarms from "@/pages/mining-farms";
+import DeploymentSites from "@/pages/deployment-sites";
 import Contact from "@/pages/contact";
 import BookAppointment from "@/pages/book-appointment";
 import TermsOfConditions from "@/pages/terms-of-conditions";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/mining-store" component={MiningStore} />
       <Route path="/mining-farms" component={MiningFarms} />
+      <Route path="/deployment-sites" component={DeploymentSites} />
       <Route path="/contact" component={Contact} />
       <Route path="/book-appointment" component={BookAppointment} />
       <Route path="/terms-of-conditions" component={TermsOfConditions} />

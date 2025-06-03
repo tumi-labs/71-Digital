@@ -165,7 +165,10 @@ export default function GlobalReachSection() {
                 25MW live. 50MW in expansion.
               </p>
               
-              <Button className="text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
+              <Button 
+                className="text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center"
+                onClick={() => window.open('/deployment-sites', '_self')}
+              >
                 <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" />
                 View Deployment Sites
               </Button>

@@ -116,12 +116,10 @@ export default function Contact() {
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                       <div className="flex items-center mb-4">
                         <Phone className="w-6 h-6 text-orange-500 mr-3" />
-                        <h4 className="text-lg font-bold text-white">Phone Numbers</h4>
+                        <h4 className="text-lg font-bold text-white">Phone Number</h4>
                       </div>
                       <div className="space-y-2">
-                        <p className="text-white"><span className="font-medium">Sales:</span> +971 4 123 4567</p>
-                        <p className="text-white"><span className="font-medium">Support:</span> +971 4 123 4568</p>
-                        <p className="text-white"><span className="font-medium">Hardware:</span> +971 4 123 4569</p>
+                        <p className="text-white"><span className="font-medium">Direct Line:</span> +971 50 357 8552</p>
                       </div>
                     </div>
 
@@ -129,12 +127,10 @@ export default function Contact() {
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                       <div className="flex items-center mb-4">
                         <Mail className="w-6 h-6 text-orange-500 mr-3" />
-                        <h4 className="text-lg font-bold text-white">Email Addresses</h4>
+                        <h4 className="text-lg font-bold text-white">Email Address</h4>
                       </div>
                       <div className="space-y-2">
-                        <p className="text-white"><span className="font-medium">General:</span> info@71digital.com</p>
-                        <p className="text-white"><span className="font-medium">Sales:</span> sales@71digital.com</p>
-                        <p className="text-white"><span className="font-medium">Support:</span> support@71digital.com</p>
+                        <p className="text-white"><span className="font-medium">General Inquiries:</span> info@71digital.io</p>
                       </div>
                     </div>
 

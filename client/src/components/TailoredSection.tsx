@@ -33,12 +33,12 @@ export default function TailoredSection() {
         </h2>
         
         {/* Description */}
-        <p className="text-lg text-white mb-8">
+        <p className="text-lg text-white mb-4">
           Whether you're a...
         </p>
 
         {/* Miner Types */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-12">
           {minerTypes.map((miner, index) => (
             <div key={index} className="flex items-start space-x-3">
               <span className="text-lg mt-1">{miner.icon}</span>

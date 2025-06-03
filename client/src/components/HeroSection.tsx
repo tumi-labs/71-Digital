@@ -68,13 +68,13 @@ export default function HeroSection() {
           </div>
 
           {/* Right Content - Mining Equipment Image */}
-          <div className="relative">
+          <div className="relative flex justify-center items-center">
             {/* Main Mining Equipment Image */}
-            <div className="w-full h-80 lg:h-96 overflow-hidden relative">
+            <div className="w-80 h-60 lg:w-96 lg:h-72 overflow-hidden relative">
               <img
                 src={miningImagePath}
                 alt="71 Digital mining facility with ASIC miners and server racks"
-                className="w-full h-full object-cover object-right rounded-lg shadow-2xl"
+                className="w-full h-full object-contain rounded-lg shadow-2xl"
               />
             </div>
           </div>

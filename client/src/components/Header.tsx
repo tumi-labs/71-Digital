@@ -14,7 +14,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
   const navItems = [
     { id: "home", label: "Home", path: "/" },
     { id: "about", label: "About us", path: "/about" },
-    { id: "services", label: "Services" },
+    { id: "services", label: "Services", path: "/services" },
     { id: "store", label: "Mining Store" },
     { id: "contact", label: "Contact" },
   ];

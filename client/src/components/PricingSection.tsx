@@ -42,7 +42,7 @@ export default function PricingSection() {
       terms: "1 year and renewable",
       maintenance: "Included",
       repairOnSite: "Available",
-      deposit: "",
+      deposit: "2 months",
       moq: "100+",
       bgColor: "bg-amber-700",
       textColor: "text-white",

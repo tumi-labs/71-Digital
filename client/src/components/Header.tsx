@@ -16,7 +16,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
     { id: "about", label: "About us", path: "/about" },
     { id: "services", label: "Services", path: "/services" },
     { id: "store", label: "Mining Store", path: "/mining-store" },
-    { id: "contact", label: "Contact" },
+    { id: "contact", label: "Contact", path: "/contact" },
   ];
 
   const handleNavigation = (item: any) => {

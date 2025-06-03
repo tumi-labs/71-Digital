@@ -73,7 +73,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
                 <li key={item.id}>
                   <Button
                     variant="ghost"
-                    className={`hover:text-white transition-colors p-0 h-auto font-semibold text-lg ${
+                    className={`hover:text-white transition-colors p-0 h-auto font-semibold text-lg focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent ${
                       currentSection === item.id ? "text-white" : "text-black"
                     }`}
                     onClick={() => handleNavigation(item)}
@@ -87,7 +87,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
-              className="md:hidden text-black hover:text-white p-2"
+              className="md:hidden text-black hover:text-white p-2 focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -102,7 +102,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
                   <li key={item.id}>
                     <Button
                       variant="ghost"
-                      className={`hover:text-white transition-colors p-2 h-auto font-semibold text-lg w-full text-left justify-start ${
+                      className={`hover:text-white transition-colors p-2 h-auto font-semibold text-lg w-full text-left justify-start focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent ${
                         currentSection === item.id ? "text-white" : "text-black"
                       }`}
                       onClick={() => handleNavigation(item)}

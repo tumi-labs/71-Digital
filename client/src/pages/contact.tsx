@@ -94,20 +94,15 @@ export default function Contact() {
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                       <div className="flex items-center mb-4">
                         <MapPin className="w-6 h-6 text-orange-500 mr-3" />
-                        <h4 className="text-lg font-bold text-white">Global Offices</h4>
+                        <h4 className="text-lg font-bold text-white">Headquarters</h4>
                       </div>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-white font-medium">Dubai, UAE (Headquarters)</p>
-                          <p className="text-gray-300 text-sm">Building 5, Dubai International Financial Centre</p>
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">Toronto, Canada</p>
-                          <p className="text-gray-300 text-sm">Mining Operations Center</p>
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">Houston, USA</p>
-                          <p className="text-gray-300 text-sm">Equipment Distribution Hub</p>
+                          <p className="text-white font-medium">71 Digital Inc. (Headquarters)</p>
+                          <p className="text-gray-300 text-sm">RAK Digital Assets Oasis</p>
+                          <p className="text-gray-300 text-sm">Post Box #30099, RAKBank Headquarters</p>
+                          <p className="text-gray-300 text-sm">Government of Ras Al Khaimah</p>
+                          <p className="text-gray-300 text-sm">United Arab Emirates</p>
                         </div>
                       </div>
                     </div>

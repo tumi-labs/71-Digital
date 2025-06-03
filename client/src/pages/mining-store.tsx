@@ -92,7 +92,7 @@ export default function MiningStore() {
                       <p className="text-white text-sm"><strong>Warranty:</strong> 12 months</p>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 justify-center">
                     <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now
@@ -123,7 +123,7 @@ export default function MiningStore() {
                       <p className="text-white text-sm"><strong>Requirements:</strong> Water loop system</p>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 justify-center">
                     <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now
@@ -168,7 +168,7 @@ export default function MiningStore() {
                       <p className="text-white text-sm"><strong>Deployment:</strong> Altcoin diversification</p>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 justify-center">
                     <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now

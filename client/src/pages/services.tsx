@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone } from "lucide-react";
 import centerImage from "@assets/center.png";
+import unoImage from "@assets/uno.png";
 
 export default function Services() {
   const [currentSection, setCurrentSection] = useState("services");
@@ -149,7 +150,7 @@ export default function Services() {
                 {/* Mining Racks Image */}
                 <div className="lg:col-span-2">
                   <img 
-                    src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80"
+                    src={unoImage}
                     alt="Mining facility racks"
                     className="w-full h-full object-cover rounded-lg"
                   />

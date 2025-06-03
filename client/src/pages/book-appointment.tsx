@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,59 +7,53 @@ import { Textarea } from "@/components/ui/textarea";
 import { Calendar, Clock, User, Building2, Phone, Mail, MessageCircle, CheckCircle } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import logo71NoText from "@assets/71digital logo - no text.png";
 
-const serviceOptions = [
+// Move arrays outside component to prevent re-creation on each render
+const SERVICE_OPTIONS = [
   {
     value: "hosting-consultation",
     label: "Hosting Solutions Consultation",
     description: "Discuss your mining hosting requirements and available capacity",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "45-60 minutes"
   },
   {
     value: "site-acquisition",
     label: "Site Acquisition & Power Deals",
     description: "Explore opportunities for new mining site development",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "60-90 minutes"
   },
   {
     value: "hardware-procurement",
     label: "Hardware Procurement",
     description: "Get pricing and availability for ASIC miners and equipment",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "30-45 minutes"
   },
   {
     value: "operations-management",
     label: "Mining Operations & Site Management",
     description: "Discuss 24/7 operations, maintenance, and monitoring services",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "45-60 minutes"
   },
   {
     value: "technical-consultation",
     label: "Technical Consultation",
     description: "Get expert advice on mining infrastructure and optimization",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "30-45 minutes"
   },
   {
     value: "partnership-discussion",
     label: "Partnership & Joint Venture Discussion",
     description: "Explore strategic partnerships and investment opportunities",
-    icon: <Building2 className="w-6 h-6" />,
     duration: "60-90 minutes"
   }
-];
+] as const;
 
-const timeSlots = [
+const TIME_SLOTS = [
   "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
   "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
   "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM"
-];
+] as const;
 
 interface AppointmentFormData {
   fullName: string;
@@ -204,7 +198,7 @@ ${data.message}`
             <div className="mb-8 md:mb-12">
               <h2 className="text-2xl font-bold text-white mb-6 text-center">Choose Your Service</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {serviceOptions.map((service) => (
+                {SERVICE_OPTIONS.map((service) => (
                   <div
                     key={service.value}
                     className={`p-4 md:p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
@@ -216,7 +210,7 @@ ${data.message}`
                   >
                     <div className="flex items-start space-x-3">
                       <div className="text-orange-500 mt-1">
-                        {service.icon}
+                        <Building2 className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-white font-semibold text-sm md:text-base mb-2">
@@ -329,7 +323,7 @@ ${data.message}`
                       className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:border-orange-500"
                     >
                       <option value="">Select time</option>
-                      {timeSlots.map((time) => (
+                      {TIME_SLOTS.map((time) => (
                         <option key={time} value={time} className="bg-gray-800">
                           {time}
                         </option>

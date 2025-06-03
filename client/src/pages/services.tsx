@@ -285,7 +285,11 @@ export default function Services() {
                     </li>
                   </ul>
                   
-                  <Button variant="link" className="p-0 h-auto text-sm">
+                  <Button 
+                    variant="link" 
+                    className="p-0 h-auto text-sm"
+                    onClick={() => window.open('/book-appointment', '_self')}
+                  >
                     <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                     Talk to a Site Manager
                   </Button>

@@ -123,7 +123,10 @@ export default function MiningStore() {
                     </div>
                     
                     <div className="grid grid-cols-2 gap-3 md:gap-4">
-                      <Button className="w-full text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors">
+                      <Button 
+                        className="w-full text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors"
+                        onClick={() => window.open('/book-appointment', '_self')}
+                      >
                         <MessageCircle className="w-3 h-3 md:w-4 md:h-4 mr-2" />
                         Inquire Now
                       </Button>
@@ -280,7 +283,10 @@ export default function MiningStore() {
               <h3 className="text-xl font-bold text-orange-500 mb-4">Need help choosing the right machine?</h3>
               <p className="text-white text-lg mb-6">Let our team recommend the best model for your site setup.</p>
               <div className="flex justify-center">
-                <Button className="w-full max-w-md bg-orange-500 hover:bg-orange-600 text-white transition-colors">
+                <Button 
+                  className="w-full max-w-md bg-orange-500 hover:bg-orange-600 text-white transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Talk to a Hardware Specialist
                 </Button>
@@ -326,11 +332,18 @@ export default function MiningStore() {
               <p className="text-white text-lg mb-8">Get competitive pricing and bulk purchase agreements.</p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white transition-colors">
+                <Button 
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <Phone className="w-5 h-5 mr-2" />
                   Request Quote
                 </Button>
-                <Button variant="outline" className="w-full border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Chat with Sales
                 </Button>

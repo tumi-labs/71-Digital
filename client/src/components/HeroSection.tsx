@@ -5,10 +5,7 @@ import logoImagePath from "@assets/71digital logo.png";
 
 export default function HeroSection() {
   const handleContactSales = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+    window.open('/book-appointment', '_self');
   };
 
   return (

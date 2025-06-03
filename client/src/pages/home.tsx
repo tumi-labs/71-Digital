@@ -7,6 +7,7 @@ import PricingSection from "@/components/PricingSection";
 import PartnersSection from "@/components/PartnersSection";
 import AdvantageSection from "@/components/AdvantageSection";
 import TailoredSection from "@/components/TailoredSection";
+import GlobalReachSection from "@/components/GlobalReachSection";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -49,6 +50,7 @@ export default function Home() {
         <PartnersSection />
         <AdvantageSection />
         <TailoredSection />
+        <GlobalReachSection />
       </main>
     </div>
   );

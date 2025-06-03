@@ -72,10 +72,16 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-end space-y-4">
               {/* Social Icons */}
               <div className="flex space-x-4">
-                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://www.instagram.com/71digital_inc/', '_blank')}
+                >
                   <FaInstagram className="text-white text-lg" />
                 </div>
-                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://www.linkedin.com/company/71-digital-inc/', '_blank')}
+                >
                   <FaLinkedin className="text-white text-lg" />
                 </div>
                 <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">

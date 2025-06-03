@@ -401,10 +401,10 @@ ${data.message}`
                 <Button
                   variant="outline"
                   className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
-                  onClick={() => window.open('/contact', '_self')}
+                  onClick={() => window.open('https://wa.me/971503578552', '_blank')}
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Contact Us
+                  WhatsApp Business
                 </Button>
               </div>
               <p className="text-gray-300 text-sm mt-4">

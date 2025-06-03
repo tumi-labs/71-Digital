@@ -277,10 +277,10 @@ export default function GlobalReachSection() {
             <Button 
               variant="outline" 
               className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors flex items-center"
-              onClick={() => window.open('/contact', '_self')}
+              onClick={() => window.open('https://wa.me/971503578552', '_blank')}
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Contact Us
+              <FaWhatsapp className="w-4 h-4 mr-2" />
+              WhatsApp Business
             </Button>
           </div>
         </div>
@@ -322,13 +322,24 @@ export default function GlobalReachSection() {
             <div>
               <p className="text-white font-medium mb-4">Follow Us</p>
               <div className="flex space-x-4">
-                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://www.instagram.com/71digital_inc/', '_blank')}
+                >
                   <FaInstagram className="text-white text-lg" />
                 </div>
-                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://www.linkedin.com/company/71-digital-inc/', '_blank')}
+                >
                   <FaLinkedin className="text-white text-lg" />
                 </div>
-
+                <div 
+                  className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://wa.me/971503578552', '_blank')}
+                >
+                  <FaWhatsapp className="text-white text-lg" />
+                </div>
               </div>
             </div>
           </div>

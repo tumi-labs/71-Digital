@@ -113,121 +113,123 @@ export default function GlobalReachSection() {
     <section className="py-16 px-4" id="global-reach">
       <div className="container mx-auto max-w-6xl">
         {/* Global Reach */}
-        <div className="relative mb-16">
-          {/* Background Map */}
-          <div className="w-full">
-            <img 
-              src={mapImage} 
-              alt="Global mining locations map"
-              className="w-full h-auto"
-            />
-          </div>
-          
-          {/* Overlay Content */}
-          <div className="absolute top-8 left-8 max-w-md">
-            <h2 className="text-3xl font-bold text-orange-500 mb-4">
-              Global Reach
-            </h2>
-            <p className="text-lg text-white mb-4">
-              Operating in Power-Rich Locations
-            </p>
-            
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="text-white">UAE</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="text-white">Canada (Alberta)</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="text-white">USA</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="text-white">Oman</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="text-white">Ethiopia</span>
-              </div>
+        <div className="mb-12 md:mb-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Map Image */}
+            <div className="order-2 md:order-1">
+              <img 
+                src={mapImage} 
+                alt="Global mining locations map"
+                className="w-full h-auto rounded-lg"
+              />
             </div>
             
-            <p className="text-white mb-4">
-              25MW live. 50MW in expansion.
-            </p>
-            
-            <Button>
-              [View Deployment Sites]
-            </Button>
+            {/* Content */}
+            <div className="order-1 md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
+                Global Reach
+              </h2>
+              <p className="text-base md:text-lg text-white mb-6">
+                Operating in Power-Rich Locations
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-red-500 text-sm" />
+                  <span className="text-white text-sm md:text-base">UAE</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-red-500 text-sm" />
+                  <span className="text-white text-sm md:text-base">Canada (Alberta)</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-red-500 text-sm" />
+                  <span className="text-white text-sm md:text-base">USA</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-red-500 text-sm" />
+                  <span className="text-white text-sm md:text-base">Oman</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-red-500 text-sm" />
+                  <span className="text-white text-sm md:text-base">Ethiopia</span>
+                </div>
+              </div>
+              
+              <p className="text-white mb-6 text-sm md:text-base">
+                25MW live. 50MW in expansion.
+              </p>
+              
+              <Button className="text-sm md:text-base">
+                [View Deployment Sites]
+              </Button>
+            </div>
           </div>
         </div>
         
         {/* Case Studies Carousel */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-orange-500 mb-8 text-center">
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-6 md:mb-8 text-center">
             Client Success Stories
           </h3>
           
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-lg border border-gray-700">
-              <div className="flex items-start mb-6">
-                <FaQuoteLeft className="text-orange-500 text-2xl mr-4 mt-2" />
-                <p className="text-white text-lg leading-relaxed">
+          <div className="relative max-w-4xl mx-auto px-4">
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-4 md:p-8 rounded-lg border border-gray-700">
+              <div className="flex flex-col md:flex-row md:items-start mb-4 md:mb-6">
+                <FaQuoteLeft className="text-orange-500 text-xl md:text-2xl mb-3 md:mr-4 md:mt-2 md:mb-0" />
+                <p className="text-white text-sm md:text-lg leading-relaxed">
                   {testimonials[currentTestimonial].quote}
                 </p>
               </div>
               
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                   <img 
                     src={testimonials[currentTestimonial].avatar}
                     alt={testimonials[currentTestimonial].author}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-orange-500"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-orange-500"
                   />
-                  <div>
-                    <p className="text-orange-500 font-semibold">
+                  <div className="flex-1">
+                    <p className="text-orange-500 font-semibold text-sm md:text-base">
                       {testimonials[currentTestimonial].author}
                     </p>
-                    <p className="text-white text-sm">
+                    <p className="text-white text-xs md:text-sm">
                       {testimonials[currentTestimonial].title}
                     </p>
-                    <p className="text-gray-300 text-sm">
+                    <p className="text-gray-300 text-xs md:text-sm">
                       {testimonials[currentTestimonial].location}
                     </p>
                   </div>
                   <img 
                     src={testimonials[currentTestimonial].companyLogo}
                     alt={testimonials[currentTestimonial].company}
-                    className="w-20 h-10 object-contain rounded"
+                    className="w-16 h-8 md:w-20 md:h-10 object-contain rounded"
                   />
                 </div>
                 
-                <div className="flex space-x-2">
+                <div className="flex justify-center md:justify-end space-x-2">
                   <button
                     onClick={prevTestimonial}
                     className="bg-gray-700 hover:bg-orange-500 p-2 rounded-full transition-colors"
                   >
-                    <FaChevronLeft className="text-white" />
+                    <FaChevronLeft className="text-white text-sm" />
                   </button>
                   <button
                     onClick={nextTestimonial}
                     className="bg-gray-700 hover:bg-orange-500 p-2 rounded-full transition-colors"
                   >
-                    <FaChevronRight className="text-white" />
+                    <FaChevronRight className="text-white text-sm" />
                   </button>
                 </div>
               </div>
               
               {/* Dots indicator */}
-              <div className="flex justify-center mt-6 space-x-2">
+              <div className="flex justify-center mt-4 md:mt-6 space-x-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
+                    className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors ${
                       index === currentTestimonial ? 'bg-orange-500' : 'bg-gray-600'
                     }`}
                   />

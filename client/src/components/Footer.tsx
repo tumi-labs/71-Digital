@@ -1,4 +1,5 @@
 import { FaInstagram, FaLinkedin, FaPhone } from "react-icons/fa";
+import { Link } from "wouter";
 import logo71Digital from "@assets/71digital logo.png";
 
 export default function Footer() {
@@ -20,12 +21,12 @@ export default function Footer() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Column 1 */}
               <div className="space-y-4">
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/" className="block text-white hover:text-orange-500 transition-colors">
                   Home
-                </a>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                </Link>
+                <Link href="/about" className="block text-white hover:text-orange-500 transition-colors">
                   About
-                </a>
+                </Link>
                 <a href="#" className="block text-white hover:text-orange-500 transition-colors">
                   Blog
                 </a>

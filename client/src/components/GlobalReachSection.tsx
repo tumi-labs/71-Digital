@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { MapPin, Send, Calendar } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import mapImage from "@assets/map.png";
@@ -163,8 +164,9 @@ export default function GlobalReachSection() {
                 25MW live. 50MW in expansion.
               </p>
               
-              <Button className="text-sm md:text-base">
-                [View Deployment Sites]
+              <Button className="text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
+                <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" />
+                View Deployment Sites
               </Button>
             </div>
           </div>
@@ -261,14 +263,16 @@ export default function GlobalReachSection() {
             Speak with our team to secure capacity, design your site, or co-mine with the most reliable hosting provider in the region.
           </p>
           <div className="space-y-4">
-            <Button className="mx-2">
+            <Button className="mx-2 bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
+              <FaEnvelope className="w-4 h-4 mr-2" />
               Book a Consultation
             </Button>
             <Button 
               variant="outline" 
-              className="mx-2"
+              className="mx-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors flex items-center"
               onClick={() => window.open('https://wa.me/971503578552', '_blank')}
             >
+              <FaWhatsapp className="w-4 h-4 mr-2" />
               WhatsApp Business Chat
             </Button>
           </div>
@@ -399,10 +403,17 @@ export default function GlobalReachSection() {
                 
                 <Button 
                   type="submit" 
-                  className="w-full h-10 md:h-12 font-semibold text-sm md:text-base"
+                  className="w-full h-10 md:h-12 font-semibold text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center justify-center"
                   disabled={contactMutation.isPending}
                 >
-                  {contactMutation.isPending ? "Sending..." : "Send Message →"}
+                  {contactMutation.isPending ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </div>

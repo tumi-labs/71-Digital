@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 import logo71NoText from "@assets/71digital logo - no text.png";
 
 export default function Contact() {
   const [currentSection, setCurrentSection] = useState("contact");
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +18,56 @@ export default function Contact() {
     phone: "",
     service: "",
     message: ""
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      const submissionData = {
+        fullName: data.name,
+        email: data.email,
+        companyName: data.company,
+        phoneNumber: data.phone,
+        service: data.service,
+        message: data.message
+      };
+      
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to submit contact form");
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/contact'] });
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        service: "",
+        message: ""
+      });
+    },
+    onError: (error) => {
+      console.error('Contact form error:', error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    },
   });
 
   const handleNavigate = (section: string) => {
@@ -33,8 +88,9 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    if (formData.name && formData.email && formData.message) {
+      contactMutation.mutate(formData);
+    }
   };
 
   useEffect(() => {
@@ -254,10 +310,11 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                    disabled={contactMutation.isPending}
+                    className="w-full flex items-center justify-center bg-orange-500 hover:bg-orange-600 disabled:bg-orange-400 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
                     <Send className="w-5 h-5 mr-2" />
-                    Send Message
+                    {contactMutation.isPending ? "Sending..." : "Send Message"}
                   </button>
 
                   <p className="text-gray-300 text-xs mt-3 text-center">

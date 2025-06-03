@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
-import { MapPin, Send, Calendar, ChevronDown } from "lucide-react";
+import { MapPin, Send, Calendar, ChevronDown, MessageCircle } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import mapImage from "@assets/map.png";
@@ -277,10 +277,10 @@ export default function GlobalReachSection() {
             <Button 
               variant="outline" 
               className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors flex items-center"
-              onClick={() => window.open('https://wa.me/971503578552', '_blank')}
+              onClick={() => window.open('/contact', '_self')}
             >
-              <FaWhatsapp className="w-4 h-4 mr-2" />
-              WhatsApp Business Chat
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Contact Us
             </Button>
           </div>
         </div>
@@ -328,12 +328,7 @@ export default function GlobalReachSection() {
                 <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
                   <FaLinkedin className="text-white text-lg" />
                 </div>
-                <div 
-                  className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
-                  onClick={() => window.open('https://wa.me/971503578552', '_blank')}
-                >
-                  <FaWhatsapp className="text-white text-lg" />
-                </div>
+
               </div>
             </div>
           </div>

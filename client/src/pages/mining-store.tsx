@@ -351,7 +351,7 @@ export default function MiningStore() {
                   onClick={() => window.open('/book-appointment', '_self')}
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  Chat with Sales
+                  Contact Sales
                 </Button>
               </div>
             </div>

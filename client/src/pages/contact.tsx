@@ -337,16 +337,7 @@ export default function Contact() {
                 </button>
               </div>
 
-              <div className="text-center bg-white/5 rounded-lg p-6 border border-orange-500/20">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-lg font-bold text-white mb-2">Live Chat</h4>
-                <p className="text-gray-300 text-sm mb-4">Get instant answers from our support team</p>
-                <button className="text-orange-500 font-medium hover:text-orange-400 transition-colors">
-                  Start Chat
-                </button>
-              </div>
+
 
               <div className="text-center bg-white/5 rounded-lg p-6 border border-orange-500/20">
                 <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">

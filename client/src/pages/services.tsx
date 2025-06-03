@@ -155,102 +155,105 @@ export default function Services() {
                 </div>
               </div>
 
-              {/* Middle Section with Service Cards and Center ASIC Image */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 items-start">
-                {/* Site Acquisition */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                  <div className="flex items-center mb-4">
-                    <MapPin className="w-6 h-6 text-orange-500" />
-                    <h3 className="text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
+              {/* Middle Section with Service Cards and Right-positioned ASIC Image */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
+                {/* Left Column - Service Cards */}
+                <div className="space-y-8">
+                  {/* Site Acquisition */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
+                    <div className="flex items-center mb-4">
+                      <MapPin className="w-6 h-6 text-orange-500" />
+                      <h3 className="text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
+                    </div>
+                    
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Lease terms and CAPEX structuring</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Energy rates as low as $0.012$/kWh</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Land sourcing, legal, and permits handled</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Grid or off-grid site options</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Fast-track timelines for deployment</span>
+                      </li>
+                    </ul>
+                    
+                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                      Secure a Site
+                    </button>
                   </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Lease terms and CAPEX structuring</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Energy rates as low as $0.012$/kWh</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Land sourcing, legal, and permits handled</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Grid or off-grid site options</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Fast-track timelines for deployment</span>
-                    </li>
-                  </ul>
-                  
-                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                    Secure a Site
-                  </button>
+
+                  {/* Hardware Procurement */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
+                    <div className="flex items-center mb-4">
+                      <HardDrive className="w-6 h-6 text-orange-500" />
+                      <h3 className="text-lg font-bold text-white ml-2">Hardware Procurement</h3>
+                    </div>
+                    
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">ASIC machines at competitive rates with DDP delivery.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Bitmain, Whatsminer, and hydro-ready rigs</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Bulk purchase agreements</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Optional setup & configuration</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-xs">Verified warranties and vendor partners</span>
+                      </li>
+                    </ul>
+                    
+                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                      View Inventory
+                    </button>
+                  </div>
                 </div>
 
-                {/* Center ASIC Image with Floating Icons */}
-                <div className="flex justify-center">
+                {/* Right Column - ASIC Image with Floating Icons */}
+                <div className="flex justify-center lg:justify-end">
                   <div className="relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=300&q=80"
+                      src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80"
                       alt="ASIC miner"
-                      className="w-48 h-48 object-cover rounded-lg"
+                      className="w-64 h-64 object-cover rounded-lg"
                     />
                     {/* Floating crypto icons */}
-                    <div className="absolute -top-3 -right-3 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">₿</span>
+                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">₿</span>
                     </div>
-                    <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">Ł</span>
+                    <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">Ł</span>
                     </div>
-                    <div className="absolute top-6 -left-6 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-xs">↗</span>
+                    <div className="absolute top-8 -left-8 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">↗</span>
                     </div>
-                    <div className="absolute bottom-6 -right-6 w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-xs">→</span>
+                    <div className="absolute bottom-8 -right-8 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">→</span>
                     </div>
                   </div>
-                </div>
-
-                {/* Hardware Procurement */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                  <div className="flex items-center mb-4">
-                    <HardDrive className="w-6 h-6 text-orange-500" />
-                    <h3 className="text-lg font-bold text-white ml-2">Hardware Procurement</h3>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">ASIC machines at competitive rates with DDP delivery.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Bitmain, Whatsminer, and hydro-ready rigs</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Bulk purchase agreements</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Optional setup & configuration</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-white text-xs">Verified warranties and vendor partners</span>
-                    </li>
-                  </ul>
-                  
-                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                    View Inventory
-                  </button>
                 </div>
               </div>
 

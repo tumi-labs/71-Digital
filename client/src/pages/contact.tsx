@@ -88,8 +88,16 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Contact form data:", formData);
     if (formData.name && formData.email && formData.message) {
+      console.log("Form validation passed, submitting...");
       contactMutation.mutate(formData);
+    } else {
+      console.log("Form validation failed:", {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      });
     }
   };
 

@@ -55,8 +55,8 @@ export default function MiningFarms() {
                 <h1 className="text-3xl md:text-5xl font-bold text-orange-500">Mining Farm Solutions</h1>
               </div>
               <p className="text-white text-lg md:text-xl max-w-3xl mx-auto">
-                Institutional-grade Bitcoin mining infrastructure designed for maximum efficiency, 
-                reliability, and profitability across multiple global locations.
+                Licensed cryptocurrency mining company specializing in mid to large-scale Bitcoin mining operations across the GCC region. 
+                Currently operating 10 megawatts of mining capacity with plans to double to 20MW by Q4 2025.
               </p>
             </div>
           </div>
@@ -81,10 +81,10 @@ export default function MiningFarms() {
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Low-Cost Power</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Low Hosting Costs</h3>
                 <p className="text-gray-300">
-                  Access to electricity rates as low as $0.03/kWh through strategic partnerships 
-                  with renewable energy providers.
+                  Competitive hosting costs in the GCC region without compromising uptime or quality, 
+                  backed by stable power infrastructure and reliable logistics.
                 </p>
               </div>
 
@@ -93,10 +93,10 @@ export default function MiningFarms() {
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Thermometer className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Advanced Cooling</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Hybrid Cooling Solutions</h3>
                 <p className="text-gray-300">
-                  Immersion cooling and hydro-cooling systems that maximize miner efficiency 
-                  and extend hardware lifespan.
+                  Combination of air-cooled, hydro-cooled and immersion cooling systems 
+                  to maximize performance and equipment longevity.
                 </p>
               </div>
 
@@ -105,10 +105,10 @@ export default function MiningFarms() {
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">24/7 Security</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Proven Uptime</h3>
                 <p className="text-gray-300">
-                  Military-grade security systems with 24/7 monitoring, biometric access, 
-                  and comprehensive insurance coverage.
+                  Proven 95-98% uptime performance, powered by real-time monitoring, 
+                  redundancy systems, and expert on-site teams.
                 </p>
               </div>
 
@@ -129,10 +129,10 @@ export default function MiningFarms() {
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Cpu className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Latest Hardware</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Turnkey Solutions</h3>
                 <p className="text-gray-300">
-                  Access to the newest ASIC miners including Antminer S21 series with 
-                  priority allocation and competitive pricing.
+                  Complete end-to-end services from miner sourcing and deployment 
+                  to maintenance and performance optimization.
                 </p>
               </div>
 
@@ -141,10 +141,10 @@ export default function MiningFarms() {
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Globe className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Global Locations</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Fully Licensed & Compliant</h3>
                 <p className="text-gray-300">
-                  Strategic mining facilities across multiple continents with regulatory 
-                  compliance and stable political environments.
+                  Licensed operations with full regulatory compliance across the GCC region, 
+                  offering stable power, reliable logistics, and regulatory clarity.
                 </p>
               </div>
             </div>
@@ -169,28 +169,28 @@ export default function MiningFarms() {
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Technical Specifications</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Total Capacity:</span>
-                    <span className="text-white font-semibold">500+ MW</span>
+                    <span className="text-gray-300">Current Capacity:</span>
+                    <span className="text-white font-semibold">10 MW</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Mining Units:</span>
-                    <span className="text-white font-semibold">100,000+ ASICs</span>
+                    <span className="text-gray-300">Planned Expansion:</span>
+                    <span className="text-white font-semibold">20 MW by Q4 2025</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Hash Rate:</span>
-                    <span className="text-white font-semibold">10+ EH/s</span>
+                    <span className="text-gray-300">Current Hash Rate:</span>
+                    <span className="text-white font-semibold">635.25 PH/s</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Uptime Guarantee:</span>
-                    <span className="text-white font-semibold">99.9%</span>
+                    <span className="text-gray-300">Proven Uptime:</span>
+                    <span className="text-white font-semibold">95-98%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Power Redundancy:</span>
-                    <span className="text-white font-semibold">N+1</span>
+                    <span className="text-gray-300">Regional Focus:</span>
+                    <span className="text-white font-semibold">GCC Region</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Cooling Method:</span>
-                    <span className="text-white font-semibold">Immersion & Hydro</span>
+                    <span className="text-white font-semibold">Air-cooled, Hydro & Immersion</span>
                   </div>
                 </div>
               </div>
@@ -201,30 +201,112 @@ export default function MiningFarms() {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">Dedicated substations and transformers</span>
+                    <span className="text-white">Industrial-grade infrastructure optimized for efficiency and scale</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">Fiber optic internet connectivity</span>
+                    <span className="text-white">Real-time monitoring and expert on-site teams</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">Climate-controlled environments</span>
+                    <span className="text-white">Strategically deployed sites across the GCC</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">24/7 on-site technical support</span>
+                    <span className="text-white">Stable power and reliable logistics</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">Remote monitoring capabilities</span>
+                    <span className="text-white">Built by team with deep technical and regional expertise</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-white">Comprehensive insurance coverage</span>
+                    <span className="text-white">Scalable deployment capabilities</span>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Performance Metrics Section */}
+        <section className="py-12 md:py-16 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Performance Track Record
+              </h2>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+                Proven results with consistent growth in hash rate and profitability across multiple quarters.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {/* Current Quarter Performance */}
+              <div className="bg-gray-800/30 rounded-lg p-6 border border-orange-500/20 text-center">
+                <h3 className="text-xl font-bold text-orange-500 mb-4">Current Performance (2025)</h3>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-2xl font-bold text-white">635.25 PH/s</div>
+                    <div className="text-gray-300 text-sm">Average Hash Rate</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">$5.57M</div>
+                    <div className="text-gray-300 text-sm">Quarterly Revenue</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">29.68 BTC</div>
+                    <div className="text-gray-300 text-sm">BTC Earned (Est.)</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Growth Metrics */}
+              <div className="bg-gray-800/30 rounded-lg p-6 border border-orange-500/20 text-center">
+                <h3 className="text-xl font-bold text-orange-500 mb-4">Growth Trajectory</h3>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-2xl font-bold text-white">+217%</div>
+                    <div className="text-gray-300 text-sm">Hash Rate Growth (2023-2025)</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">+217%</div>
+                    <div className="text-gray-300 text-sm">Revenue Growth (2023-2025)</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">20 MW</div>
+                    <div className="text-gray-300 text-sm">Target Capacity Q4 2025</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quarterly Highlights */}
+              <div className="bg-gray-800/30 rounded-lg p-6 border border-orange-500/20 text-center">
+                <h3 className="text-xl font-bold text-orange-500 mb-4">Recent Quarter (Q4 2024)</h3>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-2xl font-bold text-white">605 PH/s</div>
+                    <div className="text-gray-300 text-sm">Average Hash Rate</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">$3.79M</div>
+                    <div className="text-gray-300 text-sm">Net Income</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">27.81 BTC</div>
+                    <div className="text-gray-300 text-sm">BTC Earned</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Performance Note */}
+            <div className="bg-gray-800/20 rounded-lg p-6 border border-orange-500/10">
+              <p className="text-gray-400 text-sm text-center">
+                All figures presented are based on internal estimates and publicly available assumptions. 
+                Revenue, cost, and BTC earned are approximate and subject to change due to market volatility, 
+                network difficulty adjustments, miner efficiency, and operational variables.
+              </p>
             </div>
           </div>
         </section>

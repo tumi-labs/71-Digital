@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import { SiDogecoin } from "react-icons/si";
+import { useLocation } from "wouter";
 
 interface HeaderProps {
   currentSection: string;
@@ -8,12 +9,22 @@ interface HeaderProps {
 }
 
 export default function Header({ currentSection, onNavigate }: HeaderProps) {
+  const [location, setLocation] = useLocation();
+  
   const navItems = [
-    { id: "about", label: "About us" },
+    { id: "about", label: "About us", path: "/about" },
     { id: "services", label: "Services" },
     { id: "store", label: "Mining Store" },
     { id: "contact", label: "Contact" },
   ];
+
+  const handleNavigation = (item: any) => {
+    if (item.path) {
+      setLocation(item.path);
+    } else {
+      onNavigate(item.id);
+    }
+  };
 
   return (
     <header className="w-full">
@@ -49,7 +60,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
                   className={`hover:text-white transition-colors p-0 h-auto font-semibold text-lg ${
                     currentSection === item.id ? "text-white" : "text-black"
                   }`}
-                  onClick={() => onNavigate(item.id)}
+                  onClick={() => handleNavigation(item)}
                 >
                   {item.label}
                 </Button>

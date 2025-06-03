@@ -236,7 +236,7 @@ export default function Services() {
                 </div>
 
                 {/* Right Column - Mining Hardware with Crypto Icons */}
-                <div className="flex justify-center lg:justify-end h-full">
+                <div className="flex justify-center items-center h-full">
                   <div className="relative">
                     <img 
                       src={centerImage}

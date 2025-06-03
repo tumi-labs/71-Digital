@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import mapImage from "@assets/map.png";
+import logoNoText from "@assets/71digital logo - no text.png";
 
 export default function About() {
   const [currentSection, setCurrentSection] = useState("about");
@@ -72,7 +73,7 @@ export default function About() {
         <section className="py-16 px-4" id="about">
           <div className="container mx-auto max-w-4xl">
             <div className="flex items-center mb-8">
-              <div className="w-12 h-1 bg-orange-500 mr-4"></div>
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
               <h1 className="text-4xl font-bold text-orange-500">About us</h1>
             </div>
             
@@ -92,7 +93,7 @@ export default function About() {
         <section className="py-16 px-4" id="vision">
           <div className="container mx-auto max-w-4xl">
             <div className="flex items-center mb-8">
-              <div className="w-12 h-1 bg-orange-500 mr-4"></div>
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
               <h2 className="text-4xl font-bold text-orange-500">Vision</h2>
             </div>
             
@@ -125,7 +126,7 @@ export default function About() {
         <section className="py-16 px-4" id="leadership">
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center justify-center mb-12">
-              <div className="w-12 h-1 bg-orange-500 mr-4"></div>
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
               <h2 className="text-4xl font-bold text-orange-500">Leadership Team</h2>
             </div>
             

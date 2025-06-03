@@ -29,23 +29,23 @@ export default function AdvantageSection() {
 
         {/* Services Table */}
         <div className="bg-transparent border-2 border-orange-500 rounded-lg overflow-hidden mb-8">
-          <div className="grid md:grid-cols-2">
+          <div className="grid grid-cols-2">
             {/* Header */}
             <div className="bg-orange-500 bg-opacity-20 border-r border-orange-500 p-4">
-              <h4 className="text-orange-500 font-bold text-center">What We Handle</h4>
+              <h4 className="text-orange-500 font-bold text-center text-sm md:text-base">What We Handle</h4>
             </div>
             <div className="bg-orange-500 bg-opacity-20 p-4">
-              <h4 className="text-orange-500 font-bold text-center">How You Benefit</h4>
+              <h4 className="text-orange-500 font-bold text-center text-sm md:text-base">How You Benefit</h4>
             </div>
             
             {/* Services Rows */}
             {services.map((service, index) => (
               <>
                 <div key={`what-${index}`} className="border-r border-orange-500 border-t border-orange-500 p-4">
-                  <p className="text-white text-center">{service.what}</p>
+                  <p className="text-white text-center text-sm md:text-base">{service.what}</p>
                 </div>
                 <div key={`benefit-${index}`} className="border-t border-orange-500 p-4">
-                  <p className="text-white text-center">{service.benefit}</p>
+                  <p className="text-white text-center text-sm md:text-base">{service.benefit}</p>
                 </div>
               </>
             ))}

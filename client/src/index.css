@@ -60,7 +60,7 @@
 
   body {
     @apply font-sans antialiased text-white min-h-screen;
-    background: linear-gradient(135deg, #4A2C1A 0%, #2D1810 50%, #1A0F08 100%);
+    background: linear-gradient(180deg, #6B4226 0%, #4A2C1A 30%, #2D1810 70%, #1A0F08 100%);
   }
 }
 

@@ -73,7 +73,7 @@ export default function About() {
         <section className="py-16 px-4" id="about">
           <div className="container mx-auto max-w-4xl">
             <div className="flex items-center mb-8">
-              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" style={{filter: 'brightness(0) saturate(100%) invert(65%) sepia(95%) saturate(2076%) hue-rotate(4deg) brightness(104%) contrast(101%)'}} />
               <h1 className="text-4xl font-bold text-orange-500">About us</h1>
             </div>
             
@@ -130,7 +130,7 @@ export default function About() {
         <section className="py-16 px-4" id="leadership">
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center justify-center mb-12">
-              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" style={{filter: 'brightness(0) saturate(100%) invert(65%) sepia(95%) saturate(2076%) hue-rotate(4deg) brightness(104%) contrast(101%)'}} />
               <h2 className="text-4xl font-bold text-orange-500">Leadership Team</h2>
             </div>
             

@@ -3,7 +3,7 @@ import logo71Digital from "@assets/71digital logo.png";
 
 export default function Footer() {
   return (
-    <footer className="py-12 px-4">
+    <footer className="py-12 px-4 bg-black/20">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo Section */}

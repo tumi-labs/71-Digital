@@ -58,11 +58,11 @@ export default function About() {
   ];
 
   const countries = [
-    { name: "UAE", code: "AE", colors: ["#FF0000", "#FFFFFF", "#000000"] },
-    { name: "Canada", code: "CA", colors: ["#FF0000", "#FFFFFF"] },
-    { name: "USA", code: "US", colors: ["#B22234", "#FFFFFF", "#3C3B6E"] },
-    { name: "Oman", code: "OM", colors: ["#FFFFFF", "#FF0000", "#008000"] },
-    { name: "Ethiopia", code: "ET", colors: ["#009639", "#FEDD00", "#DA020E"] }
+    { name: "UAE", code: "AE" },
+    { name: "Canada", code: "CA" },
+    { name: "USA", code: "US" },
+    { name: "Oman", code: "OM" },
+    { name: "Ethiopia", code: "ET" }
   ];
 
   return (
@@ -105,15 +105,11 @@ export default function About() {
             <div className="flex flex-wrap justify-center gap-6 mb-12">
               {countries.map((country, index) => (
                 <div key={index} className="bg-gray-800/50 p-3 rounded-lg">
-                  <div className="w-12 h-8 rounded overflow-hidden flex">
-                    {country.colors.map((color, colorIndex) => (
-                      <div 
-                        key={colorIndex}
-                        className="flex-1"
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
-                  </div>
+                  <img 
+                    src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
+                    alt={`${country.name} flag`}
+                    className="w-10 h-6 rounded object-cover"
+                  />
                 </div>
               ))}
             </div>

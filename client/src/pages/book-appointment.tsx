@@ -10,6 +10,57 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import logo71NoText from "@assets/71digital logo - no text.png";
 
+const serviceOptions = [
+  {
+    value: "hosting-consultation",
+    label: "Hosting Solutions Consultation",
+    description: "Discuss your mining hosting requirements and available capacity",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "45-60 minutes"
+  },
+  {
+    value: "site-acquisition",
+    label: "Site Acquisition & Power Deals",
+    description: "Explore opportunities for new mining site development",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "60-90 minutes"
+  },
+  {
+    value: "hardware-procurement",
+    label: "Hardware Procurement",
+    description: "Get pricing and availability for ASIC miners and equipment",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "30-45 minutes"
+  },
+  {
+    value: "operations-management",
+    label: "Mining Operations & Site Management",
+    description: "Discuss 24/7 operations, maintenance, and monitoring services",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "45-60 minutes"
+  },
+  {
+    value: "technical-consultation",
+    label: "Technical Consultation",
+    description: "Get expert advice on mining infrastructure and optimization",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "30-45 minutes"
+  },
+  {
+    value: "partnership-discussion",
+    label: "Partnership & Joint Venture Discussion",
+    description: "Explore strategic partnerships and investment opportunities",
+    icon: <Building2 className="w-6 h-6" />,
+    duration: "60-90 minutes"
+  }
+];
+
+const timeSlots = [
+  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+  "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
+  "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM"
+];
+
 interface AppointmentFormData {
   fullName: string;
   email: string;
@@ -126,76 +177,7 @@ ${data.message}`
     appointmentMutation.mutate(formData);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['appointment'];
-      const scrollY = window.scrollY;
-      
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollY >= offsetTop - 100 && scrollY < offsetTop + offsetHeight - 100) {
-            setCurrentSection(section);
-          }
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const serviceOptions = [
-    {
-      value: "hosting-consultation",
-      label: "Hosting Solutions Consultation",
-      description: "Discuss your mining hosting requirements and available capacity",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "45-60 minutes"
-    },
-    {
-      value: "site-acquisition",
-      label: "Site Acquisition & Power Deals",
-      description: "Explore opportunities for new mining site development",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "60-90 minutes"
-    },
-    {
-      value: "hardware-procurement",
-      label: "Hardware Procurement",
-      description: "Get pricing and availability for ASIC miners and equipment",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "30-45 minutes"
-    },
-    {
-      value: "operations-management",
-      label: "Mining Operations & Site Management",
-      description: "Discuss 24/7 operations, maintenance, and monitoring services",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "45-60 minutes"
-    },
-    {
-      value: "technical-consultation",
-      label: "Technical Consultation",
-      description: "Get expert advice on mining infrastructure and optimization",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "30-45 minutes"
-    },
-    {
-      value: "partnership-discussion",
-      label: "Partnership & Joint Venture Discussion",
-      description: "Explore strategic partnerships and investment opportunities",
-      icon: <Building2 className="w-6 h-6" />,
-      duration: "60-90 minutes"
-    }
-  ];
-
-  const timeSlots = [
-    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-    "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
-    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM"
-  ];
+  // Removed scroll listener for better performance
 
   return (
     <div className="min-h-screen bg-gray-900">

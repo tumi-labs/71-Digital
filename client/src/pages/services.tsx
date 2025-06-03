@@ -234,10 +234,10 @@ export default function Services() {
                       </li>
                     </ul>
                     
-                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                    <Button variant="link" className="p-0 h-auto text-sm">
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                       View Inventory
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -285,10 +285,10 @@ export default function Services() {
                     </li>
                   </ul>
                   
-                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                  <Button variant="link" className="p-0 h-auto text-sm">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                     Talk to a Site Manager
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Cables Image */}
@@ -314,14 +314,14 @@ export default function Services() {
               <p className="text-white text-lg mb-8">Let's start with a free consultation.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <Button>
                   <Phone className="w-5 h-5 mr-2" />
                   Book a Call
-                </button>
-                <button className="flex items-center justify-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                </Button>
+                <Button variant="outline">
                   <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                   Get Hosting Quote
-                </button>
+                </Button>
               </div>
             </div>
           </div>

@@ -303,7 +303,7 @@ export default function Services() {
             </div>
 
             {/* Products Section */}
-            <div className="mb-16">
+            <div className="mb-16" id="products">
               <div className="flex items-center mb-8">
                 <img 
                   src={logo71NoText} 

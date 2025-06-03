@@ -15,13 +15,21 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
     { id: "home", label: "Home", path: "/" },
     { id: "about", label: "About us", path: "/about" },
     { id: "services", label: "Services", path: "/services" },
-    { id: "store", label: "Mining Store" },
+    { id: "store", label: "Mining Store", path: "/services", scrollTo: "products" },
     { id: "contact", label: "Contact" },
   ];
 
   const handleNavigation = (item: any) => {
     if (item.path) {
       setLocation(item.path);
+      if (item.scrollTo) {
+        setTimeout(() => {
+          const element = document.getElementById(item.scrollTo);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
     } else {
       onNavigate(item.id);
     }

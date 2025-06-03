@@ -123,11 +123,11 @@ export default function MiningStore() {
                     </div>
                     
                     <div className="grid grid-cols-2 gap-3 md:gap-4">
-                      <Button className="w-full text-sm md:text-base">
+                      <Button className="w-full text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white transition-colors">
                         <MessageCircle className="w-3 h-3 md:w-4 md:h-4 mr-2" />
                         Inquire Now
                       </Button>
-                      <Button variant="outline" className="w-full text-sm md:text-base">
+                      <Button variant="outline" className="w-full text-sm md:text-base border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors">
                         <Download className="w-4 h-4 mr-2" />
                         Download Spec
                       </Button>

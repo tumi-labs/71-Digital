@@ -3,6 +3,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import mapImage from "@assets/map.png";
 import logoNoText from "@assets/71digital logo - no text.png";
+import ahmadImage from "@assets/ahmad.png";
+import husseinImage from "@assets/hussein.png";
+import mohammadImage from "@assets/mohammad.png";
+import tariqImage from "@assets/tariq.png";
 
 export default function About() {
   const [currentSection, setCurrentSection] = useState("about");
@@ -38,22 +42,22 @@ export default function About() {
     {
       name: "Ahmad Al Redha",
       position: "Chief Executive Officer",
-      image: "https://randomuser.me/api/portraits/men/1.jpg"
+      image: ahmadImage
     },
     {
       name: "Mohamad Abdulrazak",
       position: "Chief Strategic Officer",
-      image: "https://randomuser.me/api/portraits/men/2.jpg"
+      image: mohammadImage
     },
     {
       name: "Hussein Abdulrazak",
       position: "Chief Operations Officer",
-      image: "https://randomuser.me/api/portraits/men/3.jpg"
+      image: husseinImage
     },
     {
       name: "Tariq Al Marzooqi",
       position: "Chief Financial Officer",
-      image: "https://randomuser.me/api/portraits/men/4.jpg"
+      image: tariqImage
     }
   ];
 

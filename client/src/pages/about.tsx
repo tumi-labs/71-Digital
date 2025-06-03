@@ -104,12 +104,13 @@ export default function About() {
             {/* Countries */}
             <div className="flex flex-wrap justify-center gap-6 mb-12">
               {countries.map((country, index) => (
-                <div key={index} className="bg-gray-800/50 p-3 rounded-lg">
+                <div key={index} className="flex items-center space-x-2 bg-gray-800/50 px-4 py-2 rounded-lg">
                   <img 
                     src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
                     alt={`${country.name} flag`}
-                    className="w-10 h-6 rounded object-cover"
+                    className="w-8 h-5 rounded object-cover"
                   />
+                  <span className="text-white font-medium">{country.name}</span>
                 </div>
               ))}
             </div>

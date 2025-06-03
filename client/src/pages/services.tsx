@@ -241,7 +241,7 @@ export default function Services() {
                     <img 
                       src={centerImage}
                       alt="Mining hardware with cryptocurrency connections"
-                      className="w-96 h-[28rem] object-contain rounded-lg"
+                      className="w-[32rem] h-[32rem] object-contain rounded-lg"
                     />
                   </div>
                 </div>

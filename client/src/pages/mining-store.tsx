@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { CheckCircle, Phone, Download, MessageCircle } from "lucide-react";
 import productsImage from "@assets/4.png";
 import logo71NoText from "@assets/71digital logo - no text.png";
@@ -92,14 +93,14 @@ export default function MiningStore() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <button className="flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now
-                    </button>
-                    <button className="flex items-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    </Button>
+                    <Button variant="outline" size="sm">
                       <Download className="w-4 h-4 mr-2" />
                       Download Spec Sheet
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -123,14 +124,14 @@ export default function MiningStore() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <button className="flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now
-                    </button>
-                    <button className="flex items-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    </Button>
+                    <Button variant="outline" size="sm">
                       <Download className="w-4 h-4 mr-2" />
                       Download Spec Sheet
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className="order-1 lg:order-2">
@@ -168,14 +169,14 @@ export default function MiningStore() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <button className="flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    <Button size="sm">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Inquire Now
-                    </button>
-                    <button className="flex items-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                    </Button>
+                    <Button variant="outline" size="sm">
                       <Download className="w-4 h-4 mr-2" />
                       Download Spec Sheet
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -185,10 +186,10 @@ export default function MiningStore() {
             <div className="text-center bg-white/5 rounded-lg p-8 border border-orange-500/20 mb-16">
               <h3 className="text-xl font-bold text-orange-500 mb-4">Need help choosing the right machine?</h3>
               <p className="text-white text-lg mb-6">Let our team recommend the best model for your site setup.</p>
-              <button className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors mx-auto">
+              <Button className="mx-auto">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Talk to a Hardware Specialist
-              </button>
+              </Button>
             </div>
 
             {/* Features Section */}
@@ -230,14 +231,14 @@ export default function MiningStore() {
               <p className="text-white text-lg mb-8">Get competitive pricing and bulk purchase agreements.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <Button>
                   <Phone className="w-5 h-5 mr-2" />
                   Request Quote
-                </button>
-                <button className="flex items-center justify-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                </Button>
+                <Button variant="outline">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Chat with Sales
-                </button>
+                </Button>
               </div>
             </div>
           </div>

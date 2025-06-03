@@ -279,10 +279,12 @@ export default function MiningStore() {
             <div className="text-center bg-white/5 rounded-lg p-8 border border-orange-500/20 mb-16">
               <h3 className="text-xl font-bold text-orange-500 mb-4">Need help choosing the right machine?</h3>
               <p className="text-white text-lg mb-6">Let our team recommend the best model for your site setup.</p>
-              <Button className="mx-auto">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Talk to a Hardware Specialist
-              </Button>
+              <div className="flex justify-center">
+                <Button className="w-full max-w-md">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Talk to a Hardware Specialist
+                </Button>
+              </div>
             </div>
 
             {/* Features Section */}
@@ -323,12 +325,12 @@ export default function MiningStore() {
               
               <p className="text-white text-lg mb-8">Get competitive pricing and bulk purchase agreements.</p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
+                <Button className="w-full">
                   <Phone className="w-5 h-5 mr-2" />
                   Request Quote
                 </Button>
-                <Button variant="outline">
+                <Button variant="outline" className="w-full">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Chat with Sales
                 </Button>

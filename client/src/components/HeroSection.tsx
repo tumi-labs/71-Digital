@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
+import miningImagePath from "@assets/1.png";
 
 export default function HeroSection() {
   const handleContactSales = () => {
@@ -68,21 +69,12 @@ export default function HeroSection() {
 
           {/* Right Content - Mining Equipment Image */}
           <div className="relative">
-            {/* Server Racks Background */}
-            <div className="bg-gray-800 rounded-lg shadow-2xl w-full h-80 lg:h-96 overflow-hidden relative">
+            {/* Main Mining Equipment Image */}
+            <div className="w-full h-80 lg:h-96 overflow-hidden relative">
               <img
-                src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Mining facility with server racks"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* ASIC Miner Overlay */}
-            <div className="absolute -bottom-8 -left-8 bg-white rounded-lg p-4 shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1639322537504-6427a16b0a28?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200"
-                alt="ASIC Bitcoin mining hardware"
-                className="w-32 h-20 object-cover rounded"
+                src={miningImagePath}
+                alt="71 Digital mining facility with ASIC miners and server racks"
+                className="w-full h-full object-cover object-right rounded-lg shadow-2xl"
               />
             </div>
           </div>

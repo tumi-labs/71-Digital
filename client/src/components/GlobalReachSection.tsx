@@ -182,9 +182,6 @@ export default function GlobalReachSection() {
                     className="w-full h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none"
                   />
                 </div>
-                <div className="text-xs text-gray-500 mb-4">
-                  * Required verification
-                </div>
                 
                 <Button className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl">
                   Send Message →

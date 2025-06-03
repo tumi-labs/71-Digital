@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
-import miningImagePath from "@assets/1.png";
+import miningImagePath from "@assets/miner pic.png";
 
 export default function HeroSection() {
   const handleContactSales = () => {

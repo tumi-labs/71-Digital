@@ -54,7 +54,7 @@ export default function TailoredSection() {
           </p>
           
           {/* CTA Button */}
-          <Button className="bg-blue-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors">
+          <Button className="px-8 py-3 font-semibold">
             <div className="w-3 h-3 bg-white rounded-full mr-3"></div>
             Talk to Our Team
           </Button>

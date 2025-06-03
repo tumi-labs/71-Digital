@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone, MessageCircle } from "lucide-react";
 import centerImage from "@assets/center.png";
 import unoImage from "@assets/uno.png";
 import lastImage from "@assets/last.png";
@@ -197,10 +198,10 @@ export default function Services() {
                       </li>
                     </ul>
                     
-                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                    <Button variant="link" className="p-0 h-auto text-sm">
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                       Secure a Site
-                    </button>
+                    </Button>
                   </div>
 
                   {/* Hardware Procurement */}

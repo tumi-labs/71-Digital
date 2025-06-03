@@ -96,7 +96,7 @@ export default function GlobalReachSection() {
               25MW live. 50MW in expansion.
             </p>
             
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button>
               [View Deployment Sites]
             </Button>
           </div>
@@ -193,10 +193,10 @@ export default function GlobalReachSection() {
             Speak with our team to secure capacity, design your site, or co-mine with the most reliable hosting provider in the region.
           </p>
           <div className="space-y-4">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white mx-2">
+            <Button className="mx-2">
               [Book a Consultation]
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white mx-2">
+            <Button variant="outline" className="mx-2">
               [WhatsApp Business Chat]
             </Button>
           </div>
@@ -301,7 +301,7 @@ export default function GlobalReachSection() {
                   />
                 </div>
                 
-                <Button className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl">
+                <Button className="w-full h-12 font-semibold">
                   Send Message →
                 </Button>
               </form>

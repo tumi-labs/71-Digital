@@ -262,14 +262,14 @@ export default function GlobalReachSection() {
           <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
             Speak with our team to secure capacity, design your site, or co-mine with the most reliable hosting provider in the region.
           </p>
-          <div className="space-y-4">
-            <Button className="mx-2 bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
               <FaEnvelope className="w-4 h-4 mr-2" />
               Book a Consultation
             </Button>
             <Button 
               variant="outline" 
-              className="mx-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors flex items-center"
+              className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors flex items-center"
               onClick={() => window.open('https://wa.me/971503578552', '_blank')}
             >
               <FaWhatsapp className="w-4 h-4 mr-2" />

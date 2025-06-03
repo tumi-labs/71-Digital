@@ -8,6 +8,9 @@ import About from "@/pages/about";
 import Services from "@/pages/services";
 import MiningStore from "@/pages/mining-store";
 import Contact from "@/pages/contact";
+import TermsOfConditions from "@/pages/terms-of-conditions";
+import TermsOfUse from "@/pages/terms-of-use";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -18,6 +21,9 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/mining-store" component={MiningStore} />
       <Route path="/contact" component={Contact} />
+      <Route path="/terms-of-conditions" component={TermsOfConditions} />
+      <Route path="/terms-of-use" component={TermsOfUse} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>
   );

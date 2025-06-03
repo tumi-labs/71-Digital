@@ -50,15 +50,15 @@ export default function Footer() {
               
               {/* Column 3 */}
               <div className="space-y-4">
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/terms-of-conditions" className="block text-white hover:text-orange-500 transition-colors">
                   General Terms & Conditions
-                </a>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                </Link>
+                <Link href="/terms-of-use" className="block text-white hover:text-orange-500 transition-colors">
                   Terms of use
-                </a>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                </Link>
+                <Link href="/privacy-policy" className="block text-white hover:text-orange-500 transition-colors">
                   Privacy policy
-                </a>
+                </Link>
               </div>
             </div>
           </div>

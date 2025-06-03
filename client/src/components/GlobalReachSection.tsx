@@ -1,10 +1,42 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
 import mapImage from "@assets/map.png";
 
 export default function GlobalReachSection() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      quote: "71 Digital helped us secure land, power, and set up 2.5MW in under 60 days — unheard of in this industry.",
+      author: "Asset Manager",
+      location: "Dubai",
+      company: "Regional Investment Fund"
+    },
+    {
+      quote: "Their expertise in ASIC deployment and cooling solutions reduced our operational costs by 30% while maintaining 99.7% uptime.",
+      author: "Operations Director",
+      location: "Alberta",
+      company: "Northern Mining Corp"
+    },
+    {
+      quote: "From site acquisition to full-scale operations, 71 Digital delivered everything on time and under budget. Exceptional service.",
+      author: "Chief Technology Officer",
+      location: "Texas",
+      company: "Bitcoin Mining Solutions"
+    }
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
     <section className="py-16 px-4" id="global-reach">
       <div className="container mx-auto max-w-6xl">
@@ -61,14 +93,61 @@ export default function GlobalReachSection() {
           </div>
         </div>
         
-        {/* Case Studies Section */}
+        {/* Case Studies Carousel */}
         <div className="mb-16">
-          <p className="text-white text-sm mb-2">[Case Studies / Testimonials]</p>
-          <p className="text-white text-sm mb-2">Optional carousel or slider with 1–3 examples.</p>
-          <p className="text-white text-sm mb-2">
-            "71 Digital helped us secure land, power, and set up 2.5MW in under 60 days — unheard of in this industry."
-          </p>
-          <p className="text-orange-500 text-sm">— Asset Manager, Dubai</p>
+          <h3 className="text-2xl font-bold text-orange-500 mb-8 text-center">
+            Client Success Stories
+          </h3>
+          
+          <div className="relative max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-lg border border-gray-700">
+              <div className="flex items-start mb-6">
+                <FaQuoteLeft className="text-orange-500 text-2xl mr-4 mt-2" />
+                <p className="text-white text-lg leading-relaxed">
+                  {testimonials[currentTestimonial].quote}
+                </p>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-orange-500 font-semibold">
+                    — {testimonials[currentTestimonial].author}
+                  </p>
+                  <p className="text-gray-300 text-sm">
+                    {testimonials[currentTestimonial].company}, {testimonials[currentTestimonial].location}
+                  </p>
+                </div>
+                
+                <div className="flex space-x-2">
+                  <button
+                    onClick={prevTestimonial}
+                    className="bg-gray-700 hover:bg-orange-500 p-2 rounded-full transition-colors"
+                  >
+                    <FaChevronLeft className="text-white" />
+                  </button>
+                  <button
+                    onClick={nextTestimonial}
+                    className="bg-gray-700 hover:bg-orange-500 p-2 rounded-full transition-colors"
+                  >
+                    <FaChevronRight className="text-white" />
+                  </button>
+                </div>
+              </div>
+              
+              {/* Dots indicator */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === currentTestimonial ? 'bg-orange-500' : 'bg-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Seen on WAYOND */}

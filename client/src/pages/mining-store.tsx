@@ -68,122 +68,209 @@ export default function MiningStore() {
             {/* Products Layout */}
             <div className="space-y-16 mb-16">
               {/* Bitmain Antminer S21 (Air Cooling) */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
-                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
-                  🔶 Bitmain Antminer S21 (Air Cooling)
-                </h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="flex justify-center p-6">
+              <div className="bg-white/5 rounded-xl border border-orange-500/20 overflow-hidden hover:border-orange-500/40 transition-all duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                  {/* Product Image */}
+                  <div className="lg:col-span-1 bg-white/10 p-8 flex items-center justify-center">
                     <img 
                       src={s21AirImage}
                       alt="Bitmain Antminer S21 Air Cooling"
-                      className="w-3/4 h-auto object-contain rounded-lg"
+                      className="w-full max-w-xs h-auto object-contain"
                     />
                   </div>
-                  <div className="p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-white text-sm"><strong>Hashrate:</strong> 234 TH/s</p>
-                        <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3500W</p>
-                        <p className="text-white text-sm"><strong>Efficiency:</strong> 17.5 J/TH</p>
-                      </div>
-                      <div>
-                        <p className="text-white text-sm"><strong>Cooling Type:</strong> Traditional Air Cooling</p>
-                        <p className="text-white text-sm"><strong>Best For:</strong> Standard container deployments</p>
-                        <p className="text-white text-sm"><strong>Warranty:</strong> 12 months</p>
+                  
+                  {/* Product Details */}
+                  <div className="lg:col-span-2 p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-orange-500 mb-2">
+                        Bitmain Antminer S21 (Air Cooling)
+                      </h3>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Bitcoin Mining</span>
+                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Air Cooled</span>
                       </div>
                     </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Hashrate:</span>
+                          <span className="text-white font-semibold">234 TH/s</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Power:</span>
+                          <span className="text-white font-semibold">~3500W</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Efficiency:</span>
+                          <span className="text-white font-semibold">17.5 J/TH</span>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Cooling:</span>
+                          <span className="text-white font-semibold">Air Cooling</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Best For:</span>
+                          <span className="text-white font-semibold">Standard Deployment</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Warranty:</span>
+                          <span className="text-white font-semibold">12 months</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button className="w-full">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Inquire Now
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Spec
+                      </Button>
+                    </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
-                  <Button size="sm" className="w-full">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Inquire Now
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Spec Sheet
-                  </Button>
                 </div>
               </div>
 
               {/* Bitmain Antminer S21 Hydro */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
-                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
-                  🔷 Bitmain Antminer S21 Hydro
-                </h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="order-2 lg:order-1 p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-white text-sm"><strong>Hashrate:</strong> 335 TH/s</p>
-                        <p className="text-white text-sm"><strong>Power Consumption:</strong> ~5300W</p>
-                        <p className="text-white text-sm"><strong>Efficiency:</strong> 21.2 J/TH</p>
-                      </div>
-                      <div>
-                        <p className="text-white text-sm"><strong>Cooling Type:</strong> Hydro-Cooling</p>
-                        <p className="text-white text-sm"><strong>Best For:</strong> High-density, low-maintenance sites</p>
-                        <p className="text-white text-sm"><strong>Requirements:</strong> Water loop system</p>
+              <div className="bg-white/5 rounded-xl border border-orange-500/20 overflow-hidden hover:border-orange-500/40 transition-all duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                  {/* Product Details */}
+                  <div className="lg:col-span-2 p-8 order-2 lg:order-1">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-orange-500 mb-2">
+                        Bitmain Antminer S21 Hydro
+                      </h3>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Bitcoin Mining</span>
+                        <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm">Hydro Cooled</span>
                       </div>
                     </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Hashrate:</span>
+                          <span className="text-white font-semibold">335 TH/s</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Power:</span>
+                          <span className="text-white font-semibold">~5300W</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Efficiency:</span>
+                          <span className="text-white font-semibold">21.2 J/TH</span>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Cooling:</span>
+                          <span className="text-white font-semibold">Hydro-Cooling</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Best For:</span>
+                          <span className="text-white font-semibold">High-density Sites</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Requirements:</span>
+                          <span className="text-white font-semibold">Water Loop</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button className="w-full">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Inquire Now
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Spec
+                      </Button>
+                    </div>
                   </div>
-                  <div className="order-1 lg:order-2 flex justify-center p-6">
+                  
+                  {/* Product Image */}
+                  <div className="lg:col-span-1 bg-white/10 p-8 flex items-center justify-center order-1 lg:order-2">
                     <img 
                       src={s21HydroImage}
                       alt="Bitmain Antminer S21 Hydro"
-                      className="w-3/4 h-auto object-contain rounded-lg"
+                      className="w-full max-w-xs h-auto object-contain"
                     />
                   </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
-                  <Button size="sm" className="w-full">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Inquire Now
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Spec Sheet
-                  </Button>
                 </div>
               </div>
 
               {/* Bitmain Antminer L9 */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
-                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
-                  ⚡ Bitmain Antminer L9 (Scrypt Miner)
-                </h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="flex justify-center p-6">
+              <div className="bg-white/5 rounded-xl border border-orange-500/20 overflow-hidden hover:border-orange-500/40 transition-all duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                  {/* Product Image */}
+                  <div className="lg:col-span-1 bg-white/10 p-8 flex items-center justify-center">
                     <img 
                       src={l9Image}
                       alt="Bitmain Antminer L9 Scrypt Miner"
-                      className="w-3/4 h-auto object-contain rounded-lg"
+                      className="w-full max-w-xs h-auto object-contain"
                     />
                   </div>
-                  <div className="p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-white text-sm"><strong>Hashrate:</strong> 17-18 GH/s</p>
-                        <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3300W</p>
-                        <p className="text-white text-sm"><strong>Algorithms:</strong> Scrypt</p>
-                      </div>
-                      <div>
-                        <p className="text-white text-sm"><strong>Cooling Type:</strong> Air Cooling</p>
-                        <p className="text-white text-sm"><strong>Best For:</strong> Litecoin / Dogecoin mining</p>
-                        <p className="text-white text-sm"><strong>Deployment:</strong> Altcoin diversification</p>
+                  
+                  {/* Product Details */}
+                  <div className="lg:col-span-2 p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-orange-500 mb-2">
+                        Bitmain Antminer L9 (Scrypt Miner)
+                      </h3>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Scrypt Mining</span>
+                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Air Cooled</span>
                       </div>
                     </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Hashrate:</span>
+                          <span className="text-white font-semibold">17-18 GH/s</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Power:</span>
+                          <span className="text-white font-semibold">~3300W</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Algorithm:</span>
+                          <span className="text-white font-semibold">Scrypt</span>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Cooling:</span>
+                          <span className="text-white font-semibold">Air Cooling</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Best For:</span>
+                          <span className="text-white font-semibold">LTC/DOGE Mining</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Use Case:</span>
+                          <span className="text-white font-semibold">Diversification</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button className="w-full">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Inquire Now
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download Spec
+                      </Button>
+                    </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 p-6 pt-0">
-                  <Button size="sm" className="w-full">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Inquire Now
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Spec Sheet
-                  </Button>
                 </div>
               </div>
             </div>

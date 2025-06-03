@@ -77,17 +77,18 @@ export default function MiningStore() {
                   />
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                  <div className="flex items-center mb-4">
-                    <img 
-                      src={s21AirImage}
-                      alt="Bitmain Antminer S21 Air Cooling"
-                      className="w-16 h-16 object-contain rounded-lg mr-4"
-                    />
-                    <h3 className="text-xl font-bold text-orange-500 flex items-center">
-                      🔶 Bitmain Antminer S21 (Air Cooling)
-                    </h3>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
+                    🔶 Bitmain Antminer S21 (Air Cooling)
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="flex flex-col items-center">
+                      <img 
+                        src={s21AirImage}
+                        alt="Bitmain Antminer S21 Air Cooling"
+                        className="w-24 h-24 object-contain rounded-lg mb-2"
+                      />
+                      <p className="text-white text-xs text-center"><strong>Product Image</strong></p>
+                    </div>
                     <div>
                       <p className="text-white text-sm"><strong>Hashrate:</strong> 234 TH/s</p>
                       <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3500W</p>
@@ -115,17 +116,18 @@ export default function MiningStore() {
               {/* Bitmain Antminer S21 Hydro */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                  <div className="flex items-center mb-4">
-                    <img 
-                      src={s21HydroImage}
-                      alt="Bitmain Antminer S21 Hydro"
-                      className="w-16 h-16 object-contain rounded-lg mr-4"
-                    />
-                    <h3 className="text-xl font-bold text-orange-500 flex items-center">
-                      🔷 Bitmain Antminer S21 Hydro
-                    </h3>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
+                    🔷 Bitmain Antminer S21 Hydro
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="flex flex-col items-center">
+                      <img 
+                        src={s21HydroImage}
+                        alt="Bitmain Antminer S21 Hydro"
+                        className="w-24 h-24 object-contain rounded-lg mb-2"
+                      />
+                      <p className="text-white text-xs text-center"><strong>Product Image</strong></p>
+                    </div>
                     <div>
                       <p className="text-white text-sm"><strong>Hashrate:</strong> 335 TH/s</p>
                       <p className="text-white text-sm"><strong>Power Consumption:</strong> ~5300W</p>
@@ -167,17 +169,18 @@ export default function MiningStore() {
                   />
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                  <div className="flex items-center mb-4">
-                    <img 
-                      src={l9Image}
-                      alt="Bitmain Antminer L9 Scrypt Miner"
-                      className="w-16 h-16 object-contain rounded-lg mr-4"
-                    />
-                    <h3 className="text-xl font-bold text-orange-500 flex items-center">
-                      ⚡ Bitmain Antminer L9 (Scrypt Miner)
-                    </h3>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
+                    ⚡ Bitmain Antminer L9 (Scrypt Miner)
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="flex flex-col items-center">
+                      <img 
+                        src={l9Image}
+                        alt="Bitmain Antminer L9 Scrypt Miner"
+                        className="w-24 h-24 object-contain rounded-lg mb-2"
+                      />
+                      <p className="text-white text-xs text-center"><strong>Product Image</strong></p>
+                    </div>
                     <div>
                       <p className="text-white text-sm"><strong>Hashrate:</strong> 17-18 GH/s</p>
                       <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3300W</p>

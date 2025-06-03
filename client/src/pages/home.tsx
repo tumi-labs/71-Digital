@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import StatsSection from "@/components/StatsSection";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -36,14 +35,13 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen crypto-gradient">
+    <div className="min-h-screen">
       <Header currentSection={currentSection} onNavigate={scrollToSection} />
       <main>
         <HeroSection />
         <AboutSection />
         <StatsSection />
       </main>
-      <Footer />
     </div>
   );
 }

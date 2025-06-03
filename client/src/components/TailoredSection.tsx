@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Users } from "lucide-react";
 
 export default function TailoredSection() {
   const minerTypes = [
@@ -54,8 +55,8 @@ export default function TailoredSection() {
           </p>
           
           {/* CTA Button */}
-          <Button className="px-8 py-3 font-semibold">
-            <div className="w-3 h-3 bg-white rounded-full mr-3"></div>
+          <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 font-semibold rounded-full transition-colors flex items-center justify-center">
+            <Users className="w-4 h-4 mr-3" />
             Talk to Our Team
           </Button>
         </div>

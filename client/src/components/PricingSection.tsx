@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Calendar } from "lucide-react";
 
 export default function PricingSection() {
   const plans = [
@@ -102,9 +103,10 @@ export default function PricingSection() {
                   </div>
 
                   <Button 
-                    className={`w-full ${plan.buttonColor} hover:opacity-90 text-white font-bold py-3 rounded-full mt-6`}
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-full mt-6 transition-colors flex items-center justify-center"
                   >
-                    BOOK NOW ▶
+                    <Calendar className="w-4 h-4 mr-2" />
+                    BOOK NOW
                   </Button>
                 </div>
               </CardContent>

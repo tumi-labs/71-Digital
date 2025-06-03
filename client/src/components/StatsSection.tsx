@@ -10,20 +10,22 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-black bg-opacity-30" id="stats">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
-          {stats.map((stat, index) => (
-            <div key={index} className="space-y-4">
-              <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto">
-                <FaBitcoin className="text-black text-lg" />
+    <section className="py-8 px-4 bg-black bg-opacity-40" id="stats">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex justify-center items-center">
+          <div className="grid grid-cols-5 gap-16 text-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="flex flex-col items-center space-y-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <FaBitcoin className="text-black text-lg" />
+                </div>
+                <div className="space-y-1">
+                  <div className="text-xl font-bold text-white">{stat.value}</div>
+                  <div className="text-gray-300 text-sm">{stat.label}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-xl md:text-2xl font-bold">{stat.value}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

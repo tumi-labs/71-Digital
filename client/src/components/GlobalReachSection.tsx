@@ -338,7 +338,7 @@ export default function GlobalReachSection() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="Full Name" 
-                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base text-gray-900 bg-white placeholder:text-gray-500"
                     required
                   />
                   <Input 
@@ -347,7 +347,7 @@ export default function GlobalReachSection() {
                     onChange={handleInputChange}
                     placeholder="Email Address" 
                     type="email"
-                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base text-gray-900 bg-white placeholder:text-gray-500"
                     required
                   />
                 </div>
@@ -357,14 +357,14 @@ export default function GlobalReachSection() {
                     value={formData.companyName}
                     onChange={handleInputChange}
                     placeholder="Company Name" 
-                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base text-gray-900 bg-white placeholder:text-gray-500"
                   />
                   <Input 
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     placeholder="Phone Number" 
-                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base text-gray-900 bg-white placeholder:text-gray-500"
                   />
                 </div>
                 <div>
@@ -372,7 +372,7 @@ export default function GlobalReachSection() {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-700 text-sm md:text-base"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-900 text-sm md:text-base"
                   >
                     <option value="">Select a service</option>
                     <option value="hosting">Hosting Solutions</option>

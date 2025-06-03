@@ -1,48 +1,95 @@
-import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaPhone } from "react-icons/fa";
+import logo71Digital from "@assets/71digital logo.png";
 
 export default function Footer() {
-  const handleGetStarted = () => {
-    // In a real implementation, this would open a contact form modal
-    alert("Contact form would open here. Please reach out to 71 Digital for more information.");
-  };
-
-  const handleDownloadBrochure = () => {
-    // In a real implementation, this would download a PDF brochure
-    alert("Company brochure download would start here.");
-  };
-
   return (
-    <footer className="py-12 px-4 bg-black bg-opacity-50" id="contact">
-      <div className="container mx-auto text-center">
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-orange-500">
-            Ready to Scale Your Mining Operation?
-          </h3>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Contact our team today to discuss your institutional-grade Bitcoin mining requirements
-            and discover how 71 Digital can accelerate your path to financial freedom.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              className="bg-orange-500 text-black px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors"
-              onClick={handleGetStarted}
-            >
-              Get Started Today
-            </Button>
-            <Button
-              variant="outline"
-              className="border-2 border-orange-500 text-orange-500 px-8 py-3 rounded-full font-semibold hover:bg-orange-500 hover:text-black transition-colors"
-              onClick={handleDownloadBrochure}
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Download Brochure
-            </Button>
+    <footer className="bg-gradient-to-b from-amber-900 to-amber-950 py-12 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo Section */}
+          <div className="md:col-span-1">
+            <img 
+              src={logo71Digital} 
+              alt="71 Digital"
+              className="h-16 mb-4"
+            />
+          </div>
+          
+          {/* Navigation Links */}
+          <div className="md:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Column 1 */}
+              <div className="space-y-4">
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Home
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  About
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Blog
+                </a>
+              </div>
+              
+              {/* Column 2 */}
+              <div className="space-y-4">
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Hosting and management
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Purchases of machines
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Machines
+                </a>
+              </div>
+              
+              {/* Column 3 */}
+              <div className="space-y-4">
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  General Terms & Conditions
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Terms of use
+                </a>
+                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
+                  Privacy policy
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Contact Section */}
+          <div className="md:col-span-1">
+            <div className="flex flex-col items-center md:items-end space-y-4">
+              {/* Social Icons */}
+              <div className="flex space-x-4">
+                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaInstagram className="text-white text-lg" />
+                </div>
+                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaLinkedin className="text-white text-lg" />
+                </div>
+                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaPhone className="text-white text-lg" />
+                </div>
+              </div>
+              
+              {/* Email */}
+              <div className="text-center md:text-right">
+                <p className="text-white font-medium">
+                  info@71digital.io
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-gray-700 text-gray-400 text-sm">
-          <p>&copy; 2024 71 Digital. All rights reserved. | UAE Licensed Bitcoin Mining Solutions</p>
+        
+        {/* Copyright */}
+        <div className="border-t border-gray-600 mt-8 pt-6 text-center">
+          <p className="text-gray-300">
+            71 DIGITAL 2025 | All rights reserved
+          </p>
         </div>
       </div>
     </footer>

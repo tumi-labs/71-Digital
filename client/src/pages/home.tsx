@@ -8,6 +8,7 @@ import PartnersSection from "@/components/PartnersSection";
 import AdvantageSection from "@/components/AdvantageSection";
 import TailoredSection from "@/components/TailoredSection";
 import GlobalReachSection from "@/components/GlobalReachSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -52,6 +53,7 @@ export default function Home() {
         <TailoredSection />
         <GlobalReachSection />
       </main>
+      <Footer />
     </div>
   );
 }

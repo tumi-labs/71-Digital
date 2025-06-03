@@ -69,6 +69,9 @@ export default function MiningStore() {
             <div className="space-y-16 mb-16">
               {/* Bitmain Antminer S21 (Air Cooling) */}
               <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
+                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
+                  🔶 Bitmain Antminer S21 (Air Cooling)
+                </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="flex justify-center p-6">
                     <img 
@@ -77,10 +80,7 @@ export default function MiningStore() {
                       className="w-3/4 h-auto object-contain rounded-lg"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
-                      🔶 Bitmain Antminer S21 (Air Cooling)
-                    </h3>
+                  <div className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 234 TH/s</p>
@@ -109,11 +109,11 @@ export default function MiningStore() {
 
               {/* Bitmain Antminer S21 Hydro */}
               <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
+                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
+                  🔷 Bitmain Antminer S21 Hydro
+                </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="order-2 lg:order-1 p-6">
-                    <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
-                      🔷 Bitmain Antminer S21 Hydro
-                    </h3>
+                  <div className="order-2 lg:order-1 p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 335 TH/s</p>
@@ -149,6 +149,9 @@ export default function MiningStore() {
 
               {/* Bitmain Antminer L9 */}
               <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-orange-500/30 overflow-hidden">
+                <h3 className="text-xl font-bold text-orange-500 p-6 pb-0 flex items-center">
+                  ⚡ Bitmain Antminer L9 (Scrypt Miner)
+                </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="flex justify-center p-6">
                     <img 
@@ -157,10 +160,7 @@ export default function MiningStore() {
                       className="w-3/4 h-auto object-contain rounded-lg"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
-                      ⚡ Bitmain Antminer L9 (Scrypt Miner)
-                    </h3>
+                  <div className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 17-18 GH/s</p>

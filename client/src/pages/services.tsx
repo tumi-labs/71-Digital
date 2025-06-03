@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone } from "lucide-react";
+import centerImage from "@assets/center.png";
 
 export default function Services() {
   const [currentSection, setCurrentSection] = useState("services");
@@ -232,27 +233,14 @@ export default function Services() {
                   </div>
                 </div>
 
-                {/* Right Column - ASIC Image with Floating Icons */}
+                {/* Right Column - Mining Hardware with Crypto Icons */}
                 <div className="flex justify-center lg:justify-end h-full">
                   <div className="relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80"
-                      alt="ASIC miner"
-                      className="w-64 h-96 object-cover rounded-lg"
+                      src={centerImage}
+                      alt="Mining hardware with cryptocurrency connections"
+                      className="w-80 h-96 object-contain"
                     />
-                    {/* Floating crypto icons */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">₿</span>
-                    </div>
-                    <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">Ł</span>
-                    </div>
-                    <div className="absolute top-8 -left-8 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">↗</span>
-                    </div>
-                    <div className="absolute bottom-8 -right-8 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">→</span>
-                    </div>
                   </div>
                 </div>
               </div>

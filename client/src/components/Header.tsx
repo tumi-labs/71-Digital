@@ -42,7 +42,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
     <header className="w-full">
       {/* Crypto Icons Row */}
       <div className="bg-black bg-opacity-30 py-2 md:py-3">
-        <div className="container mx-auto px-4 flex justify-center space-x-6 md:space-x-12">
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="w-6 h-6 md:w-8 md:h-8 bg-orange-500 rounded-full flex items-center justify-center">
             <FaBitcoin className="text-white text-xs md:text-sm" />
           </div>

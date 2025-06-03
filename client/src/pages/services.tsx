@@ -233,12 +233,12 @@ export default function Services() {
                 </div>
 
                 {/* Right Column - ASIC Image with Floating Icons */}
-                <div className="flex justify-center lg:justify-end">
+                <div className="flex justify-center lg:justify-end h-full">
                   <div className="relative">
                     <img 
                       src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80"
                       alt="ASIC miner"
-                      className="w-64 h-64 object-cover rounded-lg"
+                      className="w-64 h-96 object-cover rounded-lg"
                     />
                     {/* Floating crypto icons */}
                     <div className="absolute -top-4 -right-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">

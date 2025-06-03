@@ -103,7 +103,7 @@ export default function PricingSection() {
                   </div>
 
                   <Button 
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-full mt-6 transition-colors flex items-center justify-center"
+                    className="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 rounded-full mt-6 transition-colors flex items-center justify-center border-2 border-white shadow-lg"
                   >
                     <Calendar className="w-4 h-4 mr-2" />
                     BOOK NOW

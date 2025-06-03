@@ -56,7 +56,7 @@ export default function MiningFarms() {
               </div>
               <p className="text-white text-lg md:text-xl max-w-3xl mx-auto">
                 Licensed cryptocurrency mining company specializing in mid to large-scale Bitcoin mining operations across the GCC region. 
-                Currently operating 10 megawatts of mining capacity with plans to double to 20MW by Q4 2025.
+                Currently operating 25 megawatts of mining capacity with plans to expand to 50MW.
               </p>
             </div>
           </div>
@@ -170,11 +170,11 @@ export default function MiningFarms() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-300">Current Capacity:</span>
-                    <span className="text-white font-semibold">10 MW</span>
+                    <span className="text-white font-semibold">25 MW</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Planned Expansion:</span>
-                    <span className="text-white font-semibold">20 MW by Q4 2025</span>
+                    <span className="text-white font-semibold">50 MW</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Current Hash Rate:</span>
@@ -274,8 +274,8 @@ export default function MiningFarms() {
                     <div className="text-gray-300 text-sm">Revenue Growth (2023-2025)</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-white">20 MW</div>
-                    <div className="text-gray-300 text-sm">Target Capacity Q4 2025</div>
+                    <div className="text-2xl font-bold text-white">50 MW</div>
+                    <div className="text-gray-300 text-sm">Target Capacity</div>
                   </div>
                 </div>
               </div>

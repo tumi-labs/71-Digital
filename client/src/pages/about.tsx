@@ -93,7 +93,7 @@ export default function About() {
         <section className="py-16 px-4" id="vision">
           <div className="container mx-auto max-w-4xl">
             <div className="flex items-center mb-8">
-              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" />
+              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" style={{filter: 'brightness(0) saturate(100%) invert(65%) sepia(95%) saturate(2076%) hue-rotate(4deg) brightness(104%) contrast(101%)'}} />
               <h2 className="text-4xl font-bold text-orange-500">Vision</h2>
             </div>
             
@@ -104,7 +104,7 @@ export default function About() {
             {/* Countries */}
             <div className="flex flex-wrap justify-center gap-6 mb-12">
               {countries.map((country, index) => (
-                <div key={index} className="flex items-center space-x-2 bg-gray-800/50 px-4 py-2 rounded-lg">
+                <div key={index} className="flex items-center space-x-2 px-4 py-2">
                   <img 
                     src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
                     alt={`${country.name} flag`}

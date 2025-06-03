@@ -29,8 +29,11 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
           <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
             <SiDogecoin className="text-white text-xs" />
           </div>
-          <div className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">K</span>
+          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+            <svg width="16" height="16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 20V50L50 35L80 50V20H65V35L50 27L35 35V20H20Z" fill="white"/>
+              <path d="M20 50V80H35V65L50 73L65 65V80H80V50L50 65L20 50Z" fill="white"/>
+            </svg>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone } from "lucide-react";
 import centerImage from "@assets/center.png";
 import unoImage from "@assets/uno.png";
+import lastImage from "@assets/last.png";
 
 export default function Services() {
   const [currentSection, setCurrentSection] = useState("services");
@@ -109,10 +110,10 @@ export default function Services() {
 
             {/* Services Layout */}
             <div className="relative">
-              {/* Top Section with Mining Racks Image */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              {/* Service Cards Grid - All cards same width */}
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
                 {/* Hosting Solutions */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 h-fit">
                   <div className="flex items-center mb-4">
                     <Building2 className="w-6 h-6 text-orange-500" />
                     <h3 className="text-lg font-bold text-white ml-2">Hosting Solutions</h3>
@@ -147,109 +148,80 @@ export default function Services() {
                   </button>
                 </div>
 
-                {/* Mining Racks Image */}
-                <div className="lg:col-span-2">
-                  <img 
-                    src={unoImage}
-                    alt="Mining facility racks"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-
-              {/* Middle Section with Service Cards and Right-positioned ASIC Image */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
-                {/* Left Column - Service Cards */}
-                <div className="space-y-8">
-                  {/* Site Acquisition */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                    <div className="flex items-center mb-4">
-                      <MapPin className="w-6 h-6 text-orange-500" />
-                      <h3 className="text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
-                    </div>
-                    
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Lease terms and CAPEX structuring</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Energy rates as low as $0.012$/kWh</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Land sourcing, legal, and permits handled</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Grid or off-grid site options</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Fast-track timelines for deployment</span>
-                      </li>
-                    </ul>
-                    
-                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                      Secure a Site
-                    </button>
+                {/* Site Acquisition */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 h-fit">
+                  <div className="flex items-center mb-4">
+                    <MapPin className="w-6 h-6 text-orange-500" />
+                    <h3 className="text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
                   </div>
-
-                  {/* Hardware Procurement */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                    <div className="flex items-center mb-4">
-                      <HardDrive className="w-6 h-6 text-orange-500" />
-                      <h3 className="text-lg font-bold text-white ml-2">Hardware Procurement</h3>
-                    </div>
-                    
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">ASIC machines at competitive rates with DDP delivery.</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Bitmain, Whatsminer, and hydro-ready rigs</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Bulk purchase agreements</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Optional setup & configuration</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-xs">Verified warranties and vendor partners</span>
-                      </li>
-                    </ul>
-                    
-                    <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
-                      View Inventory
-                    </button>
-                  </div>
+                  
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Lease terms and CAPEX structuring</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Energy rates as low as $0.012$/kWh</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Land sourcing, legal, and permits handled</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Grid or off-grid site options</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Fast-track timelines for deployment</span>
+                    </li>
+                  </ul>
+                  
+                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                    Secure a Site
+                  </button>
                 </div>
 
-                {/* Right Column - Mining Hardware with Crypto Icons */}
-                <div className="flex justify-center lg:justify-end h-full">
-                  <div className="relative">
-                    <img 
-                      src={centerImage}
-                      alt="Mining hardware with cryptocurrency connections"
-                      className="w-80 h-96 object-contain rounded-lg"
-                    />
+                {/* Hardware Procurement */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 h-fit">
+                  <div className="flex items-center mb-4">
+                    <HardDrive className="w-6 h-6 text-orange-500" />
+                    <h3 className="text-lg font-bold text-white ml-2">Hardware Procurement</h3>
                   </div>
+                  
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">ASIC machines at competitive rates with DDP delivery.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Bitmain, Whatsminer, and hydro-ready rigs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Bulk purchase agreements</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Optional setup & configuration</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-white text-xs">Verified warranties and vendor partners</span>
+                    </li>
+                  </ul>
+                  
+                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                    View Inventory
+                  </button>
                 </div>
-              </div>
 
-              {/* Bottom Section with Mining Operations and Cables Image */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                 {/* Mining Operations */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 h-fit">
                   <div className="flex items-center mb-4">
                     <Settings className="w-6 h-6 text-orange-500" />
                     <h3 className="text-lg font-bold text-white ml-2">Mining Operations & Site Management</h3>
@@ -283,13 +255,34 @@ export default function Services() {
                     Talk to a Site Manager
                   </button>
                 </div>
+              </div>
+
+              {/* Images Section */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                {/* Mining Racks Image */}
+                <div>
+                  <img 
+                    src={unoImage}
+                    alt="Mining facility racks"
+                    className="w-full h-64 object-cover rounded-lg"
+                  />
+                </div>
+
+                {/* Mining Hardware with Crypto Icons */}
+                <div className="flex justify-center">
+                  <img 
+                    src={centerImage}
+                    alt="Mining hardware with cryptocurrency connections"
+                    className="w-full h-64 object-contain rounded-lg"
+                  />
+                </div>
 
                 {/* Cables Image */}
-                <div className="lg:col-span-2">
+                <div>
                   <img 
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+                    src={lastImage}
                     alt="Data center cables and infrastructure"
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-64 object-cover rounded-lg"
                   />
                 </div>
               </div>

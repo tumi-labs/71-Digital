@@ -5,22 +5,22 @@ export default function TailoredSection() {
     {
       icon: "🏢",
       title: "Family Office: Looking for stable BTC exposure",
-      color: "text-blue-400"
+      color: "text-white"
     },
     {
       icon: "🏭",
       title: "Large-Scale Miner: Scaling capacity across regions",
-      color: "text-red-400"
+      color: "text-white"
     },
     {
       icon: "🌐",
       title: "Sovereign Fund or Gov Entity: Seeking CAPEX infrastructure",
-      color: "text-blue-400"
+      color: "text-white"
     },
     {
       icon: "🧠",
       title: "Tech Founder or HNWI: Exploring retail-friendly co-mining",
-      color: "text-pink-400"
+      color: "text-white"
     }
   ];
 
@@ -38,11 +38,11 @@ export default function TailoredSection() {
         </p>
 
         {/* Miner Types */}
-        <div className="space-y-6 mb-12">
+        <div className="space-y-4 mb-12">
           {minerTypes.map((miner, index) => (
-            <div key={index} className="flex items-center space-x-4">
-              <span className="text-2xl">{miner.icon}</span>
-              <span className={`text-lg ${miner.color}`}>{miner.title}</span>
+            <div key={index} className="flex items-start space-x-3">
+              <span className="text-lg mt-1">{miner.icon}</span>
+              <span className={`text-lg ${miner.color} leading-relaxed`}>{miner.title}</span>
             </div>
           ))}
         </div>

@@ -100,72 +100,94 @@ export default function GlobalReachSection() {
         </div>
         
         {/* Contact Section */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <div>
-            <h3 className="text-2xl font-bold text-orange-500 mb-6">
+          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-lg border border-gray-700">
+            <h3 className="text-3xl font-bold text-orange-500 mb-4">
               Contact Us
             </h3>
-            <p className="text-white mb-6">
+            <p className="text-white text-lg mb-8 leading-relaxed">
               Let's Build the Future of Mining — Together
             </p>
             
-            <div className="space-y-4 mb-6">
-              <div className="flex items-start space-x-3">
-                <FaMapMarkerAlt className="text-orange-500 mt-1" />
+            <div className="space-y-6 mb-8">
+              <div className="flex items-start space-x-4">
+                <div className="bg-orange-500 p-2 rounded-full">
+                  <FaMapMarkerAlt className="text-white text-sm" />
+                </div>
                 <div>
-                  <p className="text-white">Office A, RAK DAO Business Centre, Ras</p>
-                  <p className="text-white">Al Khaimah, United Arab Emirates</p>
+                  <p className="text-white font-medium">Office Location</p>
+                  <p className="text-gray-300 text-sm">Office A, RAK DAO Business Centre, Ras</p>
+                  <p className="text-gray-300 text-sm">Al Khaimah, United Arab Emirates</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-3">
-                <FaEnvelope className="text-orange-500" />
-                <span className="text-white">info@71digital.io</span>
+              <div className="flex items-center space-x-4">
+                <div className="bg-orange-500 p-2 rounded-full">
+                  <FaEnvelope className="text-white text-sm" />
+                </div>
+                <div>
+                  <p className="text-white font-medium">Email</p>
+                  <span className="text-gray-300">info@71digital.io</span>
+                </div>
               </div>
             </div>
             
             <div>
-              <p className="text-white mb-4">Social Media</p>
+              <p className="text-white font-medium mb-4">Follow Us</p>
               <div className="flex space-x-4">
-                <FaInstagram className="text-white text-xl hover:text-orange-500 cursor-pointer" />
-                <FaLinkedin className="text-white text-xl hover:text-orange-500 cursor-pointer" />
-                <FaWhatsapp className="text-white text-xl hover:text-orange-500 cursor-pointer" />
+                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaInstagram className="text-white text-lg" />
+                </div>
+                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaLinkedin className="text-white text-lg" />
+                </div>
+                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                  <FaWhatsapp className="text-white text-lg" />
+                </div>
               </div>
             </div>
           </div>
           
           {/* Contact Form */}
           <div>
-            <div className="bg-white p-6 rounded-lg">
-              <h4 className="text-xl font-bold text-gray-800 mb-4">
+            <div className="bg-white p-8 rounded-lg shadow-2xl">
+              <h4 className="text-2xl font-bold text-gray-800 mb-6">
                 Send us a message
               </h4>
               
-              <form className="space-y-4">
-                <Input 
-                  placeholder="Name" 
-                  className="w-full"
-                />
-                <Input 
-                  placeholder="Phone number" 
-                  className="w-full"
-                />
-                <Input 
-                  placeholder="Email address" 
-                  type="email"
-                  className="w-full"
-                />
-                <Textarea 
-                  placeholder="What can we do for you?"
-                  className="w-full h-24"
-                />
-                <div className="text-xs text-gray-600 mb-4">
-                  Verification*
+              <form className="space-y-5">
+                <div>
+                  <Input 
+                    placeholder="Full Name" 
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    placeholder="Phone Number" 
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    placeholder="Email Address" 
+                    type="email"
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                  />
+                </div>
+                <div>
+                  <Textarea 
+                    placeholder="What can we do for you?"
+                    className="w-full h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none"
+                  />
+                </div>
+                <div className="text-xs text-gray-500 mb-4">
+                  * Required verification
                 </div>
                 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                  Contact us →
+                <Button className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl">
+                  Send Message →
                 </Button>
               </form>
             </div>

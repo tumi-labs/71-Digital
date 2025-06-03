@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Headphones } from "lucide-react";
 import miningImagePath from "@assets/miner pic.png";
 import logoImagePath from "@assets/71digital logo.png";
 
@@ -46,7 +46,7 @@ export default function HeroSection() {
                 className="bg-orange-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors flex items-center text-sm md:text-base mx-auto lg:mx-0"
                 onClick={handleContactSales}
               >
-                <Phone className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
+                <Headphones className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
                 Speak to Sales
               </Button>
             </div>

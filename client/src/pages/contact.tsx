@@ -380,7 +380,10 @@ export default function Contact() {
                   <Phone className="w-5 h-5 mr-2" />
                   Call Sales Team
                 </button>
-                <button className="flex items-center justify-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <button 
+                  className="flex items-center justify-center border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Request Quote
                 </button>

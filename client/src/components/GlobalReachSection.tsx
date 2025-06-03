@@ -62,7 +62,7 @@ export default function GlobalReachSection() {
           
           {/* Right Content - World Map */}
           <div className="flex items-center justify-center">
-            <div className="relative w-full max-w-lg">
+            <div className="relative w-full">
               <img 
                 src={mapImage} 
                 alt="Global mining locations map"

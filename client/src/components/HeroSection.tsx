@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import miningImagePath from "@assets/miner pic.png";
+import logoImagePath from "@assets/71digital logo.png";
 
 export default function HeroSection() {
   const handleContactSales = () => {
@@ -18,33 +19,14 @@ export default function HeroSection() {
           <div className="space-y-6">
             {/* Logo and Company Name */}
             <div className="space-y-4">
-              {/* Orange Wing Logo */}
+              {/* 71 Digital Logo */}
               <div className="relative">
-                <svg width="120" height="80" viewBox="0 0 120 80" className="text-orange-500">
-                  <path
-                    d="M15 65 Q30 15, 50 35 Q65 20, 80 40 Q95 25, 110 45"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M15 60 Q30 20, 50 40 Q65 25, 80 45 Q95 30, 110 50"
-                    stroke="currentColor"
-                    strokeWidth="7"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M15 55 Q30 25, 50 45 Q65 30, 80 50 Q95 35, 110 55"
-                    stroke="currentColor"
-                    strokeWidth="6"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <img
+                  src={logoImagePath}
+                  alt="71 Digital Logo"
+                  className="h-24 lg:h-32 w-auto object-contain"
+                />
               </div>
-              <h1 className="text-5xl lg:text-6xl font-bold tracking-wider text-white">71 DIGITAL</h1>
             </div>
 
             {/* Tagline */}

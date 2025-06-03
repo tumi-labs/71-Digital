@@ -53,7 +53,10 @@ export default function AdvantageSection() {
 
         {/* CTA Button */}
         <div className="text-center">
-          <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 font-semibold rounded-full transition-colors flex items-center justify-center">
+          <Button 
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 font-semibold rounded-full transition-colors flex items-center justify-center"
+            onClick={() => window.open('/mining-farms', '_self')}
+          >
             <ArrowRight className="w-4 h-4 mr-3" />
             Explore Our Solutions
           </Button>

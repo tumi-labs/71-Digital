@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import { CheckCircle, Phone, Download, MessageCircle } from "lucide-react";
 import productsImage from "@assets/4.png";
 import logo71NoText from "@assets/71digital logo - no text.png";
+import s21AirImage from "@assets/Antminer s21 air cooling.png";
+import s21HydroImage from "@assets/S21 hydro.png";
+import l9Image from "@assets/l9.png";
 
 export default function MiningStore() {
   const [currentSection, setCurrentSection] = useState("store");
@@ -62,19 +65,16 @@ export default function MiningStore() {
             </div>
 
             {/* Products Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              {/* Products Display */}
-              <div>
-                <img 
-                  src={productsImage}
-                  alt="ASIC Mining Products Catalog"
-                  className="w-full h-auto object-contain rounded-lg"
-                />
-              </div>
-
-              {/* Product Details */}
-              <div className="space-y-8">
-                {/* Bitmain Antminer S21 (Air Cooling) */}
+            <div className="space-y-16 mb-16">
+              {/* Bitmain Antminer S21 (Air Cooling) */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <img 
+                    src={s21AirImage}
+                    alt="Bitmain Antminer S21 Air Cooling"
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                   <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
                     🔶 Bitmain Antminer S21 (Air Cooling)
@@ -102,9 +102,11 @@ export default function MiningStore() {
                     </button>
                   </div>
                 </div>
+              </div>
 
-                {/* Bitmain Antminer S21 Hydro */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
+              {/* Bitmain Antminer S21 Hydro */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1 bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                   <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
                     🔷 Bitmain Antminer S21 Hydro
                   </h3>
@@ -131,8 +133,24 @@ export default function MiningStore() {
                     </button>
                   </div>
                 </div>
+                <div className="order-1 lg:order-2">
+                  <img 
+                    src={s21HydroImage}
+                    alt="Bitmain Antminer S21 Hydro"
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                </div>
+              </div>
 
-                {/* Bitmain Antminer L9 */}
+              {/* Bitmain Antminer L9 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <img 
+                    src={l9Image}
+                    alt="Bitmain Antminer L9 Scrypt Miner"
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                   <h3 className="text-xl font-bold text-orange-500 mb-4 flex items-center">
                     ⚡ Bitmain Antminer L9 (Scrypt Miner)

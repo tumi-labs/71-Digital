@@ -6,7 +6,6 @@ import centerImage from "@assets/center.png";
 import unoImage from "@assets/uno.png";
 import lastImage from "@assets/last.png";
 import logo71NoText from "@assets/71digital logo - no text.png";
-import productsImage from "@assets/4.png";
 
 export default function Services() {
   const [currentSection, setCurrentSection] = useState("services");
@@ -302,94 +301,7 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Products Section */}
-            <div className="mb-16" id="products">
-              <div className="flex items-center mb-8">
-                <img 
-                  src={logo71NoText} 
-                  alt="71 Digital Logo" 
-                  className="w-8 h-8 mr-3"
-                />
-                <h2 className="text-3xl font-bold text-orange-500">Products</h2>
-              </div>
-              
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-white mb-4">Performance-Grade ASIC Miners for Every Operation</h3>
-                <p className="text-white text-sm leading-relaxed max-w-4xl">
-                  Choose from a curated selection of top-performing machines optimized for air 
-                  cooling, hydro immersion, and scrypt mining.
-                </p>
-              </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Products Display */}
-                <div>
-                  <img 
-                    src={productsImage}
-                    alt="ASIC Mining Products Catalog"
-                    className="w-full h-auto object-contain rounded-lg"
-                  />
-                </div>
-
-                {/* Product Details */}
-                <div className="space-y-6">
-                  {/* Bitmain Antminer S21 (Air Cooling) */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                    <h4 className="text-lg font-bold text-orange-500 mb-3">🔶 Bitmain Antminer S21 (Air Cooling)</h4>
-                    <div className="space-y-1 mb-4">
-                      <p className="text-white text-xs"><strong>Hashrate:</strong> 234 TH/s</p>
-                      <p className="text-white text-xs"><strong>Power Consumption:</strong> ~3500W</p>
-                      <p className="text-white text-xs"><strong>Cooling Type:</strong> Traditional Air Cooling</p>
-                      <p className="text-white text-xs"><strong>Efficiency:</strong> 17.5 J/TH</p>
-                      <p className="text-white text-xs"><strong>Best For:</strong> Standard container or warehouse deployments</p>
-                    </div>
-                    <div className="flex gap-3">
-                      <button className="text-blue-400 text-xs hover:text-blue-300">🔷 Inquire Now</button>
-                      <button className="text-orange-400 text-xs hover:text-orange-300">🔶 Download Spec Sheet</button>
-                    </div>
-                  </div>
-
-                  {/* Bitmain Antminer S21 Hydro */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                    <h4 className="text-lg font-bold text-orange-500 mb-3">🔷 Bitmain Antminer S21 Hydro</h4>
-                    <div className="space-y-1 mb-4">
-                      <p className="text-white text-xs"><strong>Hashrate:</strong> 335 TH/s</p>
-                      <p className="text-white text-xs"><strong>Power Consumption:</strong> ~5300W</p>
-                      <p className="text-white text-xs"><strong>Cooling Type:</strong> Hydro-Cooling (requires water loop system)</p>
-                      <p className="text-white text-xs"><strong>Efficiency:</strong> 21.2 J/TH</p>
-                      <p className="text-white text-xs"><strong>Best For:</strong> High-density, low-maintenance sites with water infrastructure</p>
-                    </div>
-                    <div className="flex gap-3">
-                      <button className="text-blue-400 text-xs hover:text-blue-300">🔷 Inquire Now</button>
-                      <button className="text-orange-400 text-xs hover:text-orange-300">🔶 Download Spec Sheet</button>
-                    </div>
-                  </div>
-
-                  {/* Bitmain Antminer L9 */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
-                    <h4 className="text-lg font-bold text-orange-500 mb-3">⚡ Bitmain Antminer L9 (Scrypt Miner)</h4>
-                    <div className="space-y-1 mb-4">
-                      <p className="text-white text-xs"><strong>Hashrate:</strong> 17-18 GH/s</p>
-                      <p className="text-white text-xs"><strong>Power Consumption:</strong> ~3300W</p>
-                      <p className="text-white text-xs"><strong>Algorithms:</strong> Scrypt (Litecoin / Dogecoin)</p>
-                      <p className="text-white text-xs"><strong>Cooling Type:</strong> Air Cooling</p>
-                      <p className="text-white text-xs"><strong>Best For:</strong> Altcoin diversification and scrypt ecosystem</p>
-                    </div>
-                    <div className="flex gap-3">
-                      <button className="text-blue-400 text-xs hover:text-blue-300">🔷 Inquire Now</button>
-                      <button className="text-orange-400 text-xs hover:text-orange-300">⚡ Download Spec Sheet</button>
-                    </div>
-                  </div>
-
-                  {/* Help Section */}
-                  <div className="text-center bg-white/5 rounded-lg p-6 border border-orange-500/20">
-                    <p className="text-orange-400 font-medium mb-2">Need help choosing the right machine?</p>
-                    <p className="text-white text-sm mb-4">Let our team recommend the best model for your site setup.</p>
-                    <button className="text-blue-400 font-medium hover:text-blue-300">🔷 [Talk to a Hardware Specialist]</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* Call to Action */}
             <div className="text-center">

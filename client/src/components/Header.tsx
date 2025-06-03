@@ -15,7 +15,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
     { id: "home", label: "Home", path: "/" },
     { id: "about", label: "About us", path: "/about" },
     { id: "services", label: "Services", path: "/services" },
-    { id: "store", label: "Mining Store", path: "/services", scrollTo: "products" },
+    { id: "store", label: "Mining Store", path: "/mining-store" },
     { id: "contact", label: "Contact" },
   ];
 

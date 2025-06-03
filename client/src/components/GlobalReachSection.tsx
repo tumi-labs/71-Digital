@@ -387,7 +387,7 @@ export default function GlobalReachSection() {
                   <Textarea 
                     name="message"
                     value={formData.message}
-                    onChange={handleInputChange}
+                    onChange={(e) => handleInputChange(e as React.ChangeEvent<HTMLTextAreaElement>)}
                     placeholder="Tell us about your mining infrastructure needs..."
                     className="w-full h-24 md:h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none text-sm md:text-base"
                     required

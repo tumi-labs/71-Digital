@@ -6,6 +6,7 @@ import StatsSection from "@/components/StatsSection";
 import PricingSection from "@/components/PricingSection";
 import PartnersSection from "@/components/PartnersSection";
 import AdvantageSection from "@/components/AdvantageSection";
+import TailoredSection from "@/components/TailoredSection";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -47,6 +48,7 @@ export default function Home() {
         <PricingSection />
         <PartnersSection />
         <AdvantageSection />
+        <TailoredSection />
       </main>
     </div>
   );

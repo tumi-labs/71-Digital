@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import mapImage from "@assets/map.png";
 
 export default function GlobalReachSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   
   const [formData, setFormData] = useState({
     fullName: "",
@@ -37,6 +38,7 @@ export default function GlobalReachSection() {
       return response.json();
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/contact'] });
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you within 24 hours.",
@@ -50,7 +52,8 @@ export default function GlobalReachSection() {
         message: "",
       });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Contact form error:', error);
       toast({
         title: "Failed to send message",
         description: "Please try again or contact us directly.",

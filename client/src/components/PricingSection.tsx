@@ -104,6 +104,7 @@ export default function PricingSection() {
 
                   <Button 
                     className="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 rounded-full mt-6 transition-colors flex items-center justify-center border-2 border-white shadow-lg"
+                    onClick={() => window.open('/book-appointment', '_self')}
                   >
                     <Calendar className="w-4 h-4 mr-2" />
                     BOOK NOW

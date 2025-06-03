@@ -263,7 +263,10 @@ export default function GlobalReachSection() {
             Speak with our team to secure capacity, design your site, or co-mine with the most reliable hosting provider in the region.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center">
+            <Button 
+              className="bg-orange-500 hover:bg-orange-600 text-white transition-colors flex items-center"
+              onClick={() => window.open('/book-appointment', '_self')}
+            >
               <FaEnvelope className="w-4 h-4 mr-2" />
               Book a Consultation
             </Button>

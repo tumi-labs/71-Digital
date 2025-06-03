@@ -314,11 +314,18 @@ export default function Services() {
               <p className="text-white text-lg mb-8">Let's start with a free consultation.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white transition-colors">
+                <Button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <Phone className="w-5 h-5 mr-2" />
                   Book a Call
                 </Button>
-                <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors">
+                <Button 
+                  variant="outline" 
+                  className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Get Hosting Quote
                 </Button>

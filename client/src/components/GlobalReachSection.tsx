@@ -270,13 +270,13 @@ export default function GlobalReachSection() {
         </div>
         
         {/* Contact Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Contact Info */}
-          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-lg border border-gray-700">
-            <h3 className="text-3xl font-bold text-orange-500 mb-4">
+          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 md:p-8 rounded-lg border border-gray-700">
+            <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
               Contact Us
             </h3>
-            <p className="text-white text-lg mb-8 leading-relaxed">
+            <p className="text-white text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
               Let's Build the Future of Mining — Together
             </p>
             
@@ -324,19 +324,19 @@ export default function GlobalReachSection() {
           
           {/* Contact Form */}
           <div>
-            <div className="bg-white p-8 rounded-lg shadow-2xl">
-              <h4 className="text-2xl font-bold text-gray-800 mb-6">
+            <div className="bg-white p-6 md:p-8 rounded-lg shadow-2xl">
+              <h4 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
                 Send us a message
               </h4>
               
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input 
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="Full Name" 
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
                     required
                   />
                   <Input 
@@ -345,7 +345,7 @@ export default function GlobalReachSection() {
                     onChange={handleInputChange}
                     placeholder="Email Address" 
                     type="email"
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
                     required
                   />
                 </div>
@@ -355,14 +355,14 @@ export default function GlobalReachSection() {
                     value={formData.companyName}
                     onChange={handleInputChange}
                     placeholder="Company Name" 
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
                   />
                   <Input 
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     placeholder="Phone Number" 
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -370,7 +370,7 @@ export default function GlobalReachSection() {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-700"
+                    className="w-full h-10 md:h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-700 text-sm md:text-base"
                   >
                     <option value="">Select a service</option>
                     <option value="hosting">Hosting Solutions</option>
@@ -387,14 +387,14 @@ export default function GlobalReachSection() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Tell us about your mining infrastructure needs..."
-                    className="w-full h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none"
+                    className="w-full h-24 md:h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none text-sm md:text-base"
                     required
                   />
                 </div>
                 
                 <Button 
                   type="submit" 
-                  className="w-full h-12 font-semibold"
+                  className="w-full h-10 md:h-12 font-semibold text-sm md:text-base"
                   disabled={contactMutation.isPending}
                 >
                   {contactMutation.isPending ? "Sending..." : "Send Message →"}

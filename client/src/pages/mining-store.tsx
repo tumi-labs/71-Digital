@@ -45,20 +45,20 @@ export default function MiningStore() {
       <Header currentSection={currentSection} onNavigate={handleNavigate} />
       <main>
         {/* Hero Section */}
-        <section className="py-16 px-4" id="store">
+        <section className="py-12 md:py-16 px-4" id="store">
           <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center mb-8">
+            <div className="flex items-center mb-6 md:mb-8">
               <img 
                 src={logo71NoText} 
                 alt="71 Digital Logo" 
-                className="w-12 h-12 mr-4"
+                className="w-8 h-8 md:w-12 md:h-12 mr-3 md:mr-4"
               />
-              <h1 className="text-4xl font-bold text-orange-500">Mining Store</h1>
+              <h1 className="text-2xl md:text-4xl font-bold text-orange-500">Mining Store</h1>
             </div>
             
-            <div className="mb-16">
-              <h2 className="text-2xl font-bold text-white mb-6">Performance-Grade ASIC Miners for Every Operation</h2>
-              <p className="text-white text-lg leading-relaxed max-w-4xl">
+            <div className="mb-12 md:mb-16">
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">Performance-Grade ASIC Miners for Every Operation</h2>
+              <p className="text-white text-base md:text-lg leading-relaxed max-w-4xl">
                 Choose from a curated selection of top-performing machines optimized for air 
                 cooling, hydro immersion, and scrypt mining. Each unit comes with verified 
                 warranties and our comprehensive support package.
@@ -66,12 +66,12 @@ export default function MiningStore() {
             </div>
 
             {/* Products Layout */}
-            <div className="space-y-16 mb-16">
+            <div className="space-y-12 md:space-y-16 mb-12 md:mb-16">
               {/* Bitmain Antminer S21 (Air Cooling) */}
               <div className="bg-white/5 rounded-xl border border-orange-500/20 overflow-hidden hover:border-orange-500/40 transition-all duration-300">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                   {/* Product Image */}
-                  <div className="lg:col-span-1 bg-white/10 p-8 flex items-center justify-center">
+                  <div className="lg:col-span-1 bg-white/10 p-6 md:p-8 flex items-center justify-center">
                     <img 
                       src={s21AirImage}
                       alt="Bitmain Antminer S21 Air Cooling"
@@ -80,54 +80,54 @@ export default function MiningStore() {
                   </div>
                   
                   {/* Product Details */}
-                  <div className="lg:col-span-2 p-8">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-orange-500 mb-2">
+                  <div className="lg:col-span-2 p-6 md:p-8">
+                    <div className="mb-4 md:mb-6">
+                      <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-2">
                         Bitmain Antminer S21 (Air Cooling)
                       </h3>
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Bitcoin Mining</span>
-                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Air Cooled</span>
+                      <div className="flex flex-wrap items-center gap-2 mb-4">
+                        <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs md:text-sm">Bitcoin Mining</span>
+                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs md:text-sm">Air Cooled</span>
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div className="space-y-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                      <div className="space-y-2 md:space-y-3">
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Hashrate:</span>
-                          <span className="text-white font-semibold">234 TH/s</span>
+                          <span className="text-gray-300 text-sm md:text-base">Hashrate:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">234 TH/s</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Power:</span>
-                          <span className="text-white font-semibold">~3500W</span>
+                          <span className="text-gray-300 text-sm md:text-base">Power:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">~3500W</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Efficiency:</span>
-                          <span className="text-white font-semibold">17.5 J/TH</span>
+                          <span className="text-gray-300 text-sm md:text-base">Efficiency:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">17.5 J/TH</span>
                         </div>
                       </div>
-                      <div className="space-y-3">
+                      <div className="space-y-2 md:space-y-3">
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Cooling:</span>
-                          <span className="text-white font-semibold">Air Cooling</span>
+                          <span className="text-gray-300 text-sm md:text-base">Cooling:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">Air Cooling</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Best For:</span>
-                          <span className="text-white font-semibold">Standard Deployment</span>
+                          <span className="text-gray-300 text-sm md:text-base">Best For:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">Standard Deployment</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Warranty:</span>
-                          <span className="text-white font-semibold">12 months</span>
+                          <span className="text-gray-300 text-sm md:text-base">Warranty:</span>
+                          <span className="text-white font-semibold text-sm md:text-base">12 months</span>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4">
-                      <Button className="w-full">
-                        <MessageCircle className="w-4 h-4 mr-2" />
+                    <div className="grid grid-cols-2 gap-3 md:gap-4">
+                      <Button className="w-full text-sm md:text-base">
+                        <MessageCircle className="w-3 h-3 md:w-4 md:h-4 mr-2" />
                         Inquire Now
                       </Button>
-                      <Button variant="outline" className="w-full">
+                      <Button variant="outline" className="w-full text-sm md:text-base">
                         <Download className="w-4 h-4 mr-2" />
                         Download Spec
                       </Button>

@@ -102,18 +102,20 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-8 px-4" id="stats">
+    <section className="py-6 md:py-8 px-4" id="stats">
       <div className="container mx-auto max-w-6xl">
         <div className="flex justify-center items-center">
-          <div className="grid grid-cols-5 gap-16 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-16 text-center">
             {stats.map((stat, index) => (
-              <div key={index} className="flex flex-col items-center space-y-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <FaBitcoin className="text-black text-lg" />
+              <div key={index} className="flex flex-col items-center space-y-2 md:space-y-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center">
+                  <FaBitcoin className="text-black text-sm md:text-lg" />
                 </div>
                 <div className="space-y-1">
-                  <AnimatedCounter targetValue={stat.value} />
-                  <div className="text-gray-300 text-sm">{stat.label}</div>
+                  <div className="text-lg md:text-xl font-bold text-white">
+                    <AnimatedCounter targetValue={stat.value} />
+                  </div>
+                  <div className="text-gray-300 text-xs md:text-sm">{stat.label}</div>
                 </div>
               </div>
             ))}

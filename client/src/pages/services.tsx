@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone, MessageCircle } from "lucide-react";
+import { CheckCircle, Building2, Zap, HardDrive, Settings, MapPin, Phone, MessageCircle, FileText } from "lucide-react";
 import centerImage from "@assets/center.png";
 import unoImage from "@assets/uno.png";
 import lastImage from "@assets/last.png";
@@ -319,7 +319,7 @@ export default function Services() {
                   Book a Call
                 </Button>
                 <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors">
-                  <FileText className="w-5 h-5 mr-2" />
+                  <MessageCircle className="w-5 h-5 mr-2" />
                   Get Hosting Quote
                 </Button>
               </div>

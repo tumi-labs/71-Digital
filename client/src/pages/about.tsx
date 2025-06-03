@@ -129,8 +129,7 @@ export default function About() {
         {/* Leadership Team Section */}
         <section className="py-16 px-4" id="leadership">
           <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center justify-center mb-12">
-              <img src={logoNoText} alt="71 Digital" className="w-12 h-8 mr-4" style={{filter: 'brightness(0) saturate(100%) invert(65%) sepia(95%) saturate(2076%) hue-rotate(4deg) brightness(104%) contrast(101%)'}} />
+            <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-orange-500">Leadership Team</h2>
             </div>
             

@@ -9,17 +9,26 @@ export default function GlobalReachSection() {
     <section className="py-16 px-4" id="global-reach">
       <div className="container mx-auto max-w-6xl">
         {/* Global Reach */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {/* Left Content */}
-          <div>
-            <h2 className="text-3xl font-bold text-orange-500 mb-6">
+        <div className="relative mb-16">
+          {/* Background Map */}
+          <div className="w-full">
+            <img 
+              src={mapImage} 
+              alt="Global mining locations map"
+              className="w-full h-auto"
+            />
+          </div>
+          
+          {/* Overlay Content */}
+          <div className="absolute top-8 left-8 max-w-md">
+            <h2 className="text-3xl font-bold text-orange-500 mb-4">
               Global Reach
             </h2>
-            <p className="text-lg text-white mb-6">
+            <p className="text-lg text-white mb-4">
               Operating in Power-Rich Locations
             </p>
             
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 mb-4">
               <div className="flex items-center space-x-3">
                 <FaMapMarkerAlt className="text-red-500" />
                 <span className="text-white">UAE</span>
@@ -42,34 +51,24 @@ export default function GlobalReachSection() {
               </div>
             </div>
             
-            <p className="text-white text-sm mb-6">
+            <p className="text-white mb-4">
               25MW live. 50MW in expansion.
             </p>
             
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
               [View Deployment Sites]
             </Button>
-            
-            <div className="mt-8">
-              <p className="text-white text-sm mb-2">[Case Studies / Testimonials]</p>
-              <p className="text-white text-sm mb-2">Optional carousel or slider with 1–3 examples.</p>
-              <p className="text-white text-sm mb-2">
-                "71 Digital helped us secure land, power, and set up 2.5MW in under 60 days — unheard of in this industry."
-              </p>
-              <p className="text-orange-500 text-sm">— Asset Manager, Dubai</p>
-            </div>
           </div>
-          
-          {/* Right Content - World Map */}
-          <div className="flex items-center justify-center">
-            <div className="relative w-full">
-              <img 
-                src={mapImage} 
-                alt="Global mining locations map"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
+        </div>
+        
+        {/* Case Studies Section */}
+        <div className="mb-16">
+          <p className="text-white text-sm mb-2">[Case Studies / Testimonials]</p>
+          <p className="text-white text-sm mb-2">Optional carousel or slider with 1–3 examples.</p>
+          <p className="text-white text-sm mb-2">
+            "71 Digital helped us secure land, power, and set up 2.5MW in under 60 days — unheard of in this industry."
+          </p>
+          <p className="text-orange-500 text-sm">— Asset Manager, Dubai</p>
         </div>
         
         {/* Seen on WAYOND */}

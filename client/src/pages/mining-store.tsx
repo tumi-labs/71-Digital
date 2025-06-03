@@ -73,7 +73,7 @@ export default function MiningStore() {
                   <img 
                     src={s21AirImage}
                     alt="Bitmain Antminer S21 Air Cooling"
-                    className="w-full h-auto object-contain rounded-lg"
+                    className="w-3/4 h-auto object-contain rounded-lg mx-auto"
                   />
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
@@ -138,7 +138,7 @@ export default function MiningStore() {
                   <img 
                     src={s21HydroImage}
                     alt="Bitmain Antminer S21 Hydro"
-                    className="w-full h-auto object-contain rounded-lg"
+                    className="w-3/4 h-auto object-contain rounded-lg mx-auto"
                   />
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function MiningStore() {
                   <img 
                     src={l9Image}
                     alt="Bitmain Antminer L9 Scrypt Miner"
-                    className="w-full h-auto object-contain rounded-lg"
+                    className="w-3/4 h-auto object-contain rounded-lg mx-auto"
                   />
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">

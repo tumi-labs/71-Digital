@@ -71,15 +71,14 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
             <ul className="hidden md:flex justify-center flex-1 space-x-16 text-black font-semibold text-lg">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <Button
-                    variant="ghost"
-                    className={`hover:text-white transition-colors p-0 h-auto font-semibold text-lg focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent ${
+                  <span
+                    className={`cursor-pointer hover:text-white transition-colors font-semibold text-lg ${
                       currentSection === item.id ? "text-white" : "text-black"
                     }`}
                     onClick={() => handleNavigation(item)}
                   >
                     {item.label}
-                  </Button>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -100,15 +99,14 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
               <ul className="flex flex-col space-y-3">
                 {navItems.map((item) => (
                   <li key={item.id}>
-                    <Button
-                      variant="ghost"
-                      className={`hover:text-white transition-colors p-2 h-auto font-semibold text-lg w-full text-left justify-start focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent ${
+                    <span
+                      className={`cursor-pointer hover:text-white transition-colors p-2 font-semibold text-lg block ${
                         currentSection === item.id ? "text-white" : "text-black"
                       }`}
                       onClick={() => handleNavigation(item)}
                     >
                       {item.label}
-                    </Button>
+                    </span>
                   </li>
                 ))}
               </ul>

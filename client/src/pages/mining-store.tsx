@@ -81,7 +81,7 @@ export default function MiningStore() {
                     />
                   </div>
                   <div className="p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 234 TH/s</p>
                         <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3500W</p>
@@ -93,17 +93,17 @@ export default function MiningStore() {
                         <p className="text-white text-sm"><strong>Warranty:</strong> 12 months</p>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <Button size="sm">
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Inquire Now
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Spec Sheet
-                      </Button>
-                    </div>
                   </div>
+                </div>
+                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
+                  <Button size="sm">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Inquire Now
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Spec Sheet
+                  </Button>
                 </div>
               </div>
 
@@ -114,7 +114,7 @@ export default function MiningStore() {
                 </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="order-2 lg:order-1 p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 335 TH/s</p>
                         <p className="text-white text-sm"><strong>Power Consumption:</strong> ~5300W</p>
@@ -126,16 +126,6 @@ export default function MiningStore() {
                         <p className="text-white text-sm"><strong>Requirements:</strong> Water loop system</p>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <Button size="sm">
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Inquire Now
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Spec Sheet
-                      </Button>
-                    </div>
                   </div>
                   <div className="order-1 lg:order-2 flex justify-center p-6">
                     <img 
@@ -144,6 +134,16 @@ export default function MiningStore() {
                       className="w-3/4 h-auto object-contain rounded-lg"
                     />
                   </div>
+                </div>
+                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
+                  <Button size="sm">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Inquire Now
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Spec Sheet
+                  </Button>
                 </div>
               </div>
 
@@ -161,7 +161,7 @@ export default function MiningStore() {
                     />
                   </div>
                   <div className="p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <p className="text-white text-sm"><strong>Hashrate:</strong> 17-18 GH/s</p>
                         <p className="text-white text-sm"><strong>Power Consumption:</strong> ~3300W</p>
@@ -173,17 +173,17 @@ export default function MiningStore() {
                         <p className="text-white text-sm"><strong>Deployment:</strong> Altcoin diversification</p>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <Button size="sm">
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Inquire Now
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Spec Sheet
-                      </Button>
-                    </div>
                   </div>
+                </div>
+                <div className="flex flex-wrap gap-3 justify-center p-6 pt-0">
+                  <Button size="sm">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Inquire Now
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Spec Sheet
+                  </Button>
                 </div>
               </div>
             </div>

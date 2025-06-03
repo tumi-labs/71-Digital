@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import StatsSection from "@/components/StatsSection";
+import PricingSection from "@/components/PricingSection";
+import PartnersSection from "@/components/PartnersSection";
+import AdvantageSection from "@/components/AdvantageSection";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -41,6 +44,9 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <StatsSection />
+        <PricingSection />
+        <PartnersSection />
+        <AdvantageSection />
       </main>
     </div>
   );

@@ -11,21 +11,30 @@ export default function GlobalReachSection() {
   const testimonials = [
     {
       quote: "71 Digital helped us secure land, power, and set up 2.5MW in under 60 days — unheard of in this industry.",
-      author: "Asset Manager",
+      author: "Ahmed Al-Rashid",
+      title: "Asset Manager",
       location: "Dubai",
-      company: "Regional Investment Fund"
+      company: "Regional Investment Fund",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      companyLogo: "https://via.placeholder.com/80x40/f97316/ffffff?text=RIF"
     },
     {
       quote: "Their expertise in ASIC deployment and cooling solutions reduced our operational costs by 30% while maintaining 99.7% uptime.",
-      author: "Operations Director",
+      author: "Sarah Mitchell",
+      title: "Operations Director",
       location: "Alberta",
-      company: "Northern Mining Corp"
+      company: "Northern Mining Corp",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      companyLogo: "https://via.placeholder.com/80x40/0066cc/ffffff?text=NMC"
     },
     {
       quote: "From site acquisition to full-scale operations, 71 Digital delivered everything on time and under budget. Exceptional service.",
-      author: "Chief Technology Officer",
+      author: "Marcus Rodriguez",
+      title: "Chief Technology Officer",
       location: "Texas",
-      company: "Bitcoin Mining Solutions"
+      company: "Bitcoin Mining Solutions",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      companyLogo: "https://via.placeholder.com/80x40/28a745/ffffff?text=BMS"
     }
   ];
 
@@ -109,13 +118,28 @@ export default function GlobalReachSection() {
               </div>
               
               <div className="flex justify-between items-center">
-                <div>
-                  <p className="text-orange-500 font-semibold">
-                    — {testimonials[currentTestimonial].author}
-                  </p>
-                  <p className="text-gray-300 text-sm">
-                    {testimonials[currentTestimonial].company}, {testimonials[currentTestimonial].location}
-                  </p>
+                <div className="flex items-center space-x-4">
+                  <img 
+                    src={testimonials[currentTestimonial].avatar}
+                    alt={testimonials[currentTestimonial].author}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-orange-500"
+                  />
+                  <div>
+                    <p className="text-orange-500 font-semibold">
+                      {testimonials[currentTestimonial].author}
+                    </p>
+                    <p className="text-white text-sm">
+                      {testimonials[currentTestimonial].title}
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      {testimonials[currentTestimonial].location}
+                    </p>
+                  </div>
+                  <img 
+                    src={testimonials[currentTestimonial].companyLogo}
+                    alt={testimonials[currentTestimonial].company}
+                    className="w-20 h-10 object-contain bg-white rounded px-2"
+                  />
                 </div>
                 
                 <div className="flex space-x-2">

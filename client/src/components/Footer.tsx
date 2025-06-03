@@ -2,6 +2,10 @@ import { FaInstagram, FaLinkedin, FaPhone } from "react-icons/fa";
 import { Link } from "wouter";
 import logo71Digital from "@assets/71digital logo.png";
 
+const handleLinkClick = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 export default function Footer() {
   return (
     <footer className="py-12 px-4 bg-black/20">
@@ -21,13 +25,13 @@ export default function Footer() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Column 1 */}
               <div className="space-y-4">
-                <Link href="/" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   Home
                 </Link>
-                <Link href="/about" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/about" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   About
                 </Link>
-                <Link href="/services" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/services" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   Services
                 </Link>
                 <a href="#" className="block text-white hover:text-orange-500 transition-colors">
@@ -50,13 +54,13 @@ export default function Footer() {
               
               {/* Column 3 */}
               <div className="space-y-4">
-                <Link href="/terms-of-conditions" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/terms-of-conditions" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   General Terms & Conditions
                 </Link>
-                <Link href="/terms-of-use" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/terms-of-use" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   Terms of use
                 </Link>
-                <Link href="/privacy-policy" className="block text-white hover:text-orange-500 transition-colors">
+                <Link href="/privacy-policy" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   Privacy policy
                 </Link>
               </div>

@@ -5,7 +5,7 @@ export default function PricingSection() {
   const plans = [
     {
       name: "Pro",
-      rate: "$0.055 per kW",
+      rate: "$0.065 per kW",
       cooling: "Air Cooling & Hydro",
       location: "UAE",
       model: "Bitmain & Whatsminer",
@@ -20,7 +20,7 @@ export default function PricingSection() {
     },
     {
       name: "Premium",
-      rate: "$0.053 per kW",
+      rate: "$0.063 per kW",
       cooling: "Air Cooling & Hydro",
       location: "UAE",
       model: "Bitmain & Whatsminer",
@@ -35,7 +35,7 @@ export default function PricingSection() {
     },
     {
       name: "Ethiopia",
-      rate: "$0.037 per kW",
+      rate: "$0.057 per kW",
       cooling: "Air Cooling & Hydro",
       location: "Ethiopia",
       model: "Bitmain & Whatsminer",

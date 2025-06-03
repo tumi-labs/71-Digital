@@ -39,16 +39,14 @@ export default function AdvantageSection() {
             </div>
             
             {/* Services Rows */}
-            {services.map((service, index) => (
-              <>
-                <div key={`what-${index}`} className="border-r border-orange-500 border-t border-orange-500 p-4">
-                  <p className="text-white text-center text-sm md:text-base">{service.what}</p>
-                </div>
-                <div key={`benefit-${index}`} className="border-t border-orange-500 p-4">
-                  <p className="text-white text-center text-sm md:text-base">{service.benefit}</p>
-                </div>
-              </>
-            ))}
+            {services.flatMap((service, index) => [
+              <div key={`what-${index}`} className="border-r border-orange-500 border-t border-orange-500 p-4">
+                <p className="text-white text-center text-sm md:text-base">{service.what}</p>
+              </div>,
+              <div key={`benefit-${index}`} className="border-t border-orange-500 p-4">
+                <p className="text-white text-center text-sm md:text-base">{service.benefit}</p>
+              </div>
+            ])}
           </div>
         </div>
 

@@ -260,28 +260,43 @@ export default function GlobalReachSection() {
               </h4>
               
               <form className="space-y-5">
-                <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input 
                     placeholder="Full Name" 
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
                   />
-                </div>
-                <div>
-                  <Input 
-                    placeholder="Phone Number" 
-                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
-                  />
-                </div>
-                <div>
                   <Input 
                     placeholder="Email Address" 
                     type="email"
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
                   />
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Input 
+                    placeholder="Company Name" 
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                  />
+                  <Input 
+                    placeholder="Phone Number" 
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                  />
+                </div>
+                <div>
+                  <select
+                    className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-700"
+                  >
+                    <option value="">Select a service</option>
+                    <option value="hosting">Hosting Solutions</option>
+                    <option value="site-acquisition">Site Acquisition & Power Deals</option>
+                    <option value="hardware">Hardware Procurement</option>
+                    <option value="operations">Mining Operations & Site Management</option>
+                    <option value="consultation">General Consultation</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
                 <div>
                   <Textarea 
-                    placeholder="What can we do for you?"
+                    placeholder="Tell us about your mining infrastructure needs..."
                     className="w-full h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none"
                   />
                 </div>

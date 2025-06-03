@@ -194,10 +194,14 @@ export default function GlobalReachSection() {
           </p>
           <div className="space-y-4">
             <Button className="mx-2">
-              [Book a Consultation]
+              Book a Consultation
             </Button>
-            <Button variant="outline" className="mx-2">
-              [WhatsApp Business Chat]
+            <Button 
+              variant="outline" 
+              className="mx-2"
+              onClick={() => window.open('https://wa.me/971503578552', '_blank')}
+            >
+              WhatsApp Business Chat
             </Button>
           </div>
         </div>
@@ -245,7 +249,10 @@ export default function GlobalReachSection() {
                 <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
                   <FaLinkedin className="text-white text-lg" />
                 </div>
-                <div className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
+                  onClick={() => window.open('https://wa.me/971503578552', '_blank')}
+                >
                   <FaWhatsapp className="text-white text-lg" />
                 </div>
               </div>

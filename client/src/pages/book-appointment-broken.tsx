@@ -145,13 +145,13 @@ ${data.message}`
                     <label className="block text-white text-sm font-medium mb-2">
                       Email *
                     </label>
-                    <input
-                      type="email"
+                    <Input
                       name="email"
+                      type="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="bg-white/20 border-white/30 text-white"
                     />
                   </div>
                 </div>
@@ -161,24 +161,22 @@ ${data.message}`
                     <label className="block text-white text-sm font-medium mb-2">
                       Phone Number
                     </label>
-                    <input
-                      type="tel"
+                    <Input
                       name="phoneNumber"
                       value={formData.phoneNumber}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="bg-white/20 border-white/30 text-white"
                     />
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
                       Company Name
                     </label>
-                    <input
-                      type="text"
+                    <Input
                       name="companyName"
                       value={formData.companyName}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="bg-white/20 border-white/30 text-white"
                     />
                   </div>
                 </div>
@@ -192,7 +190,7 @@ ${data.message}`
                     value={formData.serviceType}
                     onChange={handleInputChange}
                     required
-                    className="w-full h-12 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                    className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:border-orange-500"
                   >
                     <option value="">Select a service</option>
                     <option value="hosting-consultation">Hosting Solutions Consultation</option>
@@ -209,24 +207,24 @@ ${data.message}`
                     <label className="block text-white text-sm font-medium mb-2">
                       Preferred Date
                     </label>
-                    <input
-                      type="date"
+                    <Input
                       name="preferredDate"
+                      type="date"
                       value={formData.preferredDate}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="bg-white/20 border-white/30 text-white"
                     />
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
                       Preferred Time
                     </label>
-                    <input
-                      type="time"
+                    <Input
                       name="preferredTime"
+                      type="time"
                       value={formData.preferredTime}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="bg-white/20 border-white/30 text-white"
                     />
                   </div>
                 </div>
@@ -235,23 +233,23 @@ ${data.message}`
                   <label className="block text-white text-sm font-medium mb-2">
                     Additional Message
                   </label>
-                  <textarea
+                  <Textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                    className="bg-white/20 border-white/30 text-white"
                     placeholder="Tell us more about your requirements..."
                   />
                 </div>
 
-                <button 
+                <Button 
                   type="submit" 
                   disabled={appointmentMutation.isPending}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-md transition-colors disabled:opacity-50"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3"
                 >
                   {appointmentMutation.isPending ? "Submitting..." : "Book Appointment"}
-                </button>
+                </Button>
               </form>
             </div>
           </div>

@@ -3,10 +3,73 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { useMutation } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 import mapImage from "@assets/map.png";
 
 export default function GlobalReachSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { toast } = useToast();
+  
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    companyName: "",
+    phoneNumber: "",
+    service: "",
+    message: "",
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to submit contact form");
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({
+        fullName: "",
+        email: "",
+        companyName: "",
+        phoneNumber: "",
+        service: "",
+        message: "",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.fullName && formData.email && formData.message) {
+      contactMutation.mutate(formData);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const testimonials = [
     {
@@ -266,30 +329,47 @@ export default function GlobalReachSection() {
                 Send us a message
               </h4>
               
-              <form className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     placeholder="Full Name" 
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    required
                   />
                   <Input 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Email Address" 
                     type="email"
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
+                    required
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input 
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
                     placeholder="Company Name" 
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
                   />
                   <Input 
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
                     placeholder="Phone Number" 
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg"
                   />
                 </div>
                 <div>
                   <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleInputChange}
                     className="w-full h-12 border-2 border-gray-200 focus:border-orange-500 rounded-lg px-3 bg-white text-gray-700"
                   >
                     <option value="">Select a service</option>
@@ -303,13 +383,21 @@ export default function GlobalReachSection() {
                 </div>
                 <div>
                   <Textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder="Tell us about your mining infrastructure needs..."
                     className="w-full h-32 border-2 border-gray-200 focus:border-orange-500 rounded-lg resize-none"
+                    required
                   />
                 </div>
                 
-                <Button className="w-full h-12 font-semibold">
-                  Send Message →
+                <Button 
+                  type="submit" 
+                  className="w-full h-12 font-semibold"
+                  disabled={contactMutation.isPending}
+                >
+                  {contactMutation.isPending ? "Sending..." : "Send Message →"}
                 </Button>
               </form>
             </div>

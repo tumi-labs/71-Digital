@@ -31,6 +31,10 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   phoneNumber: true,
   service: true,
   message: true,
+}).extend({
+  companyName: z.string().optional(),
+  phoneNumber: z.string().optional(),
+  service: z.string().optional(),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

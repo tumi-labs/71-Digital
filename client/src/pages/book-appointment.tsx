@@ -1,8 +1,59 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Calendar, Clock, User, Building2, Phone, Mail, MessageCircle, CheckCircle } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import logo71NoText from "@assets/71digital logo - no text.png";
+
+// Move arrays outside component to prevent re-creation on each render
+const SERVICE_OPTIONS = [
+  {
+    value: "hosting-consultation",
+    label: "Hosting Solutions Consultation",
+    description: "Discuss your mining hosting requirements and available capacity",
+    duration: "45-60 minutes"
+  },
+  {
+    value: "site-acquisition",
+    label: "Site Acquisition & Power Deals",
+    description: "Explore opportunities for new mining site development",
+    duration: "60-90 minutes"
+  },
+  {
+    value: "hardware-procurement",
+    label: "Hardware Procurement",
+    description: "Get pricing and availability for ASIC miners and equipment",
+    duration: "30-45 minutes"
+  },
+  {
+    value: "operations-management",
+    label: "Mining Operations & Site Management",
+    description: "Discuss 24/7 operations, maintenance, and monitoring services",
+    duration: "45-60 minutes"
+  },
+  {
+    value: "technical-consultation",
+    label: "Technical Consultation",
+    description: "Get expert advice on mining infrastructure and optimization",
+    duration: "30-45 minutes"
+  },
+  {
+    value: "partnership-discussion",
+    label: "Partnership & Joint Venture Discussion",
+    description: "Explore strategic partnerships and investment opportunities",
+    duration: "60-90 minutes"
+  }
+] as const;
+
+const TIME_SLOTS = [
+  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+  "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
+  "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM"
+] as const;
 
 interface AppointmentFormData {
   fullName: string;
@@ -12,6 +63,7 @@ interface AppointmentFormData {
   serviceType: string;
   preferredDate: string;
   preferredTime: string;
+  timezone: string;
   message: string;
 }
 
@@ -25,6 +77,7 @@ export default function BookAppointment() {
     serviceType: "",
     preferredDate: "",
     preferredTime: "",
+    timezone: "UTC+4 (UAE Time)",
     message: ""
   });
 
@@ -48,6 +101,7 @@ export default function BookAppointment() {
 Service: ${data.serviceType}
 Preferred Date: ${data.preferredDate}
 Preferred Time: ${data.preferredTime}
+Timezone: ${data.timezone}
 Phone: ${data.phoneNumber}
 
 Additional Message:
@@ -74,6 +128,7 @@ ${data.message}`
         serviceType: "",
         preferredDate: "",
         preferredTime: "",
+        timezone: "UTC+4 (UAE Time)",
         message: ""
       });
       queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
@@ -89,6 +144,10 @@ ${data.message}`
 
   const handleNavigate = (section: string) => {
     setCurrentSection(section);
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -101,7 +160,7 @@ ${data.message}`
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.email || !formData.serviceType) {
+    if (!formData.fullName || !formData.email || !formData.serviceType || !formData.preferredDate) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -112,46 +171,100 @@ ${data.message}`
     appointmentMutation.mutate(formData);
   };
 
+  // Removed scroll listener for better performance
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Header currentSection={currentSection} onNavigate={handleNavigate} />
       <main>
-        <section className="py-12 md:py-16 px-4">
-          <div className="container mx-auto max-w-2xl">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-4">Book an Appointment</h1>
-              <p className="text-white text-lg">
-                Schedule a consultation with our mining experts to discuss your requirements.
+        {/* Hero Section */}
+        <section className="py-12 md:py-16 px-4" id="appointment">
+          <div className="container mx-auto max-w-4xl">
+            <div className="text-center mb-8 md:mb-12">
+              <div className="flex items-center justify-center mb-6">
+                <img 
+                  src={logo71NoText} 
+                  alt="71 Digital Logo" 
+                  className="w-12 h-12 mr-4"
+                />
+                <h1 className="text-3xl md:text-4xl font-bold text-orange-500">Book an Appointment</h1>
+              </div>
+              <p className="text-white text-lg md:text-xl max-w-2xl mx-auto">
+                Schedule a consultation with our mining experts to discuss your specific requirements and explore our solutions.
               </p>
             </div>
 
+            {/* Service Selection */}
+            <div className="mb-8 md:mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">Choose Your Service</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {SERVICE_OPTIONS.map((service) => (
+                  <div
+                    key={service.value}
+                    className={`p-4 md:p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
+                      formData.serviceType === service.value
+                        ? 'border-orange-500 bg-orange-500/10'
+                        : 'border-white/20 bg-white/5 hover:border-orange-500/50'
+                    }`}
+                    onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value }))}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="text-orange-500 mt-1">
+                        <Building2 className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold text-sm md:text-base mb-2">
+                          {service.label}
+                        </h3>
+                        <p className="text-gray-300 text-xs md:text-sm mb-2">
+                          {service.description}
+                        </p>
+                        <div className="flex items-center text-orange-400 text-xs">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {service.duration}
+                        </div>
+                      </div>
+                      {formData.serviceType === service.value && (
+                        <CheckCircle className="w-5 h-5 text-orange-500" />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Appointment Form */}
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8 border border-orange-500/30">
+              <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-6">Appointment Details</h3>
+              
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
                       Full Name *
                     </label>
-                    <input
-                      type="text"
+                    <Input
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
                       required
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
+                      placeholder="Your full name"
                     />
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Email *
+                      Email Address *
                     </label>
-                    <input
+                    <Input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
@@ -161,98 +274,139 @@ ${data.message}`
                     <label className="block text-white text-sm font-medium mb-2">
                       Phone Number
                     </label>
-                    <input
-                      type="tel"
+                    <Input
                       name="phoneNumber"
                       value={formData.phoneNumber}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
+                      placeholder="+971 XX XXX XXXX"
                     />
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
                       Company Name
                     </label>
-                    <input
-                      type="text"
+                    <Input
                       name="companyName"
                       value={formData.companyName}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
+                      placeholder="Your company"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-white text-sm font-medium mb-2">
-                    Service Type *
-                  </label>
-                  <select
-                    name="serviceType"
-                    value={formData.serviceType}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full h-12 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="hosting-consultation">Hosting Solutions Consultation</option>
-                    <option value="site-acquisition">Site Acquisition & Power Deals</option>
-                    <option value="hardware-procurement">Hardware Procurement</option>
-                    <option value="operations-management">Mining Operations & Site Management</option>
-                    <option value="technical-consultation">Technical Consultation</option>
-                    <option value="partnership-discussion">Partnership & Joint Venture Discussion</option>
-                  </select>
-                </div>
-
+                {/* Date and Time Selection */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Preferred Date
+                      Preferred Date *
                     </label>
-                    <input
+                    <Input
                       type="date"
                       name="preferredDate"
                       value={formData.preferredDate}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
+                      required
+                      min={new Date().toISOString().split('T')[0]}
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:border-orange-500"
                     />
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
                       Preferred Time
                     </label>
-                    <input
-                      type="time"
+                    <select
                       name="preferredTime"
                       value={formData.preferredTime}
                       onChange={handleInputChange}
-                      className="w-full h-10 px-3 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
-                    />
+                      className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:border-orange-500"
+                    >
+                      <option value="">Select time</option>
+                      {TIME_SLOTS.map((time) => (
+                        <option key={time} value={time} className="bg-gray-800">
+                          {time}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-white text-sm font-medium mb-2">
-                    Additional Message
+                    Timezone
                   </label>
-                  <textarea
+                  <select
+                    name="timezone"
+                    value={formData.timezone}
+                    onChange={handleInputChange}
+                    className="w-full h-12 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:border-orange-500"
+                  >
+                    <option value="UTC+4 (UAE Time)" className="bg-gray-800">UTC+4 (UAE Time)</option>
+                    <option value="UTC+0 (GMT)" className="bg-gray-800">UTC+0 (GMT)</option>
+                    <option value="UTC+1 (CET)" className="bg-gray-800">UTC+1 (CET)</option>
+                    <option value="UTC+8 (CST)" className="bg-gray-800">UTC+8 (CST)</option>
+                    <option value="UTC-5 (EST)" className="bg-gray-800">UTC-5 (EST)</option>
+                    <option value="UTC-8 (PST)" className="bg-gray-800">UTC-8 (PST)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Additional Information
+                  </label>
+                  <Textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={4}
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white focus:outline-none focus:border-orange-500"
-                    placeholder="Tell us more about your requirements..."
+                    placeholder="Tell us about your specific requirements, current operations, or any questions you'd like to discuss..."
+                    className="w-full h-24 bg-white/20 border border-white/30 rounded-lg resize-none text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
                   />
                 </div>
 
-                <button 
-                  type="submit" 
+                <Button
+                  type="submit"
+                  className="w-full h-12 bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-colors flex items-center justify-center"
                   disabled={appointmentMutation.isPending}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-md transition-colors disabled:opacity-50"
                 >
-                  {appointmentMutation.isPending ? "Submitting..." : "Book Appointment"}
-                </button>
+                  {appointmentMutation.isPending ? (
+                    "Submitting Request..."
+                  ) : (
+                    <>
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Schedule Appointment
+                    </>
+                  )}
+                </Button>
               </form>
+            </div>
+
+            {/* Contact Information */}
+            <div className="mt-8 md:mt-12 text-center">
+              <h3 className="text-xl font-bold text-white mb-4">Need immediate assistance?</h3>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  className="bg-orange-500 hover:bg-orange-600 text-white transition-colors"
+                  onClick={() => window.open('tel:+971503578552', '_self')}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now: +971 50 357 8552
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
+                  onClick={() => window.open('https://wa.me/971503578552', '_blank')}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  WhatsApp Business
+                </Button>
+              </div>
+              <p className="text-gray-300 text-sm mt-4">
+                Or email us directly at{" "}
+                <a href="mailto:info@71digital.io" className="text-orange-500 hover:underline">
+                  info@71digital.io
+                </a>
+              </p>
             </div>
           </div>
         </section>

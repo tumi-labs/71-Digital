@@ -30,7 +30,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
             <SiDogecoin className="text-white text-xs" />
           </div>
           <div className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">M</span>
+            <span className="text-white text-xs font-bold">K</span>
           </div>
         </div>
       </div>

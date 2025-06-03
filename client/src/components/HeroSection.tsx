@@ -43,10 +43,10 @@ export default function HeroSection() {
             {/* CTA Button */}
             <div className="pt-2 md:pt-4">
               <Button
-                className="bg-blue-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors flex items-center text-sm md:text-base mx-auto lg:mx-0"
+                className="bg-orange-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors flex items-center text-sm md:text-base mx-auto lg:mx-0"
                 onClick={handleContactSales}
               >
-                <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full mr-2 md:mr-3"></div>
+                <Phone className="w-3 h-3 md:w-4 md:h-4 mr-2 md:mr-3" />
                 Speak to Sales
               </Button>
             </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import mapImage from "@assets/map.png";
 
 export default function GlobalReachSection() {
   return (
@@ -61,20 +62,12 @@ export default function GlobalReachSection() {
           
           {/* Right Content - World Map */}
           <div className="flex items-center justify-center">
-            <div className="relative w-full max-w-md">
-              {/* Simplified world map using CSS */}
-              <svg viewBox="0 0 400 200" className="w-full h-auto">
-                {/* World map outline - simplified */}
-                <path d="M50 80 Q80 70 120 80 L140 70 Q160 75 180 70 L200 75 Q220 70 250 75 L280 80 Q320 75 350 80 L370 85 Q380 90 370 100 L350 110 Q320 115 280 110 L250 115 Q220 120 200 115 L180 120 Q160 115 140 120 L120 110 Q80 115 50 110 Z" 
-                      fill="#4a4a4a" stroke="#666" strokeWidth="1"/>
-                
-                {/* Location markers */}
-                <circle cx="100" cy="85" r="3" fill="#f97316" /> {/* UAE */}
-                <circle cx="80" cy="70" r="3" fill="#f97316" />  {/* Canada */}
-                <circle cx="90" cy="90" r="3" fill="#f97316" />  {/* USA */}
-                <circle cx="140" cy="100" r="3" fill="#f97316" /> {/* Oman */}
-                <circle cx="130" cy="110" r="3" fill="#f97316" /> {/* Ethiopia */}
-              </svg>
+            <div className="relative w-full max-w-lg">
+              <img 
+                src={mapImage} 
+                alt="Global mining locations map"
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>

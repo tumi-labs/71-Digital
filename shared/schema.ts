@@ -30,7 +30,10 @@ export const appointments = pgTable("appointments", {
   preferredTime: text("preferred_time").notNull(),
   timezone: text("timezone").notNull(),
   message: text("message"),
-  status: text("status").default("pending").notNull(),
+  status: text("status").default("pending").notNull(), // pending, approved, rejected, completed
+  rejectionReason: text("rejection_reason"),
+  approvedAt: timestamp("approved_at"),
+  completedAt: timestamp("completed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

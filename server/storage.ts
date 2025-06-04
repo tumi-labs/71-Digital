@@ -10,6 +10,7 @@ export interface IStorage {
   getContactSubmissions(): Promise<ContactSubmission[]>;
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
   getAppointments(): Promise<Appointment[]>;
+  updateAppointmentStatus(appointmentId: number, status: string, rejectionReason?: string): Promise<Appointment>;
   // Admin functionality
   createAdminUser(adminUser: InsertAdminUser): Promise<AdminUser>;
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
@@ -70,6 +71,23 @@ export class DatabaseStorage implements IStorage {
       .from(appointments)
       .orderBy(desc(appointments.createdAt));
     return appointmentList;
+  }
+
+  async updateAppointmentStatus(appointmentId: number, status: string, rejectionReason?: string): Promise<Appointment> {
+    const updateData: any = {
+      status,
+      ...(status === "approved" && { approvedAt: new Date() }),
+      ...(status === "completed" && { completedAt: new Date() }),
+      ...(status === "rejected" && rejectionReason && { rejectionReason }),
+    };
+
+    const [updatedAppointment] = await db
+      .update(appointments)
+      .set(updateData)
+      .where(eq(appointments.id, appointmentId))
+      .returning();
+
+    return updatedAppointment;
   }
 
   // Admin functionality

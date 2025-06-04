@@ -19,6 +19,21 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const appointments = pgTable("appointments", {
+  id: serial("id").primaryKey(),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  phoneNumber: text("phone_number"),
+  companyName: text("company_name"),
+  serviceType: text("service_type").notNull(),
+  preferredDate: text("preferred_date").notNull(),
+  preferredTime: text("preferred_time").notNull(),
+  timezone: text("timezone").notNull(),
+  message: text("message"),
+  status: text("status").default("pending").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -37,7 +52,25 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   service: z.string().optional(),
 });
 
+export const insertAppointmentSchema = createInsertSchema(appointments).pick({
+  fullName: true,
+  email: true,
+  phoneNumber: true,
+  companyName: true,
+  serviceType: true,
+  preferredDate: true,
+  preferredTime: true,
+  timezone: true,
+  message: true,
+}).extend({
+  phoneNumber: z.string().optional(),
+  companyName: z.string().optional(),
+  message: z.string().optional(),
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+export type InsertAppointment = z.infer<typeof insertAppointmentSchema>;
+export type Appointment = typeof appointments.$inferSelect;

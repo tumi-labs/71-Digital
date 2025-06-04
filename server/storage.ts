@@ -1,6 +1,6 @@
-import { users, contactSubmissions, appointments, type User, type InsertUser, type ContactSubmission, type InsertContactSubmission, type Appointment, type InsertAppointment } from "@shared/schema";
+import { users, contactSubmissions, appointments, adminUsers, adminSessions, type User, type InsertUser, type ContactSubmission, type InsertContactSubmission, type Appointment, type InsertAppointment, type AdminUser, type InsertAdminUser, type AdminSession } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and, gt } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -10,6 +10,12 @@ export interface IStorage {
   getContactSubmissions(): Promise<ContactSubmission[]>;
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
   getAppointments(): Promise<Appointment[]>;
+  // Admin functionality
+  createAdminUser(adminUser: InsertAdminUser): Promise<AdminUser>;
+  getAdminByUsername(username: string): Promise<AdminUser | undefined>;
+  createAdminSession(adminId: number, sessionToken: string, expiresAt: Date): Promise<AdminSession>;
+  getAdminBySessionToken(sessionToken: string): Promise<AdminUser | undefined>;
+  deleteAdminSession(sessionToken: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -61,6 +67,60 @@ export class DatabaseStorage implements IStorage {
       .from(appointments)
       .orderBy(desc(appointments.createdAt));
     return appointmentList;
+  }
+
+  // Admin functionality
+  async createAdminUser(insertAdminUser: InsertAdminUser): Promise<AdminUser> {
+    const [adminUser] = await db
+      .insert(adminUsers)
+      .values(insertAdminUser)
+      .returning();
+    return adminUser;
+  }
+
+  async getAdminByUsername(username: string): Promise<AdminUser | undefined> {
+    const [adminUser] = await db
+      .select()
+      .from(adminUsers)
+      .where(eq(adminUsers.username, username));
+    return adminUser || undefined;
+  }
+
+  async createAdminSession(adminId: number, sessionToken: string, expiresAt: Date): Promise<AdminSession> {
+    const [session] = await db
+      .insert(adminSessions)
+      .values({
+        adminId,
+        sessionToken,
+        expiresAt,
+      })
+      .returning();
+    return session;
+  }
+
+  async getAdminBySessionToken(sessionToken: string): Promise<AdminUser | undefined> {
+    const [result] = await db
+      .select({
+        id: adminUsers.id,
+        username: adminUsers.username,
+        password: adminUsers.password,
+        createdAt: adminUsers.createdAt,
+      })
+      .from(adminSessions)
+      .innerJoin(adminUsers, eq(adminSessions.adminId, adminUsers.id))
+      .where(
+        and(
+          eq(adminSessions.sessionToken, sessionToken),
+          gt(adminSessions.expiresAt, new Date())
+        )
+      );
+    return result || undefined;
+  }
+
+  async deleteAdminSession(sessionToken: string): Promise<void> {
+    await db
+      .delete(adminSessions)
+      .where(eq(adminSessions.sessionToken, sessionToken));
   }
 }
 

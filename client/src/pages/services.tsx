@@ -148,7 +148,10 @@ export default function Services() {
                     </li>
                   </ul>
                   
-                  <button className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm">
+                  <button 
+                    className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm cursor-pointer"
+                    onClick={() => window.open('/mining-farms', '_self')}
+                  >
                     <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                     Request Hosting Quote
                   </button>
@@ -198,10 +201,13 @@ export default function Services() {
                       </li>
                     </ul>
                     
-                    <Button variant="link" className="p-0 h-auto text-sm">
+                    <button 
+                      className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm cursor-pointer"
+                      onClick={() => window.open('/deployment-sites', '_self')}
+                    >
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                       Secure a Site
-                    </Button>
+                    </button>
                   </div>
 
                   {/* Hardware Procurement */}
@@ -234,10 +240,13 @@ export default function Services() {
                       </li>
                     </ul>
                     
-                    <Button variant="link" className="p-0 h-auto text-sm">
+                    <button 
+                      className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm cursor-pointer"
+                      onClick={() => window.open('/mining-store', '_self')}
+                    >
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                       View Inventory
-                    </Button>
+                    </button>
                   </div>
                 </div>
 
@@ -285,14 +294,13 @@ export default function Services() {
                     </li>
                   </ul>
                   
-                  <Button 
-                    variant="link" 
-                    className="p-0 h-auto text-sm"
+                  <button 
+                    className="flex items-center text-orange-500 font-medium hover:text-orange-400 transition-colors text-sm cursor-pointer"
                     onClick={() => window.open('/book-appointment', '_self')}
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                     Talk to a Site Manager
-                  </Button>
+                  </button>
                 </div>
 
                 {/* Cables Image */}

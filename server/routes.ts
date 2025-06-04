@@ -204,6 +204,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/admin/create-admin", requireAdmin, async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ success: false, error: "Username and password are required" });
+      }
+
+      const existingAdmin = await storage.getAdminByUsername(username);
+      if (existingAdmin) {
+        return res.status(400).json({ success: false, error: "Username already exists" });
+      }
+
+      const hashedPassword = await hashPassword(password);
+      const newAdmin = await storage.createAdminUser({
+        username,
+        password: hashedPassword,
+      });
+
+      res.json({ 
+        success: true, 
+        admin: { id: newAdmin.id, username: newAdmin.username }
+      });
+    } catch (error) {
+      console.error("Error creating admin:", error);
+      res.status(500).json({ success: false, error: "Failed to create admin account" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

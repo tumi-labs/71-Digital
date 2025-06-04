@@ -1,19 +1,40 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
-import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare } from "lucide-react";
+import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield } from "lucide-react";
 import { format } from "date-fns";
+import { z } from "zod";
+
+const createAdminSchema = z.object({
+  username: z.string().min(3, "Username must be at least 3 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+type CreateAdminData = z.infer<typeof createAdminSchema>;
 
 export default function AdminDashboard() {
   const [location, setLocation] = useLocation();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [adminUser, setAdminUser] = useState<any>(null);
+
+  const createAdminForm = useForm<CreateAdminData>({
+    resolver: zodResolver(createAdminSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
@@ -57,6 +78,47 @@ export default function AdminDashboard() {
     },
     enabled: !!adminUser,
   });
+
+  const createAdminMutation = useMutation({
+    mutationFn: async (data: CreateAdminData) => {
+      const res = await fetch("/api/admin/create-admin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to create admin");
+      return res.json();
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        toast({
+          title: "Admin created successfully",
+          description: `Admin account "${data.admin.username}" has been created`,
+        });
+        createAdminForm.reset();
+      } else {
+        toast({
+          title: "Failed to create admin",
+          description: data.error || "Unknown error occurred",
+          variant: "destructive",
+        });
+      }
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to create admin",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onCreateAdmin = (data: CreateAdminData) => {
+    createAdminMutation.mutate(data);
+  };
 
   const handleLogout = async () => {
     try {
@@ -139,6 +201,10 @@ export default function AdminDashboard() {
             <TabsTrigger value="appointments" className="data-[state=active]:bg-orange-500/20 text-white">
               <Calendar className="w-4 h-4 mr-2" />
               Appointments
+            </TabsTrigger>
+            <TabsTrigger value="create-admin" className="data-[state=active]:bg-orange-500/20 text-white">
+              <UserPlus className="w-4 h-4 mr-2" />
+              Create Admin
             </TabsTrigger>
           </TabsList>
 
@@ -251,6 +317,78 @@ export default function AdminDashboard() {
                     </Table>
                   </div>
                 )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="create-admin" className="space-y-4">
+            <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30 max-w-md">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center">
+                  <Shield className="w-5 h-5 mr-2 text-orange-500" />
+                  Create Admin Account
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Create a new administrator account with full access to the dashboard
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Form {...createAdminForm}>
+                  <form onSubmit={createAdminForm.handleSubmit(onCreateAdmin)} className="space-y-4">
+                    <FormField
+                      control={createAdminForm.control}
+                      name="username"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">Username</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Enter admin username"
+                              {...field}
+                              className="bg-white/10 border-orange-500/30 text-white placeholder:text-gray-400 focus:border-orange-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={createAdminForm.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">Password</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="password"
+                              placeholder="Enter admin password"
+                              {...field}
+                              className="bg-white/10 border-orange-500/30 text-white placeholder:text-gray-400 focus:border-orange-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button
+                      type="submit"
+                      className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                      disabled={createAdminMutation.isPending}
+                    >
+                      {createAdminMutation.isPending ? (
+                        <div className="flex items-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Creating Admin...</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-2">
+                          <UserPlus className="w-4 h-4" />
+                          <span>Create Admin</span>
+                        </div>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
               </CardContent>
             </Card>
           </TabsContent>

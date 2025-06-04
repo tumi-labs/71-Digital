@@ -1160,6 +1160,34 @@ export default function AdminDashboard() {
                                 </Button>
                               )}
                               
+                              {/* Status Change Options - only show secondary options */}
+                              {appointment.status !== "pending" && (
+                                <div className="flex space-x-1 mt-2">
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleStatusChange(appointment, "pending")}
+                                    disabled={updateAppointmentStatusMutation.isPending}
+                                    className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs flex-1"
+                                    title="Mark as Pending"
+                                  >
+                                    <Clock className="w-3 h-3" />
+                                  </Button>
+                                  
+                                  {appointment.status !== "rejected" && (
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => handleRejectAppointment(appointment)}
+                                      disabled={updateAppointmentStatusMutation.isPending}
+                                      className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                      title="Mark as Rejected"
+                                    >
+                                      <XCircle className="w-3 h-3" />
+                                    </Button>
+                                  )}
+                                </div>
+                              )}
 
                             </div>
                           </div>

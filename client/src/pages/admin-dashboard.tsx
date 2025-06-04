@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings, Check, X, CheckCircle, XCircle } from "lucide-react";
@@ -34,6 +36,12 @@ export default function AdminDashboard() {
   const queryClient = useQueryClient();
   const [adminUser, setAdminUser] = useState<any>(null);
   const [editingAdmin, setEditingAdmin] = useState<any>(null);
+  const [appointmentAction, setAppointmentAction] = useState<{
+    type: 'approve' | 'reject' | 'complete' | 'contact' | null;
+    appointment: any;
+    isOpen: boolean;
+  }>({ type: null, appointment: null, isOpen: false });
+  const [rejectionReason, setRejectionReason] = useState("");
 
   const createAdminForm = useForm<CreateAdminData>({
     resolver: zodResolver(createAdminSchema),
@@ -265,91 +273,100 @@ export default function AdminDashboard() {
   };
 
   const handleApproveAppointment = (appointment: any) => {
-    const approved = window.confirm(
-      `Approve appointment for ${appointment.fullName}?\n\n` +
-      `Service: ${appointment.serviceType}\n` +
-      `Date: ${appointment.preferredDate} at ${appointment.preferredTime}\n\n` +
-      `Click OK to approve and get contact options.`
-    );
-    
-    if (approved) {
-      updateAppointmentStatusMutation.mutate({
-        appointmentId: appointment.id,
-        status: "approved"
-      });
-      
-      // Show contact options after approval
-      setTimeout(() => {
-        const contactChoice = window.confirm(
-          `✅ Appointment approved successfully!\n\n` +
-          `Contact ${appointment.fullName} now?\n\n` +
-          `📧 Click OK to send email\n` +
-          `📱 Click Cancel to send WhatsApp message`
-        );
-        
-        if (contactChoice) {
-          // Email option
-          const emailSubject = `Appointment Approved - ${appointment.serviceType}`;
-          const emailBody = `Dear ${appointment.fullName},\n\nYour appointment request has been approved!\n\nDetails:\n- Service: ${appointment.serviceType}\n- Date: ${appointment.preferredDate}\n- Time: ${appointment.preferredTime}\n\nWe look forward to meeting with you.\n\nBest regards,\n71 Digital Team`;
-          window.open(`mailto:${appointment.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
-        } else if (appointment.phoneNumber) {
-          // WhatsApp option
-          const whatsappMessage = `Hello ${appointment.fullName}! Your appointment for ${appointment.serviceType} on ${appointment.preferredDate} at ${appointment.preferredTime} has been approved. We look forward to meeting with you!`;
-          window.open(`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(whatsappMessage)}`);
-        }
-      }, 1000);
-    }
+    setAppointmentAction({
+      type: 'approve',
+      appointment,
+      isOpen: true
+    });
   };
 
   const handleRejectAppointment = (appointment: any) => {
-    const rejectionReason = window.prompt(
-      `Reject appointment for ${appointment.fullName}?\n\n` +
-      `Please provide a reason for rejection:`
-    );
-    
-    if (rejectionReason) {
-      updateAppointmentStatusMutation.mutate({
-        appointmentId: appointment.id,
-        status: "rejected",
-        rejectionReason
-      });
-      
-      // Show contact options after rejection
-      setTimeout(() => {
-        const contactChoice = window.confirm(
-          `❌ Appointment rejected.\n\n` +
-          `Contact ${appointment.fullName} to explain?\n\n` +
-          `📧 Click OK to send email\n` +
-          `📱 Click Cancel to send WhatsApp message`
-        );
-        
-        if (contactChoice) {
-          // Email option
-          const emailSubject = `Regarding Your Appointment Request`;
-          const emailBody = `Dear ${appointment.fullName},\n\nThank you for your interest in our ${appointment.serviceType} service.\n\nUnfortunately, we cannot accommodate your request for ${appointment.preferredDate} at ${appointment.preferredTime}.\n\nReason: ${rejectionReason}\n\nPlease feel free to contact us to discuss alternative options.\n\nBest regards,\n71 Digital Team`;
-          window.open(`mailto:${appointment.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
-        } else if (appointment.phoneNumber) {
-          // WhatsApp option
-          const whatsappMessage = `Hello ${appointment.fullName}, regarding your appointment request for ${appointment.serviceType}: ${rejectionReason}. Please contact us to discuss alternatives.`;
-          window.open(`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(whatsappMessage)}`);
-        }
-      }, 1000);
-    }
+    setAppointmentAction({
+      type: 'reject',
+      appointment,
+      isOpen: true
+    });
+    setRejectionReason("");
   };
 
   const handleMarkCompleted = (appointment: any) => {
-    const confirmed = window.confirm(
-      `Mark appointment with ${appointment.fullName} as completed?\n\n` +
-      `Service: ${appointment.serviceType}\n` +
-      `Date: ${appointment.preferredDate}`
-    );
+    setAppointmentAction({
+      type: 'complete',
+      appointment,
+      isOpen: true
+    });
+  };
+
+  const confirmApproval = () => {
+    updateAppointmentStatusMutation.mutate({
+      appointmentId: appointmentAction.appointment.id,
+      status: "approved"
+    });
     
-    if (confirmed) {
-      updateAppointmentStatusMutation.mutate({
-        appointmentId: appointment.id,
-        status: "completed"
+    setAppointmentAction({
+      type: 'contact',
+      appointment: appointmentAction.appointment,
+      isOpen: true
+    });
+  };
+
+  const confirmRejection = () => {
+    if (!rejectionReason.trim()) {
+      toast({
+        title: "Rejection reason required",
+        description: "Please provide a reason for rejecting this appointment",
+        variant: "destructive",
       });
+      return;
     }
+
+    updateAppointmentStatusMutation.mutate({
+      appointmentId: appointmentAction.appointment.id,
+      status: "rejected",
+      rejectionReason
+    });
+    
+    setAppointmentAction({
+      type: 'contact',
+      appointment: appointmentAction.appointment,
+      isOpen: true
+    });
+  };
+
+  const confirmCompletion = () => {
+    updateAppointmentStatusMutation.mutate({
+      appointmentId: appointmentAction.appointment.id,
+      status: "completed"
+    });
+    
+    closeModal();
+  };
+
+  const closeModal = () => {
+    setAppointmentAction({ type: null, appointment: null, isOpen: false });
+    setRejectionReason("");
+  };
+
+  const sendEmail = (appointment: any, isApproval: boolean) => {
+    const subject = isApproval 
+      ? `Appointment Approved - ${appointment.serviceType}`
+      : `Regarding Your Appointment Request`;
+    
+    const body = isApproval
+      ? `Dear ${appointment.fullName},\n\nYour appointment request has been approved!\n\nDetails:\n- Service: ${appointment.serviceType}\n- Date: ${appointment.preferredDate}\n- Time: ${appointment.preferredTime}\n\nWe look forward to meeting with you.\n\nBest regards,\n71 Digital Team`
+      : `Dear ${appointment.fullName},\n\nThank you for your interest in our ${appointment.serviceType} service.\n\nUnfortunately, we cannot accommodate your request for ${appointment.preferredDate} at ${appointment.preferredTime}.\n\nReason: ${rejectionReason}\n\nPlease feel free to contact us to discuss alternative options.\n\nBest regards,\n71 Digital Team`;
+    
+    window.open(`mailto:${appointment.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    closeModal();
+  };
+
+  const sendWhatsApp = (appointment: any, isApproval: boolean) => {
+    const message = isApproval
+      ? `Hello ${appointment.fullName}! Your appointment for ${appointment.serviceType} on ${appointment.preferredDate} at ${appointment.preferredTime} has been approved. We look forward to meeting with you!`
+      : `Hello ${appointment.fullName}, regarding your appointment request for ${appointment.serviceType}: ${rejectionReason}. Please contact us to discuss alternatives.`;
+    
+    window.open(`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`);
+    closeModal();
   };
 
   const getStatusBadgeProps = (status: string) => {
@@ -1128,6 +1145,185 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Appointment Action Modals */}
+        {appointmentAction.appointment && (
+          <>
+            {/* Approval Confirmation Modal */}
+            <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'approve'} onOpenChange={closeModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-orange-500 flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Approve Appointment
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Confirm approval for this appointment request
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <h4 className="font-medium text-white">{appointmentAction.appointment.fullName}</h4>
+                    <p className="text-sm text-gray-300">Service: {appointmentAction.appointment.serviceType}</p>
+                    <p className="text-sm text-gray-300">Date: {appointmentAction.appointment.preferredDate}</p>
+                    <p className="text-sm text-gray-300">Time: {appointmentAction.appointment.preferredTime}</p>
+                  </div>
+                </div>
+
+                <DialogFooter className="flex space-x-2">
+                  <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={confirmApproval}
+                    disabled={updateAppointmentStatusMutation.isPending}
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Check className="w-4 h-4 mr-2" />
+                    Approve & Contact
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Rejection Modal */}
+            <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'reject'} onOpenChange={closeModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-red-500 flex items-center">
+                    <XCircle className="w-5 h-5 mr-2" />
+                    Reject Appointment
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Please provide a reason for rejecting this appointment
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <h4 className="font-medium text-white">{appointmentAction.appointment.fullName}</h4>
+                    <p className="text-sm text-gray-300">Service: {appointmentAction.appointment.serviceType}</p>
+                    <p className="text-sm text-gray-300">Date: {appointmentAction.appointment.preferredDate}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Rejection Reason *
+                    </label>
+                    <Textarea
+                      value={rejectionReason}
+                      onChange={(e) => setRejectionReason(e.target.value)}
+                      placeholder="Please explain why this appointment cannot be accommodated..."
+                      className="bg-white/10 border-orange-500/30 text-white placeholder-gray-400"
+                      rows={3}
+                    />
+                  </div>
+                </div>
+
+                <DialogFooter className="flex space-x-2">
+                  <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={confirmRejection}
+                    disabled={updateAppointmentStatusMutation.isPending}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    <X className="w-4 h-4 mr-2" />
+                    Reject & Contact
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Completion Confirmation Modal */}
+            <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'complete'} onOpenChange={closeModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-blue-500 flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Mark as Completed
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Mark this appointment as completed
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <h4 className="font-medium text-white">{appointmentAction.appointment.fullName}</h4>
+                    <p className="text-sm text-gray-300">Service: {appointmentAction.appointment.serviceType}</p>
+                    <p className="text-sm text-gray-300">Date: {appointmentAction.appointment.preferredDate}</p>
+                  </div>
+                </div>
+
+                <DialogFooter className="flex space-x-2">
+                  <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={confirmCompletion}
+                    disabled={updateAppointmentStatusMutation.isPending}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Mark Completed
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Contact Options Modal */}
+            <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'contact'} onOpenChange={closeModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-orange-500 flex items-center">
+                    <MessageSquare className="w-5 h-5 mr-2" />
+                    Contact Client
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Choose how to contact {appointmentAction.appointment.fullName}
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4">
+                    <p className="text-sm text-gray-300 mb-3">
+                      The appointment status has been updated. You can now contact the client to inform them.
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <Button
+                        onClick={() => sendEmail(appointmentAction.appointment, appointmentAction.appointment.status === 'approved')}
+                        className="w-full bg-orange-600 hover:bg-orange-700 text-white justify-start"
+                      >
+                        <Mail className="w-4 h-4 mr-2" />
+                        Send Email to {appointmentAction.appointment.email}
+                      </Button>
+                      
+                      {appointmentAction.appointment.phoneNumber && (
+                        <Button
+                          onClick={() => sendWhatsApp(appointmentAction.appointment, appointmentAction.appointment.status === 'approved')}
+                          className="w-full bg-green-600 hover:bg-green-700 text-white justify-start"
+                        >
+                          <Phone className="w-4 h-4 mr-2" />
+                          Send WhatsApp to {appointmentAction.appointment.phoneNumber}
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <DialogFooter>
+                  <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
+                    Skip Contact
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </>
+        )}
       </div>
     </div>
   );

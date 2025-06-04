@@ -267,15 +267,16 @@ export default function AdminDashboard() {
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 space-y-4 sm:space-y-0">
           <div>
-            <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
-            <p className="text-gray-300">Welcome back, {adminUser.username}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Admin Dashboard</h1>
+            <p className="text-gray-300 text-sm sm:text-base">Welcome back, {adminUser.username}</p>
           </div>
           <Button
             onClick={handleLogout}
             variant="outline"
-            className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+            size="sm"
+            className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 w-fit"
           >
             <LogOut className="w-4 h-4 mr-2" />
             Logout
@@ -308,22 +309,26 @@ export default function AdminDashboard() {
 
         {/* Data Tables */}
         <Tabs defaultValue="contacts" className="space-y-4">
-          <TabsList className="bg-white/10 border-orange-500/30">
-            <TabsTrigger value="contacts" className="data-[state=active]:bg-orange-500/20 text-white">
-              <Mail className="w-4 h-4 mr-2" />
-              Contact Submissions
+          <TabsList className="bg-white/10 border-orange-500/30 grid w-full grid-cols-2 lg:grid-cols-4 h-auto">
+            <TabsTrigger value="contacts" className="data-[state=active]:bg-orange-500/20 text-white text-xs sm:text-sm px-2 py-2">
+              <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Contact Submissions</span>
+              <span className="sm:hidden">Contacts</span>
             </TabsTrigger>
-            <TabsTrigger value="appointments" className="data-[state=active]:bg-orange-500/20 text-white">
-              <Calendar className="w-4 h-4 mr-2" />
-              Appointments
+            <TabsTrigger value="appointments" className="data-[state=active]:bg-orange-500/20 text-white text-xs sm:text-sm px-2 py-2">
+              <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Appointments</span>
+              <span className="sm:hidden">Appts</span>
             </TabsTrigger>
-            <TabsTrigger value="create-admin" className="data-[state=active]:bg-orange-500/20 text-white">
-              <UserPlus className="w-4 h-4 mr-2" />
-              Create Admin
+            <TabsTrigger value="create-admin" className="data-[state=active]:bg-orange-500/20 text-white text-xs sm:text-sm px-2 py-2">
+              <UserPlus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Create Admin</span>
+              <span className="sm:hidden">Create</span>
             </TabsTrigger>
-            <TabsTrigger value="manage-admins" className="data-[state=active]:bg-orange-500/20 text-white">
-              <Settings className="w-4 h-4 mr-2" />
-              Manage Admins
+            <TabsTrigger value="manage-admins" className="data-[state=active]:bg-orange-500/20 text-white text-xs sm:text-sm px-2 py-2">
+              <Settings className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Manage Admins</span>
+              <span className="sm:hidden">Manage</span>
             </TabsTrigger>
           </TabsList>
 
@@ -341,37 +346,32 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="border-orange-500/30">
-                          <TableHead className="text-gray-300">Date</TableHead>
-                          <TableHead className="text-gray-300">Name</TableHead>
-                          <TableHead className="text-gray-300">Email</TableHead>
-                          <TableHead className="text-gray-300">Company</TableHead>
-                          <TableHead className="text-gray-300">Phone</TableHead>
-                          <TableHead className="text-gray-300">Service</TableHead>
-                          <TableHead className="text-gray-300">Message</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {contacts?.map((contact: any) => (
-                          <TableRow key={contact.id} className="border-orange-500/20">
-                            <TableCell className="text-white">
-                              {format(new Date(contact.createdAt), "MMM d, yyyy")}
-                            </TableCell>
-                            <TableCell className="text-white font-medium">{contact.fullName}</TableCell>
-                            <TableCell className="text-white">
+                  <>
+                    {/* Mobile Card Layout */}
+                    <div className="block lg:hidden space-y-4">
+                      {contacts?.map((contact: any) => (
+                        <div key={contact.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
+                          <div className="flex justify-between items-start mb-3">
+                            <h3 className="text-white font-medium text-sm">{contact.fullName}</h3>
+                            <span className="text-gray-400 text-xs">
+                              {format(new Date(contact.createdAt), "MMM d")}
+                            </span>
+                          </div>
+                          
+                          <div className="space-y-2 text-xs">
+                            <div className="flex items-center">
+                              <Mail className="w-3 h-3 text-orange-500 mr-2 flex-shrink-0" />
                               <a 
                                 href={`mailto:${contact.email}`}
-                                className="text-orange-400 hover:text-orange-300 underline"
+                                className="text-orange-400 hover:text-orange-300 underline truncate"
                               >
                                 {contact.email}
                               </a>
-                            </TableCell>
-                            <TableCell className="text-white">{contact.companyName || "-"}</TableCell>
-                            <TableCell className="text-white">
-                              {contact.phoneNumber ? (
+                            </div>
+                            
+                            {contact.phoneNumber && (
+                              <div className="flex items-center">
+                                <Phone className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                                 <a 
                                   href={`https://wa.me/${contact.phoneNumber.replace(/[^0-9]/g, '')}`}
                                   target="_blank"
@@ -380,17 +380,88 @@ export default function AdminDashboard() {
                                 >
                                   {contact.phoneNumber}
                                 </a>
-                              ) : "-"}
-                            </TableCell>
-                            <TableCell className="text-white">{contact.service || "-"}</TableCell>
-                            <TableCell className="text-white max-w-xs truncate" title={contact.message}>
-                              {contact.message}
-                            </TableCell>
+                              </div>
+                            )}
+                            
+                            {contact.companyName && (
+                              <div className="flex items-center">
+                                <Building className="w-3 h-3 text-gray-400 mr-2 flex-shrink-0" />
+                                <span className="text-gray-300">{contact.companyName}</span>
+                              </div>
+                            )}
+                            
+                            {contact.service && (
+                              <div className="flex items-center">
+                                <Settings className="w-3 h-3 text-gray-400 mr-2 flex-shrink-0" />
+                                <span className="text-gray-300">{contact.service}</span>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {contact.message && (
+                            <div className="mt-3 pt-3 border-t border-orange-500/20">
+                              <div className="flex items-start">
+                                <MessageSquare className="w-3 h-3 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
+                                <p className="text-gray-300 text-xs leading-relaxed">{contact.message}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Desktop Table Layout */}
+                    <div className="hidden lg:block overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="border-orange-500/30">
+                            <TableHead className="text-gray-300">Date</TableHead>
+                            <TableHead className="text-gray-300">Name</TableHead>
+                            <TableHead className="text-gray-300">Email</TableHead>
+                            <TableHead className="text-gray-300">Company</TableHead>
+                            <TableHead className="text-gray-300">Phone</TableHead>
+                            <TableHead className="text-gray-300">Service</TableHead>
+                            <TableHead className="text-gray-300">Message</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
+                        </TableHeader>
+                        <TableBody>
+                          {contacts?.map((contact: any) => (
+                            <TableRow key={contact.id} className="border-orange-500/20">
+                              <TableCell className="text-white">
+                                {format(new Date(contact.createdAt), "MMM d, yyyy")}
+                              </TableCell>
+                              <TableCell className="text-white font-medium">{contact.fullName}</TableCell>
+                              <TableCell className="text-white">
+                                <a 
+                                  href={`mailto:${contact.email}`}
+                                  className="text-orange-400 hover:text-orange-300 underline"
+                                >
+                                  {contact.email}
+                                </a>
+                              </TableCell>
+                              <TableCell className="text-white">{contact.companyName || "-"}</TableCell>
+                              <TableCell className="text-white">
+                                {contact.phoneNumber ? (
+                                  <a 
+                                    href={`https://wa.me/${contact.phoneNumber.replace(/[^0-9]/g, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-green-400 hover:text-green-300 underline"
+                                  >
+                                    {contact.phoneNumber}
+                                  </a>
+                                ) : "-"}
+                              </TableCell>
+                              <TableCell className="text-white">{contact.service || "-"}</TableCell>
+                              <TableCell className="text-white max-w-xs truncate" title={contact.message}>
+                                {contact.message}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </>
                 )}
               </CardContent>
             </Card>
@@ -410,38 +481,47 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="border-orange-500/30">
-                          <TableHead className="text-gray-300">Date Booked</TableHead>
-                          <TableHead className="text-gray-300">Name</TableHead>
-                          <TableHead className="text-gray-300">Email</TableHead>
-                          <TableHead className="text-gray-300">Phone</TableHead>
-                          <TableHead className="text-gray-300">Company</TableHead>
-                          <TableHead className="text-gray-300">Service Type</TableHead>
-                          <TableHead className="text-gray-300">Preferred Date</TableHead>
-                          <TableHead className="text-gray-300">Time</TableHead>
-                          <TableHead className="text-gray-300">Status</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {appointments?.map((appointment: any) => (
-                          <TableRow key={appointment.id} className="border-orange-500/20">
-                            <TableCell className="text-white">
-                              {format(new Date(appointment.createdAt), "MMM d, yyyy")}
-                            </TableCell>
-                            <TableCell className="text-white font-medium">{appointment.fullName}</TableCell>
-                            <TableCell className="text-white">
+                  <>
+                    {/* Mobile Card Layout */}
+                    <div className="block lg:hidden space-y-4">
+                      {appointments?.map((appointment: any) => (
+                        <div key={appointment.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h3 className="text-white font-medium text-sm">{appointment.fullName}</h3>
+                              <p className="text-gray-400 text-xs mt-1">{appointment.serviceType}</p>
+                            </div>
+                            <div className="text-right">
+                              <Badge 
+                                variant={appointment.status === "confirmed" ? "default" : "secondary"}
+                                className={
+                                  appointment.status === "confirmed" 
+                                    ? "bg-green-500/20 text-green-400 border-green-500/30 text-xs" 
+                                    : "bg-orange-500/20 text-orange-400 border-orange-500/30 text-xs"
+                                }
+                              >
+                                {appointment.status}
+                              </Badge>
+                              <p className="text-gray-400 text-xs mt-1">
+                                {format(new Date(appointment.createdAt), "MMM d")}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-2 text-xs">
+                            <div className="flex items-center">
+                              <Mail className="w-3 h-3 text-orange-500 mr-2 flex-shrink-0" />
                               <a 
                                 href={`mailto:${appointment.email}`}
-                                className="text-orange-400 hover:text-orange-300 underline"
+                                className="text-orange-400 hover:text-orange-300 underline truncate"
                               >
                                 {appointment.email}
                               </a>
-                            </TableCell>
-                            <TableCell className="text-white">
-                              {appointment.phoneNumber ? (
+                            </div>
+                            
+                            {appointment.phoneNumber && (
+                              <div className="flex items-center">
+                                <Phone className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                                 <a 
                                   href={`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}`}
                                   target="_blank"
@@ -450,42 +530,119 @@ export default function AdminDashboard() {
                                 >
                                   {appointment.phoneNumber}
                                 </a>
-                              ) : "-"}
-                            </TableCell>
-                            <TableCell className="text-white">{appointment.companyName || "-"}</TableCell>
-                            <TableCell className="text-white">{appointment.serviceType}</TableCell>
-                            <TableCell className="text-white">{appointment.preferredDate}</TableCell>
-                            <TableCell className="text-white">{appointment.preferredTime}</TableCell>
-                            <TableCell>
-                              <Badge 
-                                variant={appointment.status === "confirmed" ? "default" : "secondary"}
-                                className={
-                                  appointment.status === "confirmed" 
-                                    ? "bg-green-500/20 text-green-400 border-green-500/30" 
-                                    : "bg-orange-500/20 text-orange-400 border-orange-500/30"
-                                }
-                              >
-                                {appointment.status}
-                              </Badge>
-                            </TableCell>
+                              </div>
+                            )}
+                            
+                            {appointment.companyName && (
+                              <div className="flex items-center">
+                                <Building className="w-3 h-3 text-gray-400 mr-2 flex-shrink-0" />
+                                <span className="text-gray-300">{appointment.companyName}</span>
+                              </div>
+                            )}
+                            
+                            <div className="flex items-center">
+                              <Calendar className="w-3 h-3 text-blue-400 mr-2 flex-shrink-0" />
+                              <span className="text-gray-300">{appointment.preferredDate} at {appointment.preferredTime}</span>
+                            </div>
+                            
+                            {appointment.timezone && (
+                              <div className="flex items-center">
+                                <Clock className="w-3 h-3 text-gray-400 mr-2 flex-shrink-0" />
+                                <span className="text-gray-300">{appointment.timezone}</span>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {appointment.message && (
+                            <div className="mt-3 pt-3 border-t border-orange-500/20">
+                              <div className="flex items-start">
+                                <MessageSquare className="w-3 h-3 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
+                                <p className="text-gray-300 text-xs leading-relaxed">{appointment.message}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Desktop Table Layout */}
+                    <div className="hidden lg:block overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="border-orange-500/30">
+                            <TableHead className="text-gray-300">Date Booked</TableHead>
+                            <TableHead className="text-gray-300">Name</TableHead>
+                            <TableHead className="text-gray-300">Email</TableHead>
+                            <TableHead className="text-gray-300">Phone</TableHead>
+                            <TableHead className="text-gray-300">Company</TableHead>
+                            <TableHead className="text-gray-300">Service Type</TableHead>
+                            <TableHead className="text-gray-300">Preferred Date</TableHead>
+                            <TableHead className="text-gray-300">Time</TableHead>
+                            <TableHead className="text-gray-300">Status</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
+                        </TableHeader>
+                        <TableBody>
+                          {appointments?.map((appointment: any) => (
+                            <TableRow key={appointment.id} className="border-orange-500/20">
+                              <TableCell className="text-white">
+                                {format(new Date(appointment.createdAt), "MMM d, yyyy")}
+                              </TableCell>
+                              <TableCell className="text-white font-medium">{appointment.fullName}</TableCell>
+                              <TableCell className="text-white">
+                                <a 
+                                  href={`mailto:${appointment.email}`}
+                                  className="text-orange-400 hover:text-orange-300 underline"
+                                >
+                                  {appointment.email}
+                                </a>
+                              </TableCell>
+                              <TableCell className="text-white">
+                                {appointment.phoneNumber ? (
+                                  <a 
+                                    href={`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-green-400 hover:text-green-300 underline"
+                                  >
+                                    {appointment.phoneNumber}
+                                  </a>
+                                ) : "-"}
+                              </TableCell>
+                              <TableCell className="text-white">{appointment.companyName || "-"}</TableCell>
+                              <TableCell className="text-white">{appointment.serviceType}</TableCell>
+                              <TableCell className="text-white">{appointment.preferredDate}</TableCell>
+                              <TableCell className="text-white">{appointment.preferredTime}</TableCell>
+                              <TableCell>
+                                <Badge 
+                                  variant={appointment.status === "confirmed" ? "default" : "secondary"}
+                                  className={
+                                    appointment.status === "confirmed" 
+                                      ? "bg-green-500/20 text-green-400 border-green-500/30" 
+                                      : "bg-orange-500/20 text-orange-400 border-orange-500/30"
+                                  }
+                                >
+                                  {appointment.status}
+                                </Badge>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </>
                 )}
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="create-admin" className="space-y-4">
-            <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30 max-w-md">
+            <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30 max-w-md mx-auto">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Shield className="w-5 h-5 mr-2 text-orange-500" />
+                <CardTitle className="text-white flex items-center text-lg">
+                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-500" />
                   Create Admin Account
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-gray-300 text-sm">
                   Create a new administrator account with full access to the dashboard
                 </CardDescription>
               </CardHeader>
@@ -647,63 +804,116 @@ export default function AdminDashboard() {
                     )}
 
                     {/* Admin List */}
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="border-orange-500/30">
-                            <TableHead className="text-gray-300">Username</TableHead>
-                            <TableHead className="text-gray-300">Created</TableHead>
-                            <TableHead className="text-gray-300">Status</TableHead>
-                            <TableHead className="text-gray-300">Actions</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {admins?.map((admin: any) => (
-                            <TableRow key={admin.id} className="border-orange-500/20">
-                              <TableCell className="text-white font-medium">{admin.username}</TableCell>
-                              <TableCell className="text-white">
-                                {format(new Date(admin.createdAt), "MMM d, yyyy")}
-                              </TableCell>
-                              <TableCell>
-                                <Badge 
-                                  className={
-                                    admin.id === adminUser?.id
-                                      ? "bg-green-500/20 text-green-400 border-green-500/30"
-                                      : "bg-blue-500/20 text-blue-400 border-blue-500/30"
-                                  }
+                    <>
+                      {/* Mobile Card Layout */}
+                      <div className="block lg:hidden space-y-4">
+                        {admins?.map((admin: any) => (
+                          <div key={admin.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
+                            <div className="flex justify-between items-start mb-3">
+                              <div>
+                                <h3 className="text-white font-medium text-sm">{admin.username}</h3>
+                                <p className="text-gray-400 text-xs mt-1">
+                                  Created {format(new Date(admin.createdAt), "MMM d, yyyy")}
+                                </p>
+                              </div>
+                              <Badge 
+                                className={
+                                  admin.id === adminUser?.id
+                                    ? "bg-green-500/20 text-green-400 border-green-500/30 text-xs"
+                                    : "bg-blue-500/20 text-blue-400 border-blue-500/30 text-xs"
+                                }
+                              >
+                                {admin.id === adminUser?.id ? "You" : "Active"}
+                              </Badge>
+                            </div>
+                            
+                            <div className="flex space-x-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => startEdit(admin)}
+                                disabled={editingAdmin?.id === admin.id}
+                                className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 flex-1 text-xs"
+                              >
+                                <Edit className="w-3 h-3 mr-1" />
+                                Edit
+                              </Button>
+                              {admin.id !== adminUser?.id && (
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => confirmDelete(admin.id)}
+                                  disabled={deleteAdminMutation.isPending}
+                                  className="border-red-500/30 text-red-500 hover:bg-red-500/10 flex-1 text-xs"
                                 >
-                                  {admin.id === adminUser?.id ? "Current User" : "Active"}
-                                </Badge>
-                              </TableCell>
-                              <TableCell>
-                                <div className="flex space-x-2">
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={() => startEdit(admin)}
-                                    disabled={editingAdmin?.id === admin.id}
-                                    className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+                                  <Trash2 className="w-3 h-3 mr-1" />
+                                  Delete
+                                </Button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Desktop Table Layout */}
+                      <div className="hidden lg:block overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow className="border-orange-500/30">
+                              <TableHead className="text-gray-300">Username</TableHead>
+                              <TableHead className="text-gray-300">Created</TableHead>
+                              <TableHead className="text-gray-300">Status</TableHead>
+                              <TableHead className="text-gray-300">Actions</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {admins?.map((admin: any) => (
+                              <TableRow key={admin.id} className="border-orange-500/20">
+                                <TableCell className="text-white font-medium">{admin.username}</TableCell>
+                                <TableCell className="text-white">
+                                  {format(new Date(admin.createdAt), "MMM d, yyyy")}
+                                </TableCell>
+                                <TableCell>
+                                  <Badge 
+                                    className={
+                                      admin.id === adminUser?.id
+                                        ? "bg-green-500/20 text-green-400 border-green-500/30"
+                                        : "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                                    }
                                   >
-                                    <Edit className="w-4 h-4" />
-                                  </Button>
-                                  {admin.id !== adminUser?.id && (
+                                    {admin.id === adminUser?.id ? "Current User" : "Active"}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <div className="flex space-x-2">
                                     <Button
                                       size="sm"
                                       variant="outline"
-                                      onClick={() => confirmDelete(admin.id)}
-                                      disabled={deleteAdminMutation.isPending}
-                                      className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                                      onClick={() => startEdit(admin)}
+                                      disabled={editingAdmin?.id === admin.id}
+                                      className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
                                     >
-                                      <Trash2 className="w-4 h-4" />
+                                      <Edit className="w-4 h-4" />
                                     </Button>
-                                  )}
-                                </div>
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
+                                    {admin.id !== adminUser?.id && (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => confirmDelete(admin.id)}
+                                        disabled={deleteAdminMutation.isPending}
+                                        className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                                      >
+                                        <Trash2 className="w-4 h-4" />
+                                      </Button>
+                                    )}
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </>
                   </div>
                 )}
               </CardContent>

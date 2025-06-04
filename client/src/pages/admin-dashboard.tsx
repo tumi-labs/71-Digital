@@ -1126,21 +1126,23 @@ export default function AdminDashboard() {
                                 <div className="flex space-x-2">
                                   <Button
                                     size="sm"
+                                    variant="outline"
                                     onClick={() => handleApproveAppointment(appointment)}
                                     disabled={updateAppointmentStatusMutation.isPending}
-                                    className="bg-green-600 hover:bg-green-700 text-white text-xs flex-1"
+                                    className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                    title="Approve Appointment"
                                   >
-                                    <Check className="w-3 h-3 mr-1" />
-                                    Approve
+                                    <Check className="w-3 h-3" />
                                   </Button>
                                   <Button
                                     size="sm"
+                                    variant="outline"
                                     onClick={() => handleRejectAppointment(appointment)}
                                     disabled={updateAppointmentStatusMutation.isPending}
-                                    className="bg-red-600 hover:bg-red-700 text-white text-xs flex-1"
+                                    className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                    title="Reject Appointment"
                                   >
-                                    <X className="w-3 h-3 mr-1" />
-                                    Reject
+                                    <X className="w-3 h-3" />
                                   </Button>
                                 </div>
                               )}
@@ -1148,12 +1150,13 @@ export default function AdminDashboard() {
                               {appointment.status === "approved" && (
                                 <Button
                                   size="sm"
+                                  variant="outline"
                                   onClick={() => handleMarkCompleted(appointment)}
                                   disabled={updateAppointmentStatusMutation.isPending}
-                                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs w-full"
+                                  className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs w-full"
+                                  title="Mark as Completed"
                                 >
-                                  <CheckCircle className="w-3 h-3 mr-1" />
-                                  Mark Completed
+                                  <CheckCircle className="w-3 h-3" />
                                 </Button>
                               )}
                               
@@ -1166,9 +1169,9 @@ export default function AdminDashboard() {
                                     onClick={() => handleStatusChange(appointment, "pending")}
                                     disabled={updateAppointmentStatusMutation.isPending}
                                     className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs flex-1"
+                                    title="Mark as Pending"
                                   >
-                                    <Clock className="w-3 h-3 mr-1" />
-                                    Pending
+                                    <Clock className="w-3 h-3" />
                                   </Button>
                                 )}
                                 
@@ -1179,9 +1182,9 @@ export default function AdminDashboard() {
                                     onClick={() => handleStatusChange(appointment, "approved")}
                                     disabled={updateAppointmentStatusMutation.isPending}
                                     className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                    title="Mark as Approved"
                                   >
-                                    <CheckCircle className="w-3 h-3 mr-1" />
-                                    Approve
+                                    <CheckCircle className="w-3 h-3" />
                                   </Button>
                                 )}
                                 
@@ -1192,9 +1195,9 @@ export default function AdminDashboard() {
                                     onClick={() => handleRejectAppointment(appointment)}
                                     disabled={updateAppointmentStatusMutation.isPending}
                                     className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                    title="Mark as Rejected"
                                   >
-                                    <XCircle className="w-3 h-3 mr-1" />
-                                    Reject
+                                    <XCircle className="w-3 h-3" />
                                   </Button>
                                 )}
                                 
@@ -1206,9 +1209,9 @@ export default function AdminDashboard() {
                                     onClick={() => handleMarkCompleted(appointment)}
                                     disabled={updateAppointmentStatusMutation.isPending}
                                     className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
+                                    title="Mark as Completed"
                                   >
-                                    <CheckCircle className="w-3 h-3 mr-1" />
-                                    Complete
+                                    <CheckCircle className="w-3 h-3" />
                                   </Button>
                                 )}
                               </div>
@@ -1280,17 +1283,21 @@ export default function AdminDashboard() {
                                       <>
                                         <Button
                                           size="sm"
+                                          variant="outline"
                                           onClick={() => handleApproveAppointment(appointment)}
                                           disabled={updateAppointmentStatusMutation.isPending}
-                                          className="bg-green-600 hover:bg-green-700 text-white"
+                                          className="border-green-500/30 text-green-500 hover:bg-green-500/10"
+                                          title="Approve Appointment"
                                         >
                                           <Check className="w-4 h-4" />
                                         </Button>
                                         <Button
                                           size="sm"
+                                          variant="outline"
                                           onClick={() => handleRejectAppointment(appointment)}
                                           disabled={updateAppointmentStatusMutation.isPending}
-                                          className="bg-red-600 hover:bg-red-700 text-white"
+                                          className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                                          title="Reject Appointment"
                                         >
                                           <X className="w-4 h-4" />
                                         </Button>
@@ -1300,9 +1307,11 @@ export default function AdminDashboard() {
                                     {appointment.status === "approved" && (
                                       <Button
                                         size="sm"
+                                        variant="outline"
                                         onClick={() => handleMarkCompleted(appointment)}
                                         disabled={updateAppointmentStatusMutation.isPending}
-                                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                                        className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10"
+                                        title="Mark as Completed"
                                       >
                                         <CheckCircle className="w-4 h-4" />
                                       </Button>
@@ -1318,9 +1327,9 @@ export default function AdminDashboard() {
                                         onClick={() => handleStatusChange(appointment, "pending")}
                                         disabled={updateAppointmentStatusMutation.isPending}
                                         className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs"
+                                        title="Mark as Pending"
                                       >
-                                        <Clock className="w-3 h-3 mr-1" />
-                                        Pending
+                                        <Clock className="w-3 h-3" />
                                       </Button>
                                     )}
                                     

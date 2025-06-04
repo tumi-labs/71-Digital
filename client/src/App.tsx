@@ -14,6 +14,8 @@ import BookAppointment from "@/pages/book-appointment";
 import TermsOfConditions from "@/pages/terms-of-conditions";
 import TermsOfUse from "@/pages/terms-of-use";
 import PrivacyPolicy from "@/pages/privacy-policy";
+import AdminLogin from "@/pages/admin-login";
+import AdminDashboard from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +32,8 @@ function Router() {
       <Route path="/terms-of-conditions" component={TermsOfConditions} />
       <Route path="/terms-of-use" component={TermsOfUse} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

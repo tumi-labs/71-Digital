@@ -755,43 +755,68 @@ export default function AdminDashboard() {
                           {/* Action Buttons */}
                           <div className="mt-4 pt-3 border-t border-orange-500/20">
                             <div className="flex space-x-1">
-                              {contact.status !== "unread" && (
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={() => handleContactStatusChange(contact, "unread")}
-                                  disabled={updateContactStatusMutation.isPending}
-                                  className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
-                                >
-                                  <Mail className="w-3 h-3 mr-1" />
-                                  Unread
-                                </Button>
-                              )}
-                              
-                              {contact.status !== "responded" && (
-                                <Button
-                                  size="sm"
-                                  variant={contact.status === "unread" ? "default" : "outline"}
-                                  onClick={() => contact.status === "unread" ? handleRespondContact(contact) : handleContactStatusChange(contact, "responded")}
-                                  disabled={updateContactStatusMutation.isPending}
-                                  className={contact.status === "unread" ? "bg-green-600 hover:bg-green-700 text-white text-xs flex-1" : "border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"}
-                                >
-                                  {contact.status === "unread" ? <Check className="w-3 h-3 mr-1" /> : <CheckCircle className="w-3 h-3 mr-1" />}
-                                  Respond
-                                </Button>
-                              )}
-                              
-                              {contact.status !== "ignored" && (
-                                <Button
-                                  size="sm"
-                                  variant={contact.status === "unread" ? "default" : "outline"}
-                                  onClick={() => handleIgnoreContact(contact)}
-                                  disabled={updateContactStatusMutation.isPending}
-                                  className={contact.status === "unread" ? "bg-red-600 hover:bg-red-700 text-white text-xs flex-1" : "border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"}
-                                >
-                                  {contact.status === "unread" ? <X className="w-3 h-3 mr-1" /> : <XCircle className="w-3 h-3 mr-1" />}
-                                  Ignore
-                                </Button>
+                              {contact.status === "unread" ? (
+                                // Primary actions for unread contacts
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => handleRespondContact(contact)}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="bg-green-600 hover:bg-green-700 text-white text-xs flex-1"
+                                  >
+                                    <Check className="w-3 h-3 mr-1" />
+                                    Respond
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => handleIgnoreContact(contact)}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="bg-red-600 hover:bg-red-700 text-white text-xs flex-1"
+                                  >
+                                    <X className="w-3 h-3 mr-1" />
+                                    Ignore
+                                  </Button>
+                                </>
+                              ) : (
+                                // Status change options for responded/ignored contacts
+                                <>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleContactStatusChange(contact, "unread")}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
+                                  >
+                                    <Mail className="w-3 h-3 mr-1" />
+                                    Unread
+                                  </Button>
+                                  
+                                  {contact.status !== "responded" && (
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => handleContactStatusChange(contact, "responded")}
+                                      disabled={updateContactStatusMutation.isPending}
+                                      className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                    >
+                                      <CheckCircle className="w-3 h-3 mr-1" />
+                                      Respond
+                                    </Button>
+                                  )}
+                                  
+                                  {contact.status !== "ignored" && (
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => handleIgnoreContact(contact)}
+                                      disabled={updateContactStatusMutation.isPending}
+                                      className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                    >
+                                      <XCircle className="w-3 h-3 mr-1" />
+                                      Ignore
+                                    </Button>
+                                  )}
+                                </>
                               )}
                             </div>
                           </div>
@@ -860,43 +885,68 @@ export default function AdminDashboard() {
                               </TableCell>
                               <TableCell>
                                 <div className="flex space-x-1">
-                                  {contact.status !== "unread" && (
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => handleContactStatusChange(contact, "unread")}
-                                      disabled={updateContactStatusMutation.isPending}
-                                      className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
-                                      title="Mark as Unread"
-                                    >
-                                      <Mail className="w-3 h-3" />
-                                    </Button>
-                                  )}
-                                  
-                                  {contact.status !== "responded" && (
-                                    <Button
-                                      size="sm"
-                                      variant={contact.status === "unread" ? "default" : "outline"}
-                                      onClick={() => contact.status === "unread" ? handleRespondContact(contact) : handleContactStatusChange(contact, "responded")}
-                                      disabled={updateContactStatusMutation.isPending}
-                                      className={contact.status === "unread" ? "bg-green-600 hover:bg-green-700 text-white text-xs" : "border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"}
-                                      title={contact.status === "unread" ? "Mark as Responded" : "Mark as Responded"}
-                                    >
-                                      {contact.status === "unread" ? <Check className="w-3 h-3" /> : <CheckCircle className="w-3 h-3" />}
-                                    </Button>
-                                  )}
-                                  
-                                  {contact.status !== "ignored" && (
-                                    <Button
-                                      size="sm"
-                                      variant={contact.status === "unread" ? "default" : "outline"}
-                                      onClick={() => handleIgnoreContact(contact)}
-                                      disabled={updateContactStatusMutation.isPending}
-                                      className={contact.status === "unread" ? "bg-red-600 hover:bg-red-700 text-white text-xs" : "border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"}
-                                      title="Mark as Ignored"
-                                    >
-                                      {contact.status === "unread" ? <X className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
-                                    </Button>
+                                  {contact.status === "unread" ? (
+                                    // Primary actions for unread contacts
+                                    <>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleRespondContact(contact)}
+                                        disabled={updateContactStatusMutation.isPending}
+                                        className="bg-green-600 hover:bg-green-700 text-white text-xs"
+                                        title="Mark as Responded"
+                                      >
+                                        <Check className="w-3 h-3" />
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleIgnoreContact(contact)}
+                                        disabled={updateContactStatusMutation.isPending}
+                                        className="bg-red-600 hover:bg-red-700 text-white text-xs"
+                                        title="Mark as Ignored"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </Button>
+                                    </>
+                                  ) : (
+                                    // Status change options for responded/ignored contacts
+                                    <>
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleContactStatusChange(contact, "unread")}
+                                        disabled={updateContactStatusMutation.isPending}
+                                        className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
+                                        title="Mark as Unread"
+                                      >
+                                        <Mail className="w-3 h-3" />
+                                      </Button>
+                                      
+                                      {contact.status !== "responded" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          onClick={() => handleContactStatusChange(contact, "responded")}
+                                          disabled={updateContactStatusMutation.isPending}
+                                          className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
+                                          title="Mark as Responded"
+                                        >
+                                          <CheckCircle className="w-3 h-3" />
+                                        </Button>
+                                      )}
+                                      
+                                      {contact.status !== "ignored" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          onClick={() => handleIgnoreContact(contact)}
+                                          disabled={updateContactStatusMutation.isPending}
+                                          className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
+                                          title="Mark as Ignored"
+                                        >
+                                          <XCircle className="w-3 h-3" />
+                                        </Button>
+                                      )}
+                                    </>
                                   )}
                                 </div>
                               </TableCell>

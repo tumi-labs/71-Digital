@@ -244,36 +244,12 @@ ${data.message}`
               <h2 className="text-2xl font-bold text-white mb-6 text-center">Choose Your Service</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {SERVICE_OPTIONS.map((service) => (
-                  <div
+                  <ServiceOption
                     key={service.value}
-                    className={`p-4 md:p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
-                      formData.serviceType === service.value
-                        ? 'border-orange-500 bg-orange-500/10'
-                        : 'border-white/20 bg-white/5 hover:border-orange-500/50'
-                    }`}
-                    onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value }))}
-                  >
-                    <div className="flex items-start space-x-3">
-                      <div className="text-orange-500 mt-1">
-                        <Building2 className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-white font-semibold text-sm md:text-base mb-2">
-                          {service.label}
-                        </h3>
-                        <p className="text-gray-300 text-xs md:text-sm mb-2">
-                          {service.description}
-                        </p>
-                        <div className="flex items-center text-orange-400 text-xs">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {service.duration}
-                        </div>
-                      </div>
-                      {formData.serviceType === service.value && (
-                        <CheckCircle className="w-5 h-5 text-orange-500" />
-                      )}
-                    </div>
-                  </div>
+                    service={service}
+                    isSelected={formData.serviceType === service.value}
+                    onSelect={handleServiceSelect}
+                  />
                 ))}
               </div>
             </div>

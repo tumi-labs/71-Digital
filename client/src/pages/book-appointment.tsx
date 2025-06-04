@@ -127,26 +127,21 @@ export default function BookAppointment() {
 
   const appointmentMutation = useMutation({
     mutationFn: async (data: AppointmentFormData) => {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: data.fullName,
+          fullName: data.fullName,
           email: data.email,
-          company: data.companyName,
-          phone: data.phoneNumber,
-          service: `Appointment Request - ${data.serviceType}`,
-          message: `Appointment Details:
-Service: ${data.serviceType}
-Preferred Date: ${data.preferredDate}
-Preferred Time: ${data.preferredTime}
-Timezone: ${data.timezone}
-Phone: ${data.phoneNumber}
-
-Additional Message:
-${data.message}`
+          phoneNumber: data.phoneNumber,
+          companyName: data.companyName,
+          serviceType: data.serviceType,
+          preferredDate: data.preferredDate,
+          preferredTime: data.preferredTime,
+          timezone: data.timezone,
+          message: data.message
         }),
       });
       
@@ -172,7 +167,7 @@ ${data.message}`
         timezone: "UTC+4 (UAE Time)",
         message: ""
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/appointments"] });
     },
     onError: () => {
       toast({

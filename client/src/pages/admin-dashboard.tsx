@@ -755,7 +755,7 @@ export default function AdminDashboard() {
                           {/* Action Buttons */}
                           <div className="mt-4 pt-3 border-t border-orange-500/20">
                             <div className="flex space-x-1">
-                              {contact.status === "unread" ? (
+                              {(contact.status === "unread" || !contact.status) ? (
                                 // Primary actions for unread contacts
                                 <>
                                   <Button
@@ -885,7 +885,7 @@ export default function AdminDashboard() {
                               </TableCell>
                               <TableCell>
                                 <div className="flex space-x-1">
-                                  {contact.status === "unread" ? (
+                                  {(contact.status === "unread" || !contact.status) ? (
                                     // Primary actions for unread contacts
                                     <>
                                       <Button

@@ -119,10 +119,10 @@ export default function Services() {
               {/* Top Section with Hosting Solutions and Mining Racks Image */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
                 {/* Hosting Solutions */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 w-full max-w-sm">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-orange-500/30 w-full max-w-full md:max-w-sm mx-auto">
                   <div className="flex items-center mb-4">
                     <Building2 className="w-6 h-6 text-orange-500" />
-                    <h3 className="text-lg font-bold text-white ml-2">Hosting Solutions</h3>
+                    <h3 className="text-base md:text-lg font-bold text-white ml-2">Hosting Solutions</h3>
                   </div>
                   
                   <ul className="space-y-2 mb-6">
@@ -170,12 +170,12 @@ export default function Services() {
               {/* Middle Section with Service Cards and Right-positioned ASIC Image */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
                 {/* Left Column - Service Cards */}
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                   {/* Site Acquisition */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 w-full max-w-sm">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-orange-500/30 w-full max-w-full md:max-w-sm mx-auto">
                     <div className="flex items-center mb-4">
                       <MapPin className="w-6 h-6 text-orange-500" />
-                      <h3 className="text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
+                      <h3 className="text-base md:text-lg font-bold text-white ml-2">Site Acquisition & Power Deals</h3>
                     </div>
                     
                     <ul className="space-y-2 mb-6">
@@ -211,10 +211,10 @@ export default function Services() {
                   </div>
 
                   {/* Hardware Procurement */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 w-full max-w-sm">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-orange-500/30 w-full max-w-full md:max-w-sm mx-auto">
                     <div className="flex items-center mb-4">
                       <HardDrive className="w-6 h-6 text-orange-500" />
-                      <h3 className="text-lg font-bold text-white ml-2">Hardware Procurement</h3>
+                      <h3 className="text-base md:text-lg font-bold text-white ml-2">Hardware Procurement</h3>
                     </div>
                     
                     <ul className="space-y-2 mb-6">
@@ -265,10 +265,10 @@ export default function Services() {
               {/* Bottom Section with Mining Operations and Cables Image */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                 {/* Mining Operations */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30 w-full max-w-sm">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-orange-500/30 w-full max-w-full md:max-w-sm mx-auto">
                   <div className="flex items-center mb-4">
                     <Settings className="w-6 h-6 text-orange-500" />
-                    <h3 className="text-lg font-bold text-white ml-2">Mining Operations & Site Management</h3>
+                    <h3 className="text-base md:text-lg font-bold text-white ml-2">Mining Operations & Site Management</h3>
                   </div>
                   
                   <ul className="space-y-2 mb-6">

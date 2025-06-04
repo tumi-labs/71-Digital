@@ -137,7 +137,7 @@ export default function MiningFarms() {
               </div>
 
               {/* Feature 6 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Globe className="w-6 h-6 text-white" />
                 </div>

@@ -45,6 +45,12 @@ export default function AdminDashboard() {
   const [rejectionReason, setRejectionReason] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [serviceFilter, setServiceFilter] = useState<string>("all");
+  const [contactStatusFilter, setContactStatusFilter] = useState<string>("all");
+  const [contactAction, setContactAction] = useState<{
+    type: 'accept' | 'reject';
+    contact: any;
+    isOpen: boolean;
+  }>({ type: 'accept', contact: null, isOpen: false });
 
   const createAdminForm = useForm<CreateAdminData>({
     resolver: zodResolver(createAdminSchema),
@@ -248,6 +254,36 @@ export default function AdminDashboard() {
     },
   });
 
+  const updateContactStatusMutation = useMutation({
+    mutationFn: async ({ contactId, status, rejectionReason }: { contactId: number; status: string; rejectionReason?: string }) => {
+      const res = await fetch(`/api/admin/contacts/${contactId}/status`, {
+        method: "PATCH",
+        headers: {
+          ...getAuthHeaders(),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status, rejectionReason }),
+      });
+      if (!res.ok) throw new Error("Failed to update contact status");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/contacts"] });
+      setContactAction({ type: 'accept', contact: null, isOpen: false });
+      toast({
+        title: "Contact status updated",
+        description: "The contact submission has been updated successfully",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to update contact",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const onCreateAdmin = (data: CreateAdminData) => {
     createAdminMutation.mutate(data);
   };
@@ -305,6 +341,58 @@ export default function AdminDashboard() {
       appointmentId: appointment.id,
       status: newStatus,
     });
+  };
+
+  const handleAcceptContact = (contact: any) => {
+    setContactAction({
+      type: 'accept',
+      contact,
+      isOpen: true
+    });
+  };
+
+  const handleRejectContact = (contact: any) => {
+    setContactAction({
+      type: 'reject',
+      contact,
+      isOpen: true
+    });
+  };
+
+  const handleContactStatusChange = (contact: any, newStatus: string) => {
+    updateContactStatusMutation.mutate({
+      contactId: contact.id,
+      status: newStatus,
+    });
+  };
+
+  const confirmContactAcceptance = () => {
+    updateContactStatusMutation.mutate({
+      contactId: contactAction.contact.id,
+      status: 'accepted',
+    });
+  };
+
+  const confirmContactRejection = () => {
+    if (!rejectionReason.trim()) {
+      toast({
+        title: "Error",
+        description: "Please provide a rejection reason",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    updateContactStatusMutation.mutate({
+      contactId: contactAction.contact.id,
+      status: 'rejected',
+      rejectionReason: rejectionReason,
+    });
+  };
+
+  const closeContactModal = () => {
+    setContactAction({ type: 'accept', contact: null, isOpen: false });
+    setRejectionReason("");
   };
 
   const confirmApproval = () => {
@@ -409,6 +497,12 @@ export default function AdminDashboard() {
     const statusMatch = statusFilter === "all" || appointment.status === statusFilter;
     const serviceMatch = serviceFilter === "all" || appointment.serviceType === serviceFilter;
     return statusMatch && serviceMatch;
+  });
+
+  // Filter contacts based on status
+  const filteredContacts = contacts?.filter((contact: any) => {
+    const statusMatch = contactStatusFilter === "all" || contact.status === contactStatusFilter;
+    return statusMatch;
   });
 
   // Get unique service types for filter dropdown
@@ -839,48 +933,60 @@ export default function AdminDashboard() {
                               )}
                               
                               {/* Status Change Options */}
-                              {appointment.status !== "completed" && (
-                                <div className="flex space-x-1">
-                                  {appointment.status !== "pending" && (
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => handleStatusChange(appointment, "pending")}
-                                      disabled={updateAppointmentStatusMutation.isPending}
-                                      className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs flex-1"
-                                    >
-                                      <Clock className="w-3 h-3 mr-1" />
-                                      Pending
-                                    </Button>
-                                  )}
-                                  
-                                  {appointment.status !== "approved" && (
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => handleStatusChange(appointment, "approved")}
-                                      disabled={updateAppointmentStatusMutation.isPending}
-                                      className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
-                                    >
-                                      <CheckCircle className="w-3 h-3 mr-1" />
-                                      Approve
-                                    </Button>
-                                  )}
-                                  
-                                  {appointment.status !== "rejected" && (
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => handleRejectAppointment(appointment)}
-                                      disabled={updateAppointmentStatusMutation.isPending}
-                                      className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
-                                    >
-                                      <XCircle className="w-3 h-3 mr-1" />
-                                      Reject
-                                    </Button>
-                                  )}
-                                </div>
-                              )}
+                              <div className="flex space-x-1">
+                                {appointment.status !== "pending" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleStatusChange(appointment, "pending")}
+                                    disabled={updateAppointmentStatusMutation.isPending}
+                                    className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs flex-1"
+                                  >
+                                    <Clock className="w-3 h-3 mr-1" />
+                                    Pending
+                                  </Button>
+                                )}
+                                
+                                {appointment.status !== "approved" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleStatusChange(appointment, "approved")}
+                                    disabled={updateAppointmentStatusMutation.isPending}
+                                    className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                  >
+                                    <CheckCircle className="w-3 h-3 mr-1" />
+                                    Approve
+                                  </Button>
+                                )}
+                                
+                                {appointment.status !== "rejected" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleRejectAppointment(appointment)}
+                                    disabled={updateAppointmentStatusMutation.isPending}
+                                    className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                  >
+                                    <XCircle className="w-3 h-3 mr-1" />
+                                    Reject
+                                  </Button>
+                                )}
+                                
+                                {/* Completed status - only show for approved or completed appointments */}
+                                {(appointment.status === "approved" || appointment.status === "completed") && appointment.status !== "completed" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleMarkCompleted(appointment)}
+                                    disabled={updateAppointmentStatusMutation.isPending}
+                                    className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
+                                  >
+                                    <CheckCircle className="w-3 h-3 mr-1" />
+                                    Complete
+                                  </Button>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -979,52 +1085,60 @@ export default function AdminDashboard() {
                                   </div>
                                   
                                   {/* Status Change Options */}
-                                  {appointment.status !== "completed" && (
-                                    <div className="flex space-x-1 flex-wrap">
-                                      {appointment.status !== "pending" && (
-                                        <Button
-                                          size="sm"
-                                          variant="outline"
-                                          onClick={() => handleStatusChange(appointment, "pending")}
-                                          disabled={updateAppointmentStatusMutation.isPending}
-                                          className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs"
-                                        >
-                                          <Clock className="w-3 h-3 mr-1" />
-                                          Pending
-                                        </Button>
-                                      )}
-                                      
-                                      {appointment.status !== "approved" && (
-                                        <Button
-                                          size="sm"
-                                          variant="outline"
-                                          onClick={() => handleStatusChange(appointment, "approved")}
-                                          disabled={updateAppointmentStatusMutation.isPending}
-                                          className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
-                                        >
-                                          <CheckCircle className="w-3 h-3 mr-1" />
-                                          Approve
-                                        </Button>
-                                      )}
-                                      
-                                      {appointment.status !== "rejected" && (
-                                        <Button
-                                          size="sm"
-                                          variant="outline"
-                                          onClick={() => handleRejectAppointment(appointment)}
-                                          disabled={updateAppointmentStatusMutation.isPending}
-                                          className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
-                                        >
-                                          <XCircle className="w-3 h-3 mr-1" />
-                                          Reject
-                                        </Button>
-                                      )}
-                                    </div>
-                                  )}
-                                  
-                                  {appointment.status === "completed" && (
-                                    <span className="text-gray-500 text-sm">Completed</span>
-                                  )}
+                                  <div className="flex space-x-1 flex-wrap">
+                                    {appointment.status !== "pending" && (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleStatusChange(appointment, "pending")}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10 text-xs"
+                                      >
+                                        <Clock className="w-3 h-3 mr-1" />
+                                        Pending
+                                      </Button>
+                                    )}
+                                    
+                                    {appointment.status !== "approved" && (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleStatusChange(appointment, "approved")}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
+                                      >
+                                        <CheckCircle className="w-3 h-3 mr-1" />
+                                        Approve
+                                      </Button>
+                                    )}
+                                    
+                                    {appointment.status !== "rejected" && (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleRejectAppointment(appointment)}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
+                                      >
+                                        <XCircle className="w-3 h-3 mr-1" />
+                                        Reject
+                                      </Button>
+                                    )}
+                                    
+                                    {/* Completed status - only show for approved appointments */}
+                                    {appointment.status === "approved" && (
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => handleMarkCompleted(appointment)}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
+                                      >
+                                        <CheckCircle className="w-3 h-3 mr-1" />
+                                        Complete
+                                      </Button>
+                                    )}
+                                  </div>
                                 </div>
                               </TableCell>
                             </TableRow>

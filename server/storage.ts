@@ -8,6 +8,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getContactSubmissions(): Promise<ContactSubmission[]>;
+  updateContactSubmissionStatus(submissionId: number, status: string, rejectionReason?: string): Promise<ContactSubmission>;
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
   getAppointments(): Promise<Appointment[]>;
   updateAppointmentStatus(appointmentId: number, status: string, rejectionReason?: string): Promise<Appointment>;
@@ -55,6 +56,18 @@ export class DatabaseStorage implements IStorage {
       .from(contactSubmissions)
       .orderBy(desc(contactSubmissions.createdAt));
     return submissions;
+  }
+
+  async updateContactSubmissionStatus(submissionId: number, status: string, rejectionReason?: string): Promise<ContactSubmission> {
+    const [updatedSubmission] = await db
+      .update(contactSubmissions)
+      .set({ 
+        status,
+        rejectionReason: rejectionReason || null
+      })
+      .where(eq(contactSubmissions.id, submissionId))
+      .returning();
+    return updatedSubmission;
   }
 
   async createAppointment(insertAppointment: InsertAppointment): Promise<Appointment> {

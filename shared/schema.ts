@@ -16,6 +16,8 @@ export const contactSubmissions = pgTable("contact_submissions", {
   phoneNumber: text("phone_number"),
   service: text("service"),
   message: text("message").notNull(),
+  status: text("status").default("pending").notNull(), // pending, accepted, rejected
+  rejectionReason: text("rejection_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

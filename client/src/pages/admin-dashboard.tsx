@@ -753,6 +753,7 @@ export default function AdminDashboard() {
                             <TableHead className="text-gray-300">Preferred Date</TableHead>
                             <TableHead className="text-gray-300">Time</TableHead>
                             <TableHead className="text-gray-300">Status</TableHead>
+                            <TableHead className="text-gray-300">Actions</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -787,16 +788,49 @@ export default function AdminDashboard() {
                               <TableCell className="text-white">{appointment.preferredDate}</TableCell>
                               <TableCell className="text-white">{appointment.preferredTime}</TableCell>
                               <TableCell>
-                                <Badge 
-                                  variant={appointment.status === "confirmed" ? "default" : "secondary"}
-                                  className={
-                                    appointment.status === "confirmed" 
-                                      ? "bg-green-500/20 text-green-400 border-green-500/30" 
-                                      : "bg-orange-500/20 text-orange-400 border-orange-500/30"
-                                  }
-                                >
+                                <Badge className={`${getStatusBadgeProps(appointment.status).className} flex items-center w-fit`}>
+                                  {getStatusBadgeProps(appointment.status).icon}
                                   {appointment.status}
                                 </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex space-x-2">
+                                  {appointment.status === "pending" && (
+                                    <>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleApproveAppointment(appointment)}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="bg-green-600 hover:bg-green-700 text-white"
+                                      >
+                                        <Check className="w-4 h-4" />
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleRejectAppointment(appointment)}
+                                        disabled={updateAppointmentStatusMutation.isPending}
+                                        className="bg-red-600 hover:bg-red-700 text-white"
+                                      >
+                                        <X className="w-4 h-4" />
+                                      </Button>
+                                    </>
+                                  )}
+                                  
+                                  {appointment.status === "approved" && (
+                                    <Button
+                                      size="sm"
+                                      onClick={() => handleMarkCompleted(appointment)}
+                                      disabled={updateAppointmentStatusMutation.isPending}
+                                      className="bg-blue-600 hover:bg-blue-700 text-white"
+                                    >
+                                      <CheckCircle className="w-4 h-4" />
+                                    </Button>
+                                  )}
+                                  
+                                  {(appointment.status === "rejected" || appointment.status === "completed") && (
+                                    <span className="text-gray-500 text-sm">No actions</span>
+                                  )}
+                                </div>
                               </TableCell>
                             </TableRow>
                           ))}

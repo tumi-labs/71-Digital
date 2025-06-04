@@ -34,22 +34,22 @@ export default function Footer() {
                 <Link href="/services" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
                   Services
                 </Link>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
-                  Blog
-                </a>
+                <Link href="/contact" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
+                  Contact
+                </Link>
               </div>
               
               {/* Column 2 */}
               <div className="space-y-4">
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
-                  Hosting and management
-                </a>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
-                  Purchases of machines
-                </a>
-                <a href="#" className="block text-white hover:text-orange-500 transition-colors">
-                  Machines
-                </a>
+                <Link href="/mining-farms" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
+                  Mining Farms
+                </Link>
+                <Link href="/mining-store" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
+                  Mining Store
+                </Link>
+                <Link href="/deployment-sites" onClick={handleLinkClick} className="block text-white hover:text-orange-500 transition-colors">
+                  Deployment Sites
+                </Link>
               </div>
               
               {/* Column 3 */}

@@ -194,6 +194,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update contact submission status
+  app.patch("/api/admin/contacts/:id/status", requireAdmin, async (req, res) => {
+    try {
+      const submissionId = parseInt(req.params.id);
+      const { status, rejectionReason } = req.body;
+
+      if (!status || !["pending", "accepted", "rejected"].includes(status)) {
+        return res.status(400).json({ success: false, error: "Invalid status" });
+      }
+
+      if (status === "rejected" && !rejectionReason) {
+        return res.status(400).json({ success: false, error: "Rejection reason is required" });
+      }
+
+      const updatedSubmission = await storage.updateContactSubmissionStatus(
+        submissionId,
+        status,
+        rejectionReason
+      );
+
+      res.json({ success: true, submission: updatedSubmission });
+    } catch (error) {
+      console.error("Error updating contact status:", error);
+      res.status(500).json({ success: false, error: "Failed to update contact status" });
+    }
+  });
+
   app.get("/api/admin/appointments", requireAdmin, async (req, res) => {
     try {
       const appointments = await storage.getAppointments();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -54,6 +54,47 @@ const TIME_SLOTS = [
   "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
   "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM"
 ] as const;
+
+// Memoized Service Option Component
+const ServiceOption = memo(({ 
+  service, 
+  isSelected, 
+  onSelect 
+}: { 
+  service: typeof SERVICE_OPTIONS[0], 
+  isSelected: boolean, 
+  onSelect: (value: string) => void 
+}) => (
+  <div
+    className={`p-4 md:p-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
+      isSelected
+        ? 'border-orange-500 bg-orange-500/10'
+        : 'border-white/20 bg-white/5 hover:border-orange-500/50'
+    }`}
+    onClick={() => onSelect(service.value)}
+  >
+    <div className="flex items-start space-x-3">
+      <div className="text-orange-500 mt-1">
+        <Building2 className="w-6 h-6" />
+      </div>
+      <div className="flex-1">
+        <h3 className="text-white font-semibold text-sm md:text-base mb-2">
+          {service.label}
+        </h3>
+        <p className="text-gray-300 text-xs md:text-sm mb-2">
+          {service.description}
+        </p>
+        <div className="flex items-center text-orange-400 text-xs">
+          <Clock className="w-3 h-3 mr-1" />
+          {service.duration}
+        </div>
+      </div>
+      {isSelected && (
+        <CheckCircle className="w-5 h-5 text-orange-500" />
+      )}
+    </div>
+  </div>
+));
 
 interface AppointmentFormData {
   fullName: string;
@@ -142,23 +183,23 @@ ${data.message}`
     },
   });
 
-  const handleNavigate = (section: string) => {
+  const handleNavigate = useCallback((section: string) => {
     setCurrentSection(section);
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.email || !formData.serviceType || !formData.preferredDate) {
       toast({
@@ -169,7 +210,11 @@ ${data.message}`
       return;
     }
     appointmentMutation.mutate(formData);
-  };
+  }, [formData, toast, appointmentMutation]);
+
+  const handleServiceSelect = useCallback((value: string) => {
+    setFormData(prev => ({ ...prev, serviceType: value }));
+  }, []);
 
   // Removed scroll listener for better performance
 

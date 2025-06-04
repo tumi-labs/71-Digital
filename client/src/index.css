@@ -30,6 +30,24 @@
   --crypto-brown: 22 49% 14%; /* #2D1810 */
 }
 
+/* Global brown/orange theme styles */
+body {
+  background-color: #1A0F08;
+  color: #FFFFFF;
+}
+
+.bg-page-main {
+  background-color: #1A0F08;
+}
+
+.bg-section-alt {
+  background-color: #2D1810;
+}
+
+.text-accent {
+  color: #FF8C00;
+}
+
 .dark {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;

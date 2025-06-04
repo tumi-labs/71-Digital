@@ -241,9 +241,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ success: false, error: "Invalid status" });
       }
 
-      if (status === "rejected" && !rejectionReason) {
-        return res.status(400).json({ success: false, error: "Rejection reason is required" });
-      }
+
 
       const updatedAppointment = await storage.updateAppointmentStatus(
         appointmentId,

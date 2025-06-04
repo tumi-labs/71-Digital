@@ -492,6 +492,26 @@ export default function AdminDashboard() {
     }
   };
 
+  const getContactStatusBadgeProps = (status: string) => {
+    switch (status) {
+      case "accepted":
+        return { 
+          className: "bg-green-500/20 text-green-400 border-green-500/30",
+          icon: <CheckCircle className="w-3 h-3 mr-1" />
+        };
+      case "rejected":
+        return { 
+          className: "bg-red-500/20 text-red-400 border-red-500/30",
+          icon: <XCircle className="w-3 h-3 mr-1" />
+        };
+      default:
+        return { 
+          className: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+          icon: <Clock className="w-3 h-3 mr-1" />
+        };
+    }
+  };
+
   // Filter appointments based on status and service type
   const filteredAppointments = appointments?.filter((appointment: any) => {
     const statusMatch = statusFilter === "all" || appointment.status === statusFilter;
@@ -608,10 +628,45 @@ export default function AdminDashboard() {
           <TabsContent value="contacts" className="space-y-4">
             <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30">
               <CardHeader>
-                <CardTitle className="text-white">Contact Form Submissions</CardTitle>
-                <CardDescription className="text-gray-300">
-                  Messages received through the contact form
-                </CardDescription>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start space-y-4 sm:space-y-0">
+                  <div>
+                    <CardTitle className="text-white">Contact Form Submissions</CardTitle>
+                    <CardDescription className="text-gray-300">
+                      Messages received through the contact form
+                    </CardDescription>
+                  </div>
+                  
+                  {/* Contact Filter Controls */}
+                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                    <div className="flex items-center space-x-2">
+                      <Filter className="w-4 h-4 text-orange-500" />
+                      <span className="text-sm text-gray-300">Filter:</span>
+                    </div>
+                    
+                    <Select value={contactStatusFilter} onValueChange={setContactStatusFilter}>
+                      <SelectTrigger className="w-[140px] bg-white/10 border-orange-500/30 text-white">
+                        <SelectValue placeholder="Status" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#1A0F08] border-orange-500/30">
+                        <SelectItem value="all" className="text-white">All Status</SelectItem>
+                        <SelectItem value="pending" className="text-white">Pending</SelectItem>
+                        <SelectItem value="accepted" className="text-white">Accepted</SelectItem>
+                        <SelectItem value="rejected" className="text-white">Rejected</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    
+                    {contactStatusFilter !== "all" && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setContactStatusFilter("all")}
+                        className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+                      >
+                        Clear
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 {contactsLoading ? (
@@ -620,9 +675,21 @@ export default function AdminDashboard() {
                   </div>
                 ) : (
                   <>
+                    {/* Results Count */}
+                    <div className="mb-4 text-sm text-gray-300">
+                      Showing {filteredContacts?.length || 0} of {contacts?.length || 0} contact submissions
+                      {contactStatusFilter !== "all" && (
+                        <span className="text-orange-400"> (filtered)</span>
+                      )}
+                    </div>
+                  </>
+                )}
+                
+                {!contactsLoading && (
+                  <>
                     {/* Mobile Card Layout */}
                     <div className="block lg:hidden space-y-4">
-                      {contacts?.map((contact: any) => (
+                      {filteredContacts?.map((contact: any) => (
                         <div key={contact.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
                           <div className="flex justify-between items-start mb-3">
                             <h3 className="text-white font-medium text-sm">{contact.fullName}</h3>

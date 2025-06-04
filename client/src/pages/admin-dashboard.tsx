@@ -47,10 +47,10 @@ export default function AdminDashboard() {
   const [serviceFilter, setServiceFilter] = useState<string>("all");
   const [contactStatusFilter, setContactStatusFilter] = useState<string>("all");
   const [contactAction, setContactAction] = useState<{
-    type: 'accept' | 'reject';
+    type: 'respond' | 'ignore';
     contact: any;
     isOpen: boolean;
-  }>({ type: 'accept', contact: null, isOpen: false });
+  }>({ type: 'respond', contact: null, isOpen: false });
 
   const createAdminForm = useForm<CreateAdminData>({
     resolver: zodResolver(createAdminSchema),
@@ -269,7 +269,7 @@ export default function AdminDashboard() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/contacts"] });
-      setContactAction({ type: 'accept', contact: null, isOpen: false });
+      setContactAction({ type: 'respond', contact: null, isOpen: false });
       toast({
         title: "Contact status updated",
         description: "The contact submission has been updated successfully",
@@ -343,17 +343,17 @@ export default function AdminDashboard() {
     });
   };
 
-  const handleAcceptContact = (contact: any) => {
+  const handleRespondContact = (contact: any) => {
     setContactAction({
-      type: 'accept',
+      type: 'respond',
       contact,
       isOpen: true
     });
   };
 
-  const handleRejectContact = (contact: any) => {
+  const handleIgnoreContact = (contact: any) => {
     setContactAction({
-      type: 'reject',
+      type: 'ignore',
       contact,
       isOpen: true
     });
@@ -366,18 +366,18 @@ export default function AdminDashboard() {
     });
   };
 
-  const confirmContactAcceptance = () => {
+  const confirmContactResponse = () => {
     updateContactStatusMutation.mutate({
       contactId: contactAction.contact.id,
-      status: 'accepted',
+      status: 'responded',
     });
   };
 
-  const confirmContactRejection = () => {
+  const confirmContactIgnore = () => {
     if (!rejectionReason.trim()) {
       toast({
         title: "Error",
-        description: "Please provide a rejection reason",
+        description: "Please provide an ignore reason",
         variant: "destructive",
       });
       return;
@@ -385,13 +385,13 @@ export default function AdminDashboard() {
 
     updateContactStatusMutation.mutate({
       contactId: contactAction.contact.id,
-      status: 'rejected',
+      status: 'ignored',
       rejectionReason: rejectionReason,
     });
   };
 
   const closeContactModal = () => {
-    setContactAction({ type: 'accept', contact: null, isOpen: false });
+    setContactAction({ type: 'respond', contact: null, isOpen: false });
     setRejectionReason("");
   };
 
@@ -494,20 +494,20 @@ export default function AdminDashboard() {
 
   const getContactStatusBadgeProps = (status: string) => {
     switch (status) {
-      case "accepted":
+      case "responded":
         return { 
           className: "bg-green-500/20 text-green-400 border-green-500/30",
           icon: <CheckCircle className="w-3 h-3 mr-1" />
         };
-      case "rejected":
+      case "ignored":
         return { 
           className: "bg-red-500/20 text-red-400 border-red-500/30",
           icon: <XCircle className="w-3 h-3 mr-1" />
         };
       default:
         return { 
-          className: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-          icon: <Clock className="w-3 h-3 mr-1" />
+          className: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+          icon: <Mail className="w-3 h-3 mr-1" />
         };
     }
   };

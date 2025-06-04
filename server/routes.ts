@@ -200,12 +200,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const submissionId = parseInt(req.params.id);
       const { status, rejectionReason } = req.body;
 
-      if (!status || !["pending", "accepted", "rejected"].includes(status)) {
+      if (!status || !["unread", "responded", "ignored"].includes(status)) {
         return res.status(400).json({ success: false, error: "Invalid status" });
       }
 
-      if (status === "rejected" && !rejectionReason) {
-        return res.status(400).json({ success: false, error: "Rejection reason is required" });
+      if (status === "ignored" && !rejectionReason) {
+        return res.status(400).json({ success: false, error: "Ignore reason is required" });
       }
 
       const updatedSubmission = await storage.updateContactSubmissionStatus(

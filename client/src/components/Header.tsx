@@ -3,6 +3,7 @@ import { FaBitcoin, FaEthereum, FaBars, FaTimes } from "react-icons/fa";
 import { SiDogecoin } from "react-icons/si";
 import { useLocation } from "wouter";
 import { useState } from "react";
+import logo71Digital from "@assets/71digital logo.png";
 
 interface HeaderProps {
   currentSection: string;
@@ -67,8 +68,18 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
       <nav className="bg-orange-500 py-3 md:py-4">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img 
+                src={logo71Digital} 
+                alt="71 Digital" 
+                className="h-10 md:h-12 cursor-pointer"
+                onClick={() => handleNavigation({ id: "home", label: "Home", path: "/" })}
+              />
+            </div>
+
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex justify-center flex-1 space-x-16 text-black font-semibold text-lg">
+            <ul className="hidden md:flex justify-center flex-1 space-x-12 text-black font-semibold text-lg ml-8">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <span

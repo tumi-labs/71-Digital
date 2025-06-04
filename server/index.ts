@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// senorita ....
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";

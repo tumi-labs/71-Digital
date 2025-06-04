@@ -760,21 +760,23 @@ export default function AdminDashboard() {
                                 <>
                                   <Button
                                     size="sm"
+                                    variant="outline"
                                     onClick={() => handleRespondContact(contact)}
                                     disabled={updateContactStatusMutation.isPending}
-                                    className="bg-green-600 hover:bg-green-700 text-white text-xs flex-1"
+                                    className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                    title="Mark as Responded"
                                   >
-                                    <Check className="w-3 h-3 mr-1" />
-                                    Respond
+                                    <Check className="w-3 h-3" />
                                   </Button>
                                   <Button
                                     size="sm"
+                                    variant="outline"
                                     onClick={() => handleIgnoreContact(contact)}
                                     disabled={updateContactStatusMutation.isPending}
-                                    className="bg-red-600 hover:bg-red-700 text-white text-xs flex-1"
+                                    className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                    title="Mark as Ignored"
                                   >
-                                    <X className="w-3 h-3 mr-1" />
-                                    Ignore
+                                    <X className="w-3 h-3" />
                                   </Button>
                                 </>
                               ) : (
@@ -786,9 +788,9 @@ export default function AdminDashboard() {
                                     onClick={() => handleContactStatusChange(contact, "unread")}
                                     disabled={updateContactStatusMutation.isPending}
                                     className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
+                                    title="Mark as Unread"
                                   >
-                                    <Mail className="w-3 h-3 mr-1" />
-                                    Unread
+                                    <Mail className="w-3 h-3" />
                                   </Button>
                                   
                                   {contact.status !== "responded" && (
@@ -798,9 +800,9 @@ export default function AdminDashboard() {
                                       onClick={() => handleContactStatusChange(contact, "responded")}
                                       disabled={updateContactStatusMutation.isPending}
                                       className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                      title="Mark as Responded"
                                     >
-                                      <CheckCircle className="w-3 h-3 mr-1" />
-                                      Respond
+                                      <CheckCircle className="w-3 h-3" />
                                     </Button>
                                   )}
                                   
@@ -811,9 +813,9 @@ export default function AdminDashboard() {
                                       onClick={() => handleIgnoreContact(contact)}
                                       disabled={updateContactStatusMutation.isPending}
                                       className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                      title="Mark as Ignored"
                                     >
-                                      <XCircle className="w-3 h-3 mr-1" />
-                                      Ignore
+                                      <XCircle className="w-3 h-3" />
                                     </Button>
                                   )}
                                 </>
@@ -890,18 +892,20 @@ export default function AdminDashboard() {
                                     <>
                                       <Button
                                         size="sm"
+                                        variant="outline"
                                         onClick={() => handleRespondContact(contact)}
                                         disabled={updateContactStatusMutation.isPending}
-                                        className="bg-green-600 hover:bg-green-700 text-white text-xs"
+                                        className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
                                         title="Mark as Responded"
                                       >
                                         <Check className="w-3 h-3" />
                                       </Button>
                                       <Button
                                         size="sm"
+                                        variant="outline"
                                         onClick={() => handleIgnoreContact(contact)}
                                         disabled={updateContactStatusMutation.isPending}
-                                        className="bg-red-600 hover:bg-red-700 text-white text-xs"
+                                        className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
                                         title="Mark as Ignored"
                                       >
                                         <X className="w-3 h-3" />

@@ -320,12 +320,10 @@ export default function AdminDashboard() {
   };
 
   const handleRejectAppointment = (appointment: any) => {
-    setAppointmentAction({
-      type: 'reject',
-      appointment,
-      isOpen: true
+    updateAppointmentStatusMutation.mutate({
+      appointmentId: appointment.id,
+      status: "rejected",
     });
-    setRejectionReason("");
   };
 
   const handleMarkCompleted = (appointment: any) => {
@@ -1673,55 +1671,7 @@ export default function AdminDashboard() {
               </DialogContent>
             </Dialog>
 
-            {/* Rejection Modal */}
-            <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'reject'} onOpenChange={closeModal}>
-              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="text-red-500 flex items-center">
-                    <XCircle className="w-5 h-5 mr-2" />
-                    Reject Appointment
-                  </DialogTitle>
-                  <DialogDescription className="text-gray-300">
-                    Please provide a reason for rejecting this appointment
-                  </DialogDescription>
-                </DialogHeader>
-                
-                <div className="space-y-4 py-4">
-                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
-                    <h4 className="font-medium text-white">{appointmentAction.appointment.fullName}</h4>
-                    <p className="text-sm text-gray-300">Service: {appointmentAction.appointment.serviceType}</p>
-                    <p className="text-sm text-gray-300">Date: {appointmentAction.appointment.preferredDate}</p>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Rejection Reason *
-                    </label>
-                    <Textarea
-                      value={rejectionReason}
-                      onChange={(e) => setRejectionReason(e.target.value)}
-                      placeholder="Please explain why this appointment cannot be accommodated..."
-                      className="bg-white/10 border-orange-500/30 text-white placeholder-gray-400"
-                      rows={3}
-                    />
-                  </div>
-                </div>
 
-                <DialogFooter className="flex space-x-2">
-                  <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
-                    Cancel
-                  </Button>
-                  <Button 
-                    onClick={confirmRejection}
-                    disabled={updateAppointmentStatusMutation.isPending}
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    <X className="w-4 h-4 mr-2" />
-                    Reject & Contact
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
 
             {/* Completion Confirmation Modal */}
             <Dialog open={appointmentAction.isOpen && appointmentAction.type === 'complete'} onOpenChange={closeModal}>

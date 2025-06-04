@@ -77,7 +77,7 @@ export default function MiningFarms() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
@@ -89,7 +89,7 @@ export default function MiningFarms() {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Thermometer className="w-6 h-6 text-white" />
                 </div>
@@ -101,7 +101,7 @@ export default function MiningFarms() {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
@@ -113,7 +113,7 @@ export default function MiningFarms() {
               </div>
 
               {/* Feature 4 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <BarChart3 className="w-6 h-6 text-white" />
                 </div>
@@ -125,7 +125,7 @@ export default function MiningFarms() {
               </div>
 
               {/* Feature 5 */}
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-orange-500/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-orange-500/30">
                 <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <Cpu className="w-6 h-6 text-white" />
                 </div>

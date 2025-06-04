@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
-import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield } from "lucide-react";
+import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings } from "lucide-react";
 import { format } from "date-fns";
 import { z } from "zod";
 
@@ -20,16 +20,31 @@ const createAdminSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
+const editAdminSchema = z.object({
+  username: z.string().min(3, "Username must be at least 3 characters"),
+  password: z.string().optional(),
+});
+
 type CreateAdminData = z.infer<typeof createAdminSchema>;
+type EditAdminData = z.infer<typeof editAdminSchema>;
 
 export default function AdminDashboard() {
   const [location, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [adminUser, setAdminUser] = useState<any>(null);
+  const [editingAdmin, setEditingAdmin] = useState<any>(null);
 
   const createAdminForm = useForm<CreateAdminData>({
     resolver: zodResolver(createAdminSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
+
+  const editAdminForm = useForm<EditAdminData>({
+    resolver: zodResolver(editAdminSchema),
     defaultValues: {
       username: "",
       password: "",
@@ -79,6 +94,18 @@ export default function AdminDashboard() {
     enabled: !!adminUser,
   });
 
+  const { data: admins, isLoading: adminsLoading } = useQuery({
+    queryKey: ["/api/admin/admins"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/admins", {
+        headers: getAuthHeaders(),
+      });
+      if (!res.ok) throw new Error("Failed to fetch admins");
+      return res.json();
+    },
+    enabled: !!adminUser,
+  });
+
   const createAdminMutation = useMutation({
     mutationFn: async (data: CreateAdminData) => {
       const res = await fetch("/api/admin/create-admin", {
@@ -99,6 +126,7 @@ export default function AdminDashboard() {
           description: `Admin account "${data.admin.username}" has been created`,
         });
         createAdminForm.reset();
+        queryClient.invalidateQueries({ queryKey: ["/api/admin/admins"] });
       } else {
         toast({
           title: "Failed to create admin",
@@ -116,8 +144,95 @@ export default function AdminDashboard() {
     },
   });
 
+  const editAdminMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: EditAdminData }) => {
+      const res = await fetch(`/api/admin/admins/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to update admin");
+      return res.json();
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        toast({
+          title: "Admin updated successfully",
+          description: `Admin account "${data.admin.username}" has been updated`,
+        });
+        setEditingAdmin(null);
+        editAdminForm.reset();
+        queryClient.invalidateQueries({ queryKey: ["/api/admin/admins"] });
+      } else {
+        toast({
+          title: "Failed to update admin",
+          description: data.error || "Unknown error occurred",
+          variant: "destructive",
+        });
+      }
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to update admin",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteAdminMutation = useMutation({
+    mutationFn: async (adminId: number) => {
+      const res = await fetch(`/api/admin/admins/${adminId}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      });
+      if (!res.ok) throw new Error("Failed to delete admin");
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Admin deleted successfully",
+        description: "Admin account has been removed",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/admins"] });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to delete admin",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const onCreateAdmin = (data: CreateAdminData) => {
     createAdminMutation.mutate(data);
+  };
+
+  const onEditAdmin = (data: EditAdminData) => {
+    if (editingAdmin) {
+      editAdminMutation.mutate({ id: editingAdmin.id, data });
+    }
+  };
+
+  const startEdit = (admin: any) => {
+    setEditingAdmin(admin);
+    editAdminForm.setValue("username", admin.username);
+    editAdminForm.setValue("password", "");
+  };
+
+  const cancelEdit = () => {
+    setEditingAdmin(null);
+    editAdminForm.reset();
+  };
+
+  const confirmDelete = (adminId: number) => {
+    if (window.confirm("Are you sure you want to delete this admin account? This action cannot be undone.")) {
+      deleteAdminMutation.mutate(adminId);
+    }
   };
 
   const handleLogout = async () => {
@@ -205,6 +320,10 @@ export default function AdminDashboard() {
             <TabsTrigger value="create-admin" className="data-[state=active]:bg-orange-500/20 text-white">
               <UserPlus className="w-4 h-4 mr-2" />
               Create Admin
+            </TabsTrigger>
+            <TabsTrigger value="manage-admins" className="data-[state=active]:bg-orange-500/20 text-white">
+              <Settings className="w-4 h-4 mr-2" />
+              Manage Admins
             </TabsTrigger>
           </TabsList>
 
@@ -389,6 +508,166 @@ export default function AdminDashboard() {
                     </Button>
                   </form>
                 </Form>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="manage-admins" className="space-y-4">
+            <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center">
+                  <Settings className="w-5 h-5 mr-2 text-orange-500" />
+                  Manage Admin Accounts
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  View, edit, and manage all administrator accounts
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {adminsLoading ? (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {/* Edit Form */}
+                    {editingAdmin && (
+                      <Card className="bg-white/5 border-orange-500/20">
+                        <CardHeader>
+                          <CardTitle className="text-white text-lg">
+                            Edit Admin: {editingAdmin.username}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <Form {...editAdminForm}>
+                            <form onSubmit={editAdminForm.handleSubmit(onEditAdmin)} className="space-y-4">
+                              <FormField
+                                control={editAdminForm.control}
+                                name="username"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-white">Username</FormLabel>
+                                    <FormControl>
+                                      <Input
+                                        placeholder="Enter username"
+                                        {...field}
+                                        className="bg-white/10 border-orange-500/30 text-white placeholder:text-gray-400 focus:border-orange-500"
+                                      />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={editAdminForm.control}
+                                name="password"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-white">
+                                      New Password (leave empty to keep current)
+                                    </FormLabel>
+                                    <FormControl>
+                                      <Input
+                                        type="password"
+                                        placeholder="Enter new password"
+                                        {...field}
+                                        className="bg-white/10 border-orange-500/30 text-white placeholder:text-gray-400 focus:border-orange-500"
+                                      />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <div className="flex space-x-2">
+                                <Button
+                                  type="submit"
+                                  className="bg-orange-600 hover:bg-orange-700 text-white"
+                                  disabled={editAdminMutation.isPending}
+                                >
+                                  {editAdminMutation.isPending ? (
+                                    <div className="flex items-center space-x-2">
+                                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                      <span>Updating...</span>
+                                    </div>
+                                  ) : (
+                                    "Update Admin"
+                                  )}
+                                </Button>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={cancelEdit}
+                                  className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+                                >
+                                  Cancel
+                                </Button>
+                              </div>
+                            </form>
+                          </Form>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Admin List */}
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="border-orange-500/30">
+                            <TableHead className="text-gray-300">Username</TableHead>
+                            <TableHead className="text-gray-300">Created</TableHead>
+                            <TableHead className="text-gray-300">Status</TableHead>
+                            <TableHead className="text-gray-300">Actions</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {admins?.map((admin: any) => (
+                            <TableRow key={admin.id} className="border-orange-500/20">
+                              <TableCell className="text-white font-medium">{admin.username}</TableCell>
+                              <TableCell className="text-white">
+                                {format(new Date(admin.createdAt), "MMM d, yyyy")}
+                              </TableCell>
+                              <TableCell>
+                                <Badge 
+                                  className={
+                                    admin.id === adminUser?.id
+                                      ? "bg-green-500/20 text-green-400 border-green-500/30"
+                                      : "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                                  }
+                                >
+                                  {admin.id === adminUser?.id ? "Current User" : "Active"}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex space-x-2">
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => startEdit(admin)}
+                                    disabled={editingAdmin?.id === admin.id}
+                                    className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+                                  >
+                                    <Edit className="w-4 h-4" />
+                                  </Button>
+                                  {admin.id !== adminUser?.id && (
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => confirmDelete(admin.id)}
+                                      disabled={deleteAdminMutation.isPending}
+                                      className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                  )}
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

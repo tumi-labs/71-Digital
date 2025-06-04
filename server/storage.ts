@@ -13,6 +13,9 @@ export interface IStorage {
   // Admin functionality
   createAdminUser(adminUser: InsertAdminUser): Promise<AdminUser>;
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
+  getAllAdmins(): Promise<AdminUser[]>;
+  updateAdminUser(adminId: number, updates: Partial<InsertAdminUser>): Promise<AdminUser>;
+  deleteAdminUser(adminId: number): Promise<void>;
   createAdminSession(adminId: number, sessionToken: string, expiresAt: Date): Promise<AdminSession>;
   getAdminBySessionToken(sessionToken: string): Promise<AdminUser | undefined>;
   deleteAdminSession(sessionToken: string): Promise<void>;
@@ -115,6 +118,26 @@ export class DatabaseStorage implements IStorage {
         )
       );
     return result || undefined;
+  }
+
+  async getAllAdmins(): Promise<AdminUser[]> {
+    return await db.select().from(adminUsers).orderBy(adminUsers.createdAt);
+  }
+
+  async updateAdminUser(adminId: number, updates: Partial<InsertAdminUser>): Promise<AdminUser> {
+    const [updatedAdmin] = await db
+      .update(adminUsers)
+      .set(updates)
+      .where(eq(adminUsers.id, adminId))
+      .returning();
+    return updatedAdmin;
+  }
+
+  async deleteAdminUser(adminId: number): Promise<void> {
+    // First delete all sessions for this admin
+    await db.delete(adminSessions).where(eq(adminSessions.adminId, adminId));
+    // Then delete the admin user
+    await db.delete(adminUsers).where(eq(adminUsers.id, adminId));
   }
 
   async deleteAdminSession(sessionToken: string): Promise<void> {

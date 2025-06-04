@@ -233,6 +233,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/admin/admins", requireAdmin, async (req, res) => {
+    try {
+      const admins = await storage.getAllAdmins();
+      // Don't return passwords
+      const safeAdmins = admins.map(admin => ({
+        id: admin.id,
+        username: admin.username,
+        createdAt: admin.createdAt
+      }));
+      res.json(safeAdmins);
+    } catch (error) {
+      console.error("Error fetching admins:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch admin accounts" });
+    }
+  });
+
+  app.put("/api/admin/admins/:id", requireAdmin, async (req, res) => {
+    try {
+      const adminId = parseInt(req.params.id);
+      const { username, password } = req.body;
+      
+      if (!username) {
+        return res.status(400).json({ success: false, error: "Username is required" });
+      }
+
+      // Check if username already exists (excluding current admin)
+      const existingAdmin = await storage.getAdminByUsername(username);
+      if (existingAdmin && existingAdmin.id !== adminId) {
+        return res.status(400).json({ success: false, error: "Username already exists" });
+      }
+
+      const updates: any = { username };
+      if (password) {
+        updates.password = await hashPassword(password);
+      }
+
+      const updatedAdmin = await storage.updateAdminUser(adminId, updates);
+      res.json({ 
+        success: true, 
+        admin: { id: updatedAdmin.id, username: updatedAdmin.username }
+      });
+    } catch (error) {
+      console.error("Error updating admin:", error);
+      res.status(500).json({ success: false, error: "Failed to update admin account" });
+    }
+  });
+
+  app.delete("/api/admin/admins/:id", requireAdmin, async (req, res) => {
+    try {
+      const adminId = parseInt(req.params.id);
+      const currentAdmin = (req as any).admin;
+      
+      // Prevent deleting self
+      if (adminId === currentAdmin.id) {
+        return res.status(400).json({ success: false, error: "Cannot delete your own account" });
+      }
+
+      await storage.deleteAdminUser(adminId);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting admin:", error);
+      res.status(500).json({ success: false, error: "Failed to delete admin account" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

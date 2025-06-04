@@ -405,7 +405,7 @@ export default function AdminDashboard() {
   });
 
   // Get unique service types for filter dropdown
-  const uniqueServiceTypes = Array.from(new Set(appointments?.map((apt: any) => apt.serviceType) || []));
+  const uniqueServiceTypes = Array.from(new Set(appointments?.map((apt: any) => apt.serviceType).filter(Boolean) || [])) as string[];
 
   const handleLogout = async () => {
     try {
@@ -676,7 +676,7 @@ export default function AdminDashboard() {
                       </SelectTrigger>
                       <SelectContent className="bg-[#1A0F08] border-orange-500/30">
                         <SelectItem value="all" className="text-white">All Services</SelectItem>
-                        {uniqueServiceTypes.map((service) => (
+                        {uniqueServiceTypes.map((service: string) => (
                           <SelectItem key={service} value={service} className="text-white">
                             {service}
                           </SelectItem>
@@ -706,6 +706,18 @@ export default function AdminDashboard() {
                     <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : (
+                  <>
+                    {/* Results Count */}
+                    <div className="mb-4 text-sm text-gray-300">
+                      Showing {filteredAppointments?.length || 0} of {appointments?.length || 0} appointments
+                      {(statusFilter !== "all" || serviceFilter !== "all") && (
+                        <span className="text-orange-400"> (filtered)</span>
+                      )}
+                    </div>
+                  </>
+                )}
+                
+                {!appointmentsLoading && (
                   <>
                     {/* Mobile Card Layout */}
                     <div className="block lg:hidden space-y-4">
@@ -840,7 +852,7 @@ export default function AdminDashboard() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {appointments?.map((appointment: any) => (
+                          {filteredAppointments?.map((appointment: any) => (
                             <TableRow key={appointment.id} className="border-orange-500/20">
                               <TableCell className="text-white">
                                 {format(new Date(appointment.createdAt), "MMM d, yyyy")}

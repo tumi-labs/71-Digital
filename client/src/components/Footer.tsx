@@ -69,31 +69,37 @@ export default function Footer() {
           
           {/* Contact Section */}
           <div className="md:col-span-1">
-            <div className="flex flex-col items-center md:items-end space-y-4">
-              {/* Social Icons */}
-              <div className="flex space-x-4">
-                <div 
-                  className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
-                  onClick={() => window.open('https://www.instagram.com/71digital_inc/', '_blank')}
-                >
-                  <FaInstagram className="text-white text-lg" />
-                </div>
-                <div 
-                  className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer"
-                  onClick={() => window.open('https://www.linkedin.com/company/71-digital-inc/', '_blank')}
-                >
-                  <FaLinkedin className="text-white text-lg" />
-                </div>
-                <div className="bg-gray-600 hover:bg-orange-500 p-3 rounded-full transition-colors cursor-pointer">
-                  <FaPhone className="text-white text-lg" />
-                </div>
-              </div>
+            <div className="flex flex-col items-center md:items-start space-y-6">
+              <h3 className="text-orange-500 font-bold text-lg">Connect With Us</h3>
               
               {/* Email */}
-              <div className="text-center md:text-right">
-                <p className="text-white font-medium">
+              <div className="text-center md:text-left">
+                <p className="text-white text-sm mb-1">Email</p>
+                <a href="mailto:info@71digital.io" className="text-orange-500 font-medium hover:text-orange-400 transition-colors">
                   info@71digital.io
-                </p>
+                </a>
+              </div>
+              
+              {/* Social Icons */}
+              <div>
+                <p className="text-white text-sm mb-3 text-center md:text-left">Follow Us</p>
+                <div className="flex space-x-3 justify-center md:justify-start">
+                  <div 
+                    className="bg-gray-700 hover:bg-orange-500 p-2.5 rounded-full transition-all duration-300 cursor-pointer transform hover:scale-110"
+                    onClick={() => window.open('https://www.instagram.com/71digital_inc/', '_blank')}
+                  >
+                    <FaInstagram className="text-white text-base" />
+                  </div>
+                  <div 
+                    className="bg-gray-700 hover:bg-orange-500 p-2.5 rounded-full transition-all duration-300 cursor-pointer transform hover:scale-110"
+                    onClick={() => window.open('https://www.linkedin.com/company/71-digital-inc/', '_blank')}
+                  >
+                    <FaLinkedin className="text-white text-base" />
+                  </div>
+                  <div className="bg-gray-700 hover:bg-orange-500 p-2.5 rounded-full transition-all duration-300 cursor-pointer transform hover:scale-110">
+                    <FaPhone className="text-white text-base" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

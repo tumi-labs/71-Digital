@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#1A0F08' }}>
       <Header currentSection="privacy" onNavigate={() => {}} />
       
       <main className="pt-20">

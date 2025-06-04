@@ -39,7 +39,7 @@ export default function MiningFarms() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#1A0F08' }}>
       <Header currentSection={currentSection} onNavigate={handleNavigate} />
       <main>
         {/* Hero Section */}
@@ -63,7 +63,7 @@ export default function MiningFarms() {
         </section>
 
         {/* Key Features Section */}
-        <section className="py-12 md:py-16 px-4 bg-black/30">
+        <section className="py-12 md:py-16 px-4" style={{ backgroundColor: '#2D1810' }}>
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

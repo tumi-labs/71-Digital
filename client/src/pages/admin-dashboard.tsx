@@ -1201,19 +1201,7 @@ export default function AdminDashboard() {
                                   </Button>
                                 )}
                                 
-                                {/* Completed status - only show for approved or completed appointments */}
-                                {(appointment.status === "approved" || appointment.status === "completed") && appointment.status !== "completed" && (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={() => handleMarkCompleted(appointment)}
-                                    disabled={updateAppointmentStatusMutation.isPending}
-                                    className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
-                                    title="Mark as Completed"
-                                  >
-                                    <CheckCircle className="w-3 h-3" />
-                                  </Button>
-                                )}
+
                               </div>
                             </div>
                           </div>

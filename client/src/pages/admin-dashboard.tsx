@@ -1358,20 +1358,6 @@ export default function AdminDashboard() {
                                         <XCircle className="w-3 h-3" />
                                       </Button>
                                     )}
-                                    
-                                    {/* Completed status - only show for approved appointments */}
-                                    {appointment.status === "approved" && (
-                                      <Button
-                                        size="sm"
-                                        variant="outline"
-                                        onClick={() => handleMarkCompleted(appointment)}
-                                        disabled={updateAppointmentStatusMutation.isPending}
-                                        className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
-                                        title="Mark as Completed"
-                                      >
-                                        <CheckCircle className="w-3 h-3" />
-                                      </Button>
-                                    )}
                                   </div>
                                 </div>
                               </TableCell>

@@ -692,7 +692,13 @@ export default function AdminDashboard() {
                       {filteredContacts?.map((contact: any) => (
                         <div key={contact.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
                           <div className="flex justify-between items-start mb-3">
-                            <h3 className="text-white font-medium text-sm">{contact.fullName}</h3>
+                            <div>
+                              <h3 className="text-white font-medium text-sm">{contact.fullName}</h3>
+                              <Badge className={`${getContactStatusBadgeProps(contact.status || 'unread').className} flex items-center w-fit mt-1`}>
+                                {getContactStatusBadgeProps(contact.status || 'unread').icon}
+                                {contact.status || 'unread'}
+                              </Badge>
+                            </div>
                             <span className="text-gray-400 text-xs">
                               {format(new Date(contact.createdAt), "MMM d")}
                             </span>
@@ -746,6 +752,84 @@ export default function AdminDashboard() {
                               </div>
                             </div>
                           )}
+
+                          {contact.status === "ignored" && contact.rejectionReason && (
+                            <div className="bg-red-500/10 border border-red-500/30 rounded p-2 mt-2">
+                              <p className="text-red-400 text-xs">
+                                <strong>Ignore Reason:</strong> {contact.rejectionReason}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Action Buttons */}
+                          <div className="mt-4 pt-3 border-t border-orange-500/20">
+                            <div className="space-y-2">
+                              {contact.status === "unread" && (
+                                <div className="flex space-x-2">
+                                  <Button
+                                    size="sm"
+                                    onClick={() => handleRespondContact(contact)}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="bg-green-600 hover:bg-green-700 text-white text-xs flex-1"
+                                  >
+                                    <Check className="w-3 h-3 mr-1" />
+                                    Respond
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => handleIgnoreContact(contact)}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="bg-red-600 hover:bg-red-700 text-white text-xs flex-1"
+                                  >
+                                    <X className="w-3 h-3 mr-1" />
+                                    Ignore
+                                  </Button>
+                                </div>
+                              )}
+                              
+                              {/* Status Change Options */}
+                              <div className="flex space-x-1">
+                                {contact.status !== "unread" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleContactStatusChange(contact, "unread")}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs flex-1"
+                                  >
+                                    <Mail className="w-3 h-3 mr-1" />
+                                    Unread
+                                  </Button>
+                                )}
+                                
+                                {contact.status !== "responded" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleContactStatusChange(contact, "responded")}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs flex-1"
+                                  >
+                                    <CheckCircle className="w-3 h-3 mr-1" />
+                                    Respond
+                                  </Button>
+                                )}
+                                
+                                {contact.status !== "ignored" && (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleIgnoreContact(contact)}
+                                    disabled={updateContactStatusMutation.isPending}
+                                    className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs flex-1"
+                                  >
+                                    <XCircle className="w-3 h-3 mr-1" />
+                                    Ignore
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -762,10 +846,12 @@ export default function AdminDashboard() {
                             <TableHead className="text-gray-300">Phone</TableHead>
                             <TableHead className="text-gray-300">Service</TableHead>
                             <TableHead className="text-gray-300">Message</TableHead>
+                            <TableHead className="text-gray-300">Status</TableHead>
+                            <TableHead className="text-gray-300">Actions</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {contacts?.map((contact: any) => (
+                          {filteredContacts?.map((contact: any) => (
                             <TableRow key={contact.id} className="border-orange-500/20">
                               <TableCell className="text-white">
                                 {format(new Date(contact.createdAt), "MMM d, yyyy")}
@@ -795,6 +881,82 @@ export default function AdminDashboard() {
                               <TableCell className="text-white">{contact.service || "-"}</TableCell>
                               <TableCell className="text-white max-w-xs truncate" title={contact.message}>
                                 {contact.message}
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={`${getContactStatusBadgeProps(contact.status || 'unread').className} flex items-center w-fit`}>
+                                  {getContactStatusBadgeProps(contact.status || 'unread').icon}
+                                  {contact.status || 'unread'}
+                                </Badge>
+                                {contact.status === "ignored" && contact.rejectionReason && (
+                                  <div className="mt-1 text-xs text-red-400" title={contact.rejectionReason}>
+                                    Reason: {contact.rejectionReason.length > 20 ? contact.rejectionReason.substring(0, 20) + "..." : contact.rejectionReason}
+                                  </div>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex space-x-1">
+                                  {contact.status === "unread" ? (
+                                    <>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleRespondContact(contact)}
+                                        disabled={updateContactStatusMutation.isPending}
+                                        className="bg-green-600 hover:bg-green-700 text-white text-xs"
+                                      >
+                                        <Check className="w-3 h-3" />
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleIgnoreContact(contact)}
+                                        disabled={updateContactStatusMutation.isPending}
+                                        className="bg-red-600 hover:bg-red-700 text-white text-xs"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {contact.status !== "unread" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          onClick={() => handleContactStatusChange(contact, "unread")}
+                                          disabled={updateContactStatusMutation.isPending}
+                                          className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
+                                          title="Mark as Unread"
+                                        >
+                                          <Mail className="w-3 h-3" />
+                                        </Button>
+                                      )}
+                                      
+                                      {contact.status !== "responded" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          onClick={() => handleContactStatusChange(contact, "responded")}
+                                          disabled={updateContactStatusMutation.isPending}
+                                          className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
+                                          title="Mark as Responded"
+                                        >
+                                          <CheckCircle className="w-3 h-3" />
+                                        </Button>
+                                      )}
+                                      
+                                      {contact.status !== "ignored" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          onClick={() => handleIgnoreContact(contact)}
+                                          disabled={updateContactStatusMutation.isPending}
+                                          className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
+                                          title="Mark as Ignored"
+                                        >
+                                          <XCircle className="w-3 h-3" />
+                                        </Button>
+                                      )}
+                                    </>
+                                  )}
+                                </div>
                               </TableCell>
                             </TableRow>
                           ))}
@@ -1677,6 +1839,99 @@ export default function AdminDashboard() {
                 <DialogFooter>
                   <Button variant="outline" onClick={closeModal} className="border-gray-500 text-gray-300">
                     Skip Contact
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </>
+        )}
+
+        {/* Contact Action Modals */}
+        {contactAction.contact && (
+          <>
+            {/* Response Confirmation Modal */}
+            <Dialog open={contactAction.isOpen && contactAction.type === 'respond'} onOpenChange={closeContactModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-green-500 flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Mark as Responded
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Mark this contact submission as responded
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <h4 className="font-medium text-white">{contactAction.contact.fullName}</h4>
+                    <p className="text-sm text-gray-300">Email: {contactAction.contact.email}</p>
+                    <p className="text-sm text-gray-300">Company: {contactAction.contact.companyName || "Not specified"}</p>
+                    <p className="text-sm text-gray-300">Service: {contactAction.contact.service || "Not specified"}</p>
+                  </div>
+                </div>
+
+                <DialogFooter className="flex space-x-2">
+                  <Button variant="outline" onClick={closeContactModal} className="border-gray-500 text-gray-300">
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={confirmContactResponse}
+                    disabled={updateContactStatusMutation.isPending}
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Check className="w-4 h-4 mr-2" />
+                    Mark as Responded
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Ignore Modal */}
+            <Dialog open={contactAction.isOpen && contactAction.type === 'ignore'} onOpenChange={closeContactModal}>
+              <DialogContent className="bg-[#1A0F08] border-orange-500/30 text-white max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-red-500 flex items-center">
+                    <XCircle className="w-5 h-5 mr-2" />
+                    Mark as Ignored
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300">
+                    Please provide a reason for ignoring this contact submission
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <h4 className="font-medium text-white">{contactAction.contact.fullName}</h4>
+                    <p className="text-sm text-gray-300">Email: {contactAction.contact.email}</p>
+                    <p className="text-sm text-gray-300">Message: {contactAction.contact.message}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Ignore Reason *
+                    </label>
+                    <Textarea
+                      value={rejectionReason}
+                      onChange={(e) => setRejectionReason(e.target.value)}
+                      placeholder="Please explain why this contact is being ignored..."
+                      className="bg-white/10 border-orange-500/30 text-white placeholder-gray-400"
+                      rows={3}
+                    />
+                  </div>
+                </div>
+
+                <DialogFooter className="flex space-x-2">
+                  <Button variant="outline" onClick={closeContactModal} className="border-gray-500 text-gray-300">
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={confirmContactIgnore}
+                    disabled={updateContactStatusMutation.isPending}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    <X className="w-4 h-4 mr-2" />
+                    Mark as Ignored
                   </Button>
                 </DialogFooter>
               </DialogContent>

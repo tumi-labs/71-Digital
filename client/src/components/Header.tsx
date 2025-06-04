@@ -42,7 +42,7 @@ export default function Header({ currentSection, onNavigate }: HeaderProps) {
   return (
     <header className="w-full">
       {/* Crypto Icons Row */}
-      <div className="bg-black bg-opacity-30 py-2 md:py-3">
+      <div className="py-2 md:py-3" style={{ backgroundColor: '#2D1810' }}>
         <div className="container mx-auto px-4 flex justify-center">
           <div className="flex justify-between items-center w-full max-w-xl">
             <div className="w-6 h-6 md:w-8 md:h-8 bg-orange-500 rounded-full flex items-center justify-center">

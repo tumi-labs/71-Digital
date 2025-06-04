@@ -214,7 +214,7 @@ export default function BookAppointment() {
   // Removed scroll listener for better performance
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#1A0F08' }}>
       <Header currentSection={currentSection} onNavigate={handleNavigate} />
       <main>
         {/* Hero Section */}

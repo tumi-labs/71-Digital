@@ -8,7 +8,7 @@ const handleLinkClick = () => {
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gray-800">
+    <footer className="w-full" style={{ backgroundColor: '#2D1810' }}>
       <div className="w-full px-6 py-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-8">

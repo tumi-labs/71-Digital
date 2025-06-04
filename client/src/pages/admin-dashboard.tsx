@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
-import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings } from "lucide-react";
+import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings, Check, X, CheckCircle, XCircle } from "lucide-react";
 import { format } from "date-fns";
 import { z } from "zod";
 
@@ -208,6 +208,35 @@ export default function AdminDashboard() {
     },
   });
 
+  const updateAppointmentStatusMutation = useMutation({
+    mutationFn: async ({ appointmentId, status, rejectionReason }: { appointmentId: number; status: string; rejectionReason?: string }) => {
+      const res = await fetch(`/api/admin/appointments/${appointmentId}/status`, {
+        method: "PATCH",
+        headers: {
+          ...getAuthHeaders(),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status, rejectionReason }),
+      });
+      if (!res.ok) throw new Error("Failed to update appointment status");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/appointments"] });
+      toast({
+        title: "Appointment status updated",
+        description: "The appointment has been updated successfully",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to update appointment",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const onCreateAdmin = (data: CreateAdminData) => {
     createAdminMutation.mutate(data);
   };
@@ -232,6 +261,119 @@ export default function AdminDashboard() {
   const confirmDelete = (adminId: number) => {
     if (window.confirm("Are you sure you want to delete this admin account? This action cannot be undone.")) {
       deleteAdminMutation.mutate(adminId);
+    }
+  };
+
+  const handleApproveAppointment = (appointment: any) => {
+    const approved = window.confirm(
+      `Approve appointment for ${appointment.fullName}?\n\n` +
+      `Service: ${appointment.serviceType}\n` +
+      `Date: ${appointment.preferredDate} at ${appointment.preferredTime}\n\n` +
+      `Click OK to approve and get contact options.`
+    );
+    
+    if (approved) {
+      updateAppointmentStatusMutation.mutate({
+        appointmentId: appointment.id,
+        status: "approved"
+      });
+      
+      // Show contact options after approval
+      setTimeout(() => {
+        const contactChoice = window.confirm(
+          `✅ Appointment approved successfully!\n\n` +
+          `Contact ${appointment.fullName} now?\n\n` +
+          `📧 Click OK to send email\n` +
+          `📱 Click Cancel to send WhatsApp message`
+        );
+        
+        if (contactChoice) {
+          // Email option
+          const emailSubject = `Appointment Approved - ${appointment.serviceType}`;
+          const emailBody = `Dear ${appointment.fullName},\n\nYour appointment request has been approved!\n\nDetails:\n- Service: ${appointment.serviceType}\n- Date: ${appointment.preferredDate}\n- Time: ${appointment.preferredTime}\n\nWe look forward to meeting with you.\n\nBest regards,\n71 Digital Team`;
+          window.open(`mailto:${appointment.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
+        } else if (appointment.phoneNumber) {
+          // WhatsApp option
+          const whatsappMessage = `Hello ${appointment.fullName}! Your appointment for ${appointment.serviceType} on ${appointment.preferredDate} at ${appointment.preferredTime} has been approved. We look forward to meeting with you!`;
+          window.open(`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(whatsappMessage)}`);
+        }
+      }, 1000);
+    }
+  };
+
+  const handleRejectAppointment = (appointment: any) => {
+    const rejectionReason = window.prompt(
+      `Reject appointment for ${appointment.fullName}?\n\n` +
+      `Please provide a reason for rejection:`
+    );
+    
+    if (rejectionReason) {
+      updateAppointmentStatusMutation.mutate({
+        appointmentId: appointment.id,
+        status: "rejected",
+        rejectionReason
+      });
+      
+      // Show contact options after rejection
+      setTimeout(() => {
+        const contactChoice = window.confirm(
+          `❌ Appointment rejected.\n\n` +
+          `Contact ${appointment.fullName} to explain?\n\n` +
+          `📧 Click OK to send email\n` +
+          `📱 Click Cancel to send WhatsApp message`
+        );
+        
+        if (contactChoice) {
+          // Email option
+          const emailSubject = `Regarding Your Appointment Request`;
+          const emailBody = `Dear ${appointment.fullName},\n\nThank you for your interest in our ${appointment.serviceType} service.\n\nUnfortunately, we cannot accommodate your request for ${appointment.preferredDate} at ${appointment.preferredTime}.\n\nReason: ${rejectionReason}\n\nPlease feel free to contact us to discuss alternative options.\n\nBest regards,\n71 Digital Team`;
+          window.open(`mailto:${appointment.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
+        } else if (appointment.phoneNumber) {
+          // WhatsApp option
+          const whatsappMessage = `Hello ${appointment.fullName}, regarding your appointment request for ${appointment.serviceType}: ${rejectionReason}. Please contact us to discuss alternatives.`;
+          window.open(`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(whatsappMessage)}`);
+        }
+      }, 1000);
+    }
+  };
+
+  const handleMarkCompleted = (appointment: any) => {
+    const confirmed = window.confirm(
+      `Mark appointment with ${appointment.fullName} as completed?\n\n` +
+      `Service: ${appointment.serviceType}\n` +
+      `Date: ${appointment.preferredDate}`
+    );
+    
+    if (confirmed) {
+      updateAppointmentStatusMutation.mutate({
+        appointmentId: appointment.id,
+        status: "completed"
+      });
+    }
+  };
+
+  const getStatusBadgeProps = (status: string) => {
+    switch (status) {
+      case "approved":
+        return { 
+          className: "bg-green-500/20 text-green-400 border-green-500/30",
+          icon: <CheckCircle className="w-3 h-3 mr-1" />
+        };
+      case "rejected":
+        return { 
+          className: "bg-red-500/20 text-red-400 border-red-500/30",
+          icon: <XCircle className="w-3 h-3 mr-1" />
+        };
+      case "completed":
+        return { 
+          className: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+          icon: <CheckCircle className="w-3 h-3 mr-1" />
+        };
+      default:
+        return { 
+          className: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+          icon: <Clock className="w-3 h-3 mr-1" />
+        };
     }
   };
 
@@ -492,14 +634,8 @@ export default function AdminDashboard() {
                               <p className="text-gray-400 text-xs mt-1">{appointment.serviceType}</p>
                             </div>
                             <div className="text-right">
-                              <Badge 
-                                variant={appointment.status === "confirmed" ? "default" : "secondary"}
-                                className={
-                                  appointment.status === "confirmed" 
-                                    ? "bg-green-500/20 text-green-400 border-green-500/30 text-xs" 
-                                    : "bg-orange-500/20 text-orange-400 border-orange-500/30 text-xs"
-                                }
-                              >
+                              <Badge className={`${getStatusBadgeProps(appointment.status).className} text-xs flex items-center w-fit ml-auto`}>
+                                {getStatusBadgeProps(appointment.status).icon}
                                 {appointment.status}
                               </Badge>
                               <p className="text-gray-400 text-xs mt-1">
@@ -561,6 +697,44 @@ export default function AdminDashboard() {
                               </div>
                             </div>
                           )}
+
+                          {/* Action Buttons */}
+                          <div className="mt-4 pt-3 border-t border-orange-500/20">
+                            {appointment.status === "pending" && (
+                              <div className="flex space-x-2">
+                                <Button
+                                  size="sm"
+                                  onClick={() => handleApproveAppointment(appointment)}
+                                  disabled={updateAppointmentStatusMutation.isPending}
+                                  className="bg-green-600 hover:bg-green-700 text-white text-xs flex-1"
+                                >
+                                  <Check className="w-3 h-3 mr-1" />
+                                  Approve
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  onClick={() => handleRejectAppointment(appointment)}
+                                  disabled={updateAppointmentStatusMutation.isPending}
+                                  className="bg-red-600 hover:bg-red-700 text-white text-xs flex-1"
+                                >
+                                  <X className="w-3 h-3 mr-1" />
+                                  Reject
+                                </Button>
+                              </div>
+                            )}
+                            
+                            {appointment.status === "approved" && (
+                              <Button
+                                size="sm"
+                                onClick={() => handleMarkCompleted(appointment)}
+                                disabled={updateAppointmentStatusMutation.isPending}
+                                className="bg-blue-600 hover:bg-blue-700 text-white text-xs w-full"
+                              >
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                Mark Completed
+                              </Button>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>

@@ -204,6 +204,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update appointment status
+  app.patch("/api/admin/appointments/:id/status", requireAdmin, async (req, res) => {
+    try {
+      const appointmentId = parseInt(req.params.id);
+      const { status, rejectionReason } = req.body;
+
+      if (!status || !["pending", "approved", "rejected", "completed"].includes(status)) {
+        return res.status(400).json({ success: false, error: "Invalid status" });
+      }
+
+      if (status === "rejected" && !rejectionReason) {
+        return res.status(400).json({ success: false, error: "Rejection reason is required" });
+      }
+
+      const updatedAppointment = await storage.updateAppointmentStatus(
+        appointmentId,
+        status,
+        rejectionReason
+      );
+
+      res.json({ success: true, appointment: updatedAppointment });
+    } catch (error) {
+      console.error("Error updating appointment status:", error);
+      res.status(500).json({ success: false, error: "Failed to update appointment status" });
+    }
+  });
+
   app.post("/api/admin/create-admin", requireAdmin, async (req, res) => {
     try {
       const { username, password } = req.body;

@@ -11,9 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
-import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings, Check, X, CheckCircle, XCircle } from "lucide-react";
+import { LogOut, Users, Calendar, Mail, Phone, Building, Clock, MessageSquare, UserPlus, Shield, Edit, Trash2, Settings, Check, X, CheckCircle, XCircle, Filter } from "lucide-react";
 import { format } from "date-fns";
 import { z } from "zod";
 
@@ -42,6 +43,8 @@ export default function AdminDashboard() {
     isOpen: boolean;
   }>({ type: null, appointment: null, isOpen: false });
   const [rejectionReason, setRejectionReason] = useState("");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [serviceFilter, setServiceFilter] = useState<string>("all");
 
   const createAdminForm = useForm<CreateAdminData>({
     resolver: zodResolver(createAdminSchema),
@@ -394,6 +397,16 @@ export default function AdminDashboard() {
     }
   };
 
+  // Filter appointments based on status and service type
+  const filteredAppointments = appointments?.filter((appointment: any) => {
+    const statusMatch = statusFilter === "all" || appointment.status === statusFilter;
+    const serviceMatch = serviceFilter === "all" || appointment.serviceType === serviceFilter;
+    return statusMatch && serviceMatch;
+  });
+
+  // Get unique service types for filter dropdown
+  const uniqueServiceTypes = Array.from(new Set(appointments?.map((apt: any) => apt.serviceType) || []));
+
   const handleLogout = async () => {
     try {
       await fetch("/api/admin/logout", {
@@ -629,10 +642,63 @@ export default function AdminDashboard() {
           <TabsContent value="appointments" className="space-y-4">
             <Card className="bg-white/10 backdrop-blur-sm border-orange-500/30">
               <CardHeader>
-                <CardTitle className="text-white">Appointment Bookings</CardTitle>
-                <CardDescription className="text-gray-300">
-                  Consultation appointments scheduled by clients
-                </CardDescription>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start space-y-4 sm:space-y-0">
+                  <div>
+                    <CardTitle className="text-white">Appointment Bookings</CardTitle>
+                    <CardDescription className="text-gray-300">
+                      Consultation appointments scheduled by clients
+                    </CardDescription>
+                  </div>
+                  
+                  {/* Filter Controls */}
+                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                    <div className="flex items-center space-x-2">
+                      <Filter className="w-4 h-4 text-orange-500" />
+                      <span className="text-sm text-gray-300">Filters:</span>
+                    </div>
+                    
+                    <Select value={statusFilter} onValueChange={setStatusFilter}>
+                      <SelectTrigger className="w-[140px] bg-white/10 border-orange-500/30 text-white">
+                        <SelectValue placeholder="Status" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#1A0F08] border-orange-500/30">
+                        <SelectItem value="all" className="text-white">All Status</SelectItem>
+                        <SelectItem value="pending" className="text-white">Pending</SelectItem>
+                        <SelectItem value="approved" className="text-white">Approved</SelectItem>
+                        <SelectItem value="rejected" className="text-white">Rejected</SelectItem>
+                        <SelectItem value="completed" className="text-white">Completed</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    
+                    <Select value={serviceFilter} onValueChange={setServiceFilter}>
+                      <SelectTrigger className="w-[160px] bg-white/10 border-orange-500/30 text-white">
+                        <SelectValue placeholder="Service" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#1A0F08] border-orange-500/30">
+                        <SelectItem value="all" className="text-white">All Services</SelectItem>
+                        {uniqueServiceTypes.map((service) => (
+                          <SelectItem key={service} value={service} className="text-white">
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    {(statusFilter !== "all" || serviceFilter !== "all") && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setStatusFilter("all");
+                          setServiceFilter("all");
+                        }}
+                        className="border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
+                      >
+                        Clear
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 {appointmentsLoading ? (
@@ -643,7 +709,7 @@ export default function AdminDashboard() {
                   <>
                     {/* Mobile Card Layout */}
                     <div className="block lg:hidden space-y-4">
-                      {appointments?.map((appointment: any) => (
+                      {filteredAppointments?.map((appointment: any) => (
                         <div key={appointment.id} className="bg-white/5 rounded-lg p-4 border border-orange-500/20">
                           <div className="flex justify-between items-start mb-3">
                             <div>

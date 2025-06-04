@@ -332,7 +332,10 @@ export default function Contact() {
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">Schedule a Call</h4>
                 <p className="text-gray-300 text-sm mb-4">Book a consultation with our mining specialists</p>
-                <button className="text-orange-500 font-medium hover:text-orange-400 transition-colors">
+                <button 
+                  className="text-orange-500 font-medium hover:text-orange-400 transition-colors"
+                  onClick={() => window.open('/book-appointment', '_self')}
+                >
                   Book Now
                 </button>
               </div>
@@ -345,7 +348,10 @@ export default function Contact() {
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">Email Support</h4>
                 <p className="text-gray-300 text-sm mb-4">Send detailed inquiries to our team</p>
-                <button className="text-orange-500 font-medium hover:text-orange-400 transition-colors">
+                <button 
+                  className="text-orange-500 font-medium hover:text-orange-400 transition-colors"
+                  onClick={() => window.open('mailto:info@71digital.com?subject=Mining Services Inquiry&body=Hello 71 Digital team,%0D%0A%0D%0AI am interested in learning more about your mining services.%0D%0A%0D%0APlease contact me to discuss my requirements.%0D%0A%0D%0AThank you.')}
+                >
                   Send Email
                 </button>
               </div>
@@ -367,7 +373,10 @@ export default function Contact() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <button 
+                  className="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  onClick={() => window.open('tel:+1-800-71-DIGITAL')}
+                >
                   <Phone className="w-5 h-5 mr-2" />
                   Call Sales Team
                 </button>

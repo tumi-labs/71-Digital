@@ -649,9 +649,9 @@ export default function AdminDashboard() {
                       </SelectTrigger>
                       <SelectContent className="bg-[#1A0F08] border-orange-500/30">
                         <SelectItem value="all" className="text-white">All Status</SelectItem>
-                        <SelectItem value="pending" className="text-white">Pending</SelectItem>
-                        <SelectItem value="accepted" className="text-white">Accepted</SelectItem>
-                        <SelectItem value="rejected" className="text-white">Rejected</SelectItem>
+                        <SelectItem value="unread" className="text-white">Unread</SelectItem>
+                        <SelectItem value="responded" className="text-white">Responded</SelectItem>
+                        <SelectItem value="ignored" className="text-white">Ignored</SelectItem>
                       </SelectContent>
                     </Select>
                     

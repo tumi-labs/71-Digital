@@ -1340,9 +1340,9 @@ export default function AdminDashboard() {
                                         onClick={() => handleStatusChange(appointment, "approved")}
                                         disabled={updateAppointmentStatusMutation.isPending}
                                         className="border-green-500/30 text-green-500 hover:bg-green-500/10 text-xs"
+                                        title="Mark as Approved"
                                       >
-                                        <CheckCircle className="w-3 h-3 mr-1" />
-                                        Approve
+                                        <CheckCircle className="w-3 h-3" />
                                       </Button>
                                     )}
                                     
@@ -1353,9 +1353,9 @@ export default function AdminDashboard() {
                                         onClick={() => handleRejectAppointment(appointment)}
                                         disabled={updateAppointmentStatusMutation.isPending}
                                         className="border-red-500/30 text-red-500 hover:bg-red-500/10 text-xs"
+                                        title="Mark as Rejected"
                                       >
-                                        <XCircle className="w-3 h-3 mr-1" />
-                                        Reject
+                                        <XCircle className="w-3 h-3" />
                                       </Button>
                                     )}
                                     
@@ -1367,9 +1367,9 @@ export default function AdminDashboard() {
                                         onClick={() => handleMarkCompleted(appointment)}
                                         disabled={updateAppointmentStatusMutation.isPending}
                                         className="border-blue-500/30 text-blue-500 hover:bg-blue-500/10 text-xs"
+                                        title="Mark as Completed"
                                       >
-                                        <CheckCircle className="w-3 h-3 mr-1" />
-                                        Complete
+                                        <CheckCircle className="w-3 h-3" />
                                       </Button>
                                     )}
                                   </div>

@@ -361,9 +361,27 @@ export default function AdminDashboard() {
                               {format(new Date(contact.createdAt), "MMM d, yyyy")}
                             </TableCell>
                             <TableCell className="text-white font-medium">{contact.fullName}</TableCell>
-                            <TableCell className="text-white">{contact.email}</TableCell>
+                            <TableCell className="text-white">
+                              <a 
+                                href={`mailto:${contact.email}`}
+                                className="text-orange-400 hover:text-orange-300 underline"
+                              >
+                                {contact.email}
+                              </a>
+                            </TableCell>
                             <TableCell className="text-white">{contact.companyName || "-"}</TableCell>
-                            <TableCell className="text-white">{contact.phoneNumber || "-"}</TableCell>
+                            <TableCell className="text-white">
+                              {contact.phoneNumber ? (
+                                <a 
+                                  href={`https://wa.me/${contact.phoneNumber.replace(/[^0-9]/g, '')}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-green-400 hover:text-green-300 underline"
+                                >
+                                  {contact.phoneNumber}
+                                </a>
+                              ) : "-"}
+                            </TableCell>
                             <TableCell className="text-white">{contact.service || "-"}</TableCell>
                             <TableCell className="text-white max-w-xs truncate" title={contact.message}>
                               {contact.message}
@@ -399,6 +417,7 @@ export default function AdminDashboard() {
                           <TableHead className="text-gray-300">Date Booked</TableHead>
                           <TableHead className="text-gray-300">Name</TableHead>
                           <TableHead className="text-gray-300">Email</TableHead>
+                          <TableHead className="text-gray-300">Phone</TableHead>
                           <TableHead className="text-gray-300">Company</TableHead>
                           <TableHead className="text-gray-300">Service Type</TableHead>
                           <TableHead className="text-gray-300">Preferred Date</TableHead>
@@ -413,7 +432,26 @@ export default function AdminDashboard() {
                               {format(new Date(appointment.createdAt), "MMM d, yyyy")}
                             </TableCell>
                             <TableCell className="text-white font-medium">{appointment.fullName}</TableCell>
-                            <TableCell className="text-white">{appointment.email}</TableCell>
+                            <TableCell className="text-white">
+                              <a 
+                                href={`mailto:${appointment.email}`}
+                                className="text-orange-400 hover:text-orange-300 underline"
+                              >
+                                {appointment.email}
+                              </a>
+                            </TableCell>
+                            <TableCell className="text-white">
+                              {appointment.phoneNumber ? (
+                                <a 
+                                  href={`https://wa.me/${appointment.phoneNumber.replace(/[^0-9]/g, '')}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-green-400 hover:text-green-300 underline"
+                                >
+                                  {appointment.phoneNumber}
+                                </a>
+                              ) : "-"}
+                            </TableCell>
                             <TableCell className="text-white">{appointment.companyName || "-"}</TableCell>
                             <TableCell className="text-white">{appointment.serviceType}</TableCell>
                             <TableCell className="text-white">{appointment.preferredDate}</TableCell>
